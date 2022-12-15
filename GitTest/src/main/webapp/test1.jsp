@@ -9,5 +9,6 @@
 <body>
 	<h1>Git Test 중입니다.</h1>
 	<h1>김지애</h1>
+	<h1>우재연</h1>
 </body>
 </html>
