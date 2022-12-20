@@ -56,7 +56,7 @@ Coded by www.creative-tim.com
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
         <div id="container">
-        <a href="./a_1_main.html" class="simple-text logo-normal">
+        <a href="goMain.do" class="simple-text logo-normal">
           <img id="logo" src="./assets/img/Itssuelogo.png">
     
         </a>
@@ -65,28 +65,28 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./a_1_main.html">
+            <a href="goMain.do">
               <i class="fa-solid fa-house-chimney"></i>
               <p>Main</p> 
               <!-- 메인페이지 -->
             </a>
           </li>
           <li  class="active ">
-            <a href="./a_2_sche.html">
+            <a href="goSche.do">
               <i class="fa-solid fa-calendar-days"></i>
               <p>My Schedule</p>
               <!-- 위클리 스케줄 설정, 디데이 설정 -->
             </a>
           </li>
           <li>
-            <a href="./a_3_board.html">
+            <a href="goBoard.do">
               <i class="fa-solid fa-clipboard-check"></i>
               <p>My Board</p>
               <!-- 일기 게시판 -->
             </a>
           </li>
           <li>
-            <a href="./a_4_comm.html">
+            <a href="goCommList.do">
               <i class="fa-solid fa-message"></i>
               <p>Community Board</p>
               <!-- 질문게시판 -->

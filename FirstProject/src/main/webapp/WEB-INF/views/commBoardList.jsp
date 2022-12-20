@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Itssue
+    Paper Dashboard 2 by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -38,16 +38,18 @@ Coded by www.creative-tim.com
   <script src="https://kit.fontawesome.com/5ecdf6234c.js" crossorigin="anonymous"></script>
 
   <style>
+   @font-face {
+      font-family: 'LINESeedKR-Bd';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
   .input-group.no-border{position: absolute; bottom: 40px; padding-right: 10px; padding-left: 10px;}
   .alert-icon{position: absolute; right: 100px; top: 20px;}
-  @font-face {
-        font-family: 'LINESeedKR-Bd';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-    }
-    body{font-family: 'LINESeedKR-Bd';}
-    input::placeholder{font-family: 'LINESeedKR-Bd';}
+  .col-md-12{text-align: center;}
+  #board{display: inline-block; text-align: center;} 
+  body{font-family: 'LINESeedKR-Bd';}
+
   </style>
 </head>
 
@@ -56,7 +58,7 @@ Coded by www.creative-tim.com
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
         <div id="container">
-        <a href="./a_1_main.html" class="simple-text logo-normal">
+        <a href="goMain.do" class="simple-text logo-normal">
           <img id="logo" src="./assets/img/Itssuelogo.png">
     
         </a>
@@ -65,28 +67,28 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./a_1_main.html">
+            <a href="goMain.do">
               <i class="fa-solid fa-house-chimney"></i>
               <p>Main</p> 
               <!-- 메인페이지 -->
             </a>
           </li>
           <li>
-            <a href="./a_2_sche.html">
+            <a href="goSche.do">
               <i class="fa-solid fa-calendar-days"></i>
               <p>My Schedule</p>
 <!-- 위클리 스케줄 설정, 디데이 설정 -->
             </a>
           </li>
           <li>
-            <a href="./a_3_board.html">
+            <a href="goBoard.do">
               <i class="fa-solid fa-clipboard-check"></i>
               <p>My Board</p>
               <!-- 일기 게시판 -->
             </a>
           </li>
           <li  class="active ">
-            <a href="./a_4_comm.html">
+            <a href="goCommList.do">
               <i class="fa-solid fa-message"></i>
               <p>Community Board</p>
               <!-- 질문게시판 -->
@@ -103,6 +105,9 @@ Coded by www.creative-tim.com
       </div>
       </div>
     </div>
+
+
+
     <div class="main-panel" style="height: 100vh;">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
@@ -115,7 +120,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;">user nickname</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -133,7 +138,7 @@ Coded by www.creative-tim.com
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-gear"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Settings</span>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -146,13 +151,107 @@ Coded by www.creative-tim.com
         </div>
       </nav>
       <!-- End Navbar -->
+
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <h3 class="description">Your content here</h3>
+            <div id="board" style="width: 1000px;" align="center">
+              <form action="tag_search">
+                  <div>
+                      <input type="text" name="tag" size="120" maxlength="20" placeholder="🔍# 해시태그를 입력해주세요">
+                      <input type="submit" name="search" value="검색">
+                      <br><br>
+                  </div>
+              </form>
+              <table class="write_list" border="1">
+                  <thead>
+                      <tr>
+                          <th scope="col" class="td_title" width="200"></th>
+                          <th scope="col" class="td_title" width="335" align="center">제목</th>
+                          <th scope="col" class="td_wirter" width="280" align="center">작성자</th>
+                          <th scope="col" class="td_date" width="290" align="center">작성일</th>
+                          <th scope="col" class="td_reco" width="200" align="center">추천</th>
+                      </tr>
+                  </thead>
+                  <thead>
+                      <tr>
+                          <th scope="col" class="td_title" width="250">🥇BEST1 </th>
+                          <th scope="col" class="td_title" width="365">베스트게시물1</th>
+                          <th scope="col" class="td_wirter" width="280">작성자1</th>
+                          <th scope="col" class="td_date" width="300">작성일1</th>
+                          <th scope="col" class="td_reco" width="90">570</th>
+                        </tr>
+                  </thead>
+                  <thead>
+                      <tr>
+                          <th scope="col" class="td_title" width="250">🥈BEST2 </th>
+                          <th scope="col" class="td_title" width="365">베스트게시물2</th>
+                          <th scope="col" class="td_wirter" width="280">작성자2</th>
+                          <th scope="col" class="td_date" width="300">작성일2</th>
+                          <th scope="col" class="td_reco" width="90">486</th>
+                        </tr>
+                  </thead>
+                  <thead>
+                      <tr>
+                          <th scope="col" class="td_title" width="250">🥉BEST3 </th>
+                          <th scope="col" class="td_title" width="365">베스트게시물3</th>
+                          <th scope="col" class="td_wirter" width="280">작성자3</th>
+                          <th scope="col" class="td_date" width="300">작성일3</th>
+                          <th scope="col" class="td_reco" width="90">381</th>
+                        </tr>
+                  </thead>
+                  <thead>
+                      <tr>
+                        <td scope="col" class="td_title" width="250">65349 </td>
+                        <td scope="col" class="td_title" width="365">게시물</td>
+                        <td scope="col" class="td_wirter" width="280">작성자</td>
+                        <td scope="col" class="td_date" width="300">작성일</td>
+                        <td scope="col" class="td_reco" width="90">0</td>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr>
+                        <td scope="col" class="td_title" width="250">65348 </td>
+                        <td scope="col" class="td_title" width="365">게시물</td>
+                        <td scope="col" class="td_wirter" width="280">작성자</td>
+                        <td scope="col" class="td_date" width="300">작성일</td>
+                        <td scope="col" class="td_reco" width="90">5</td>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr>
+                        <td scope="col" class="td_title" width="250">65347 </td>
+                        <td scope="col" class="td_title" width="365">게시물</td>
+                        <td scope="col" class="td_wirter" width="280">작성자</td>
+                        <td scope="col" class="td_date" width="300">작성일</td>
+                        <td scope="col" class="td_reco" width="90">4</td>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr>
+                        <td scope="col" class="td_title" width="250" >65346 </td>
+                        <td scope="col" class="td_title" width="365">게시물</td>
+                        <td scope="col" class="td_wirter" width="280">작성자</td>
+                        <td scope="col" class="td_date" width="300">작성일</td>
+                        <td scope="col" class="td_reco" width="90">0</td>
+                      </tr>
+                    </thead>
+              </table>
+              <br>
+              <input type="submit" value="글쓰기" onclick="location.href='#write'" style="float: left;">
+                <a href="./a_4_comm copy.html" id="write"></a>
+              <input type="submit" value="내글보기" style="float:right">
+      
+          </div>
           </div>
         </div>
       </div>
+
+      <body>
+
+        
+    </body>
+
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
         <div class="container-fluid">
           <div class="row">
