@@ -31,6 +31,18 @@ public class MembersMapper {
 		
 		return result;
 	}
+	
+	public int update(Members dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.update("update",dto);
+		
+		session.close();
+		
+		return cnt;
+		
+	}
 
 
 }

@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ITssue.dao.BoardMapper"></mapper>
+<mapper namespace="com.ITssue.dao.BoardMapper">
+
+	<insert id="newWrite" parameterType="com.ITssue.entity.Board">
+		insert into board
+		values
+		(
+			board_no_seq.nextval,
+			#{board_title},
+			#{board_content},
+			#{hash_tag},
+			sysdate,
+			0,
+			#{id},
+			#{board_file, jdbcType=VARCHAR}
+		
+		)
+	</insert>
+
+
+
+
+</mapper>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.GoBoardCon;
 import com.ITssue.controller.GoCommCon;
@@ -22,7 +23,11 @@ import com.ITssue.controller.GoMainCon;
 import com.ITssue.controller.GoScheCon;
 import com.ITssue.controller.GoUpdateCon;
 import com.ITssue.controller.GoWelcomeCon;
+import com.ITssue.controller.JoinCon;
 import com.ITssue.controller.LoginCon;
+import com.ITssue.controller.LogoutCon;
+import com.ITssue.controller.UpdateCon;
+
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -52,6 +57,12 @@ public class FrontController extends HttpServlet {
 		// redirect
 		// handlerMapping.put("/join.do", new JoinCon() );
 		 handlerMapping.put("/login.do", new LoginCon());
+		 handlerMapping.put("/join.do", new JoinCon());
+		 handlerMapping.put("/commWrite.do", new CommWriteCon());
+		 handlerMapping.put("/logout.do", new LogoutCon());
+		 handlerMapping.put("/update.do", new UpdateCon());
+		 
+		 
 		
 	}
 

@@ -143,8 +143,8 @@ Coded by www.creative-tim.com
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">회원정보 수정</a>
-                  <a class="dropdown-item" href="#">로그아웃</a>
+                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
+                  <a class="dropdown-item" href="logout.do">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -239,9 +239,9 @@ Coded by www.creative-tim.com
                     </thead>
               </table>
               <br>
-              <input class="btn mine" type="submit" value="내글보기" onclick="location.href='#write'" style="float: left;">
+              <input class="btn mine" type="button" value="내글보기" onclick="location.href='#write'" style="float: left;">
                 <a href="./a_4_comm copy.html" id="write"></a>
-              <input class="btn write" type="submit" value="글쓰기" style="float:right">
+              <input class="btn write" type="button" value="글쓰기" style="float:right" id="newWrite">
       
           </div>
           </div>
@@ -280,6 +280,12 @@ Coded by www.creative-tim.com
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <script type="text/javascript">
+  	$('#newWrite').on('click',function(){
+  		location.href="goCommWrite.do";
+  	})
+  
+  </script>
 </body>
 
 </html>

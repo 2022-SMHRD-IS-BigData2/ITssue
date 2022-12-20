@@ -5,12 +5,11 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ITssue.dao.MembersMapper;
 import com.ITssue.entity.Members;
 
-public class LoginCon implements Controller {
+public class JoinCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -20,25 +19,27 @@ public class LoginCon implements Controller {
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		String birth = request.getParameter("birth");
+		String nick = request.getParameter("nick");
 		
 		Members dto = new Members();
 		dto.setId(id);
 		dto.setPw(pw);
+		dto.setBirth(birth);
+		dto.setNick(nick);
+		
 		
 		MembersMapper dao = new MembersMapper();
-		Members result = dao.login(dto);
+		int result = dao.join(dto);
 		
-		String nextPage = null;
-		if(result != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("info", result);
-			nextPage = "redirect:/goMain.do";
+		if(result > 0) {
+			response.getWriter().print("true");
 		}else {
-			nextPage = "redirect:/goWelcome.do";
+			response.getWriter().print("false");
 		}
 		
 		
-		return nextPage;
+		return null;
 	}
 
 }

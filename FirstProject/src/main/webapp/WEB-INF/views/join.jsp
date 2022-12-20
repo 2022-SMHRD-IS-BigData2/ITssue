@@ -88,7 +88,7 @@ body{background-color: #f4f3ef;
     			
     			$.ajax({
     			
-    				url : "AjaxCon",
+    				url : "join.do",
     				data : {
     					id:$('#id').val(),
     					pw:$('#pw').val(),
@@ -97,7 +97,6 @@ body{background-color: #f4f3ef;
     				},
     				type:"post",
     				success:function(res){
-    					alert(res)
     					if(res=="true"){
     						location.href = "goLogin.do"
     					}else{

@@ -73,7 +73,9 @@ Coded by www.creative-tim.com
       border-color: #dfe6e9;
     }
 
-    input[type=submit]{border: 2px solid #6bd098; border-radius: 5px; padding: 5px 10px 5px 10px; background-color: #6bd098; font-family: 'LINESeedKR-Bd';}
+     input[type=submit]{border: 2px solid #6bd098; border-radius: 5px; padding: 3px 10px 3px 10px; background-color: #10ac84; font-family: 
+    'LINESeedKR-Bd';}
+    input[type=button]{border: 1px solid #6bd098; border-radius: 5px; padding: 2px 10px 2px 10px; background-color: #10ac84; font-family: 'LINESeedKR-Bd';}
     
       .hashtag-container{list-style: none;}
     .hashtag{float: left; margin: 3px; display: block; width: 80px; height: 20px; text-align: center; border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098;}
@@ -168,8 +170,8 @@ Coded by www.creative-tim.com
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">회원정보 수정</a>
-                  <a class="dropdown-item" href="#">로그아웃</a>
+                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
+                  <a class="dropdown-item" href="logout.do">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -192,8 +194,8 @@ Coded by www.creative-tim.com
           <thead>
             <tr>
               <th colspan="4">
-                <form action="">
-                  <textarea name="" id="" cols="132" rows="1" style="text-align: center; font-size: medium"
+                <form onsubmit="false">
+                  <textarea name="title" id="title" cols="132" rows="1" style="text-align: center; font-size: medium"
                     placeholder="제목을 입력하세요."></textarea>
                 </form>
               </th>
@@ -219,10 +221,9 @@ Coded by www.creative-tim.com
             <tbody>
               <tr>
                 <th colspan="4">
-                  <form action="">
-                    <textarea name="" id="" cols="132" rows="25" style="font-size: medium; text-align: center;"
+                    <textarea name="content" id="content" cols="132" rows="25" style="font-size: medium; text-align: center;"
                       placeholder="내용을 입력하세요."></textarea>
-                    <input id="addValue" type="text" placeholder="해시태그 입력">
+                    <input id="addValue" type="text" placeholder="여섯자까지 해시태그 입력">
                     <input id="push-hash" type='button' value='추가' onclick='addList()'>
                       <input type='button' value='삭제' onclick='removeItem()'>
                     <ul id="hashtag-container">
@@ -238,7 +239,7 @@ Coded by www.creative-tim.com
         </table>
         <br>
         <div style="resize: none; text-align: center";>
-          <input type="submit" value="등록" style="resize: none;">
+          <input type="button" value="등록" style="resize: none;  " id="submit">
         </div>
       </form>
     </div>
@@ -326,6 +327,41 @@ $('#addValue').keypress(function(event){
      }
 });
 
+  </script>
+  <script type="text/javascript">
+  $('#submit').on('click',function(){
+	  var hashtags = "";
+		for(var i = 0; i < $('.hashtag').length; i++){
+			hashtags += $('.hashtag')[i].innerHTML
+			if(i <= $('.hashtag').length-2 ){
+				hashtags += ",";
+			}
+		}
+
+		$.ajax({
+			
+			url : "commWrite.do",
+			data : {
+				title:$('#title').val(),
+				content:$('#content').val(),
+				hashtag: hashtags,
+			},
+			type:"post",
+			success:function(res){
+				if(res=="true"){
+					location.href = "goCommList.do"
+				}else{
+					location.href = "goCommWrite.do"
+				}
+			},
+			error:function(e){
+			}
+			
+		})
+		
+		
+	  		
+  })
   </script>
 </body>
 
