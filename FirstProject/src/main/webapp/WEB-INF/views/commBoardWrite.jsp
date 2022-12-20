@@ -76,7 +76,7 @@ Coded by www.creative-tim.com
     input[type=submit]{border: 2px solid #6bd098; border-radius: 5px; padding: 5px 10px 5px 10px; background-color: #6bd098; font-family: 'LINESeedKR-Bd';}
     
       .hashtag-container{list-style: none;}
-    .hashtag{float: left; margin: 3px; display: block; width: 50px; height: 20px; text-align: center; border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098;}
+    .hashtag{float: left; margin: 3px; display: block; width: 80px; height: 20px; text-align: center; border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098;}
   </style>
 </head>
 
@@ -216,29 +216,33 @@ Coded by www.creative-tim.com
                 <td scope="col" class="td_title" width="280" style="text-align: center;">정렬방식</td>
               </tr>
             </thead>
-            <thead>
+            <tbody>
               <tr>
                 <th colspan="4">
                   <form action="">
                     <textarea name="" id="" cols="132" rows="25" style="font-size: medium; text-align: center;"
                       placeholder="내용을 입력하세요."></textarea>
-                      <textarea name="" id="" cols="30" rows="1" placeholder="해시태그 입력"></textarea>
-                    <ul class="hashtag-container">
+                    <input id="addValue" type="text" placeholder="해시태그 입력">
+                    <input id="push-hash" type='button' value='추가' onclick='addList()'>
+                      <input type='button' value='삭제' onclick='removeItem()'>
+                    <ul id="hashtag-container">
                       <li class="hashtag">수학</li>
                        <li class="hashtag">IT</li>
                        <li class="hashtag">자격증</li>
                       
                     </ul>
-                  </form>
+                  
                 </th>
               </tr>
-            </thead>
+            </tbody>
         </table>
         <br>
         <div style="resize: none; text-align: center";>
           <input type="submit" value="등록" style="resize: none;">
         </div>
+      </form>
     </div>
+  </body>
 
     <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
       <div class="container-fluid">
@@ -267,6 +271,62 @@ Coded by www.creative-tim.com
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+
+  <script src="./assets/js/jquery-3.6.1.min.js"></script>
+  <script>
+function addList()  {
+  
+  // 1. 추가할 값을 input창에서 읽어온다
+  const addValue 
+    = document.getElementById('addValue').value;
+  
+  // 2. 추가할 li element 생성
+  // 2-1. 추가할 li element 생성
+  const list = document.createElement("li");
+  
+  // 2-2. li에 id 속성 추가 
+  list.setAttribute('class','hashtag');
+  
+  // 2-3. li에 text node 추가 
+  const textNode = document.createTextNode(addValue);
+  list.appendChild(textNode);
+  
+  // 3. 생성된 li를 ul에 추가
+  document
+    .getElementById('hashtag-container')
+    .appendChild(list);
+
+    $('#addValue').val('');
+}
+
+function removeItem()  {
+  
+  // 1. <ul> element 선택
+  const ul = document
+    .getElementById('hashtag-container');
+  
+  // 2. <li> 목록 선택
+  const items = ul.getElementsByTagName('li');
+  
+  // 3. <li> 목록 중 첫번째 item 삭제
+  if(items.length > 0)  {
+    items[0].remove();
+  }
+  
+}
+
+$('#push-hash').click(function(){
+});
+
+
+$('#addValue').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#push-hash').click();
+         return false;
+     }
+});
+
+  </script>
 </body>
 
 </html>
