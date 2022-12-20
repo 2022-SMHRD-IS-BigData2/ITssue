@@ -29,8 +29,8 @@ body{background-color: #f4f3ef;
      input::placeholder{font-family: 'LINESeedKR-Bd';}
      form{margin: 0; padding: 0; display: inline-block;}
     input{width: 100%; padding: 12px 20px; margin: 5px 0px 30px 0px; display: inline-block; border: 1px solid rgb(176, 173, 173); border-radius: 4px; box-sizing: border-box;}
-    input[type=submit]{background-color: #6bd098; font-weight: bold; border: 1px solid #6bd098;}
-    input[type=submit]:hover{background-color: #00b894; font-weight: bold;}
+    input[type=button]{background-color: #6bd098; font-weight: bold; border: 1px solid #6bd098;}
+    input[type=button]:hover{background-color: #00b894; font-weight: bold;}
     label{ width: 100%; text-align: start; display: inline-block; padding: 0 5px; margin-top: 10px;}
     .fa-solid{position: absolute; top: -10px; bottom: 0; right: 10px; margin: auto 2px; height: 0px; font-size: 15px; cursor: pointer;}
     .eyecontain{position: relative;}
@@ -43,10 +43,10 @@ body{background-color: #f4f3ef;
         <div id="header"></div>
         <div id="center">
             <div id="joinform">
-            <form onsubmit="false"  method="post">
+            <form onsubmit="false">
           
                     <label for="">ID</label>
-                    <input required type="text" placeholder="ID를 입력하세요." name="id">
+                    <input required type="text" placeholder="ID를 입력하세요." name="id" id="id">
 
                     <div class="eyecontain">
                     <label for="">PW</label>
@@ -66,13 +66,13 @@ body{background-color: #f4f3ef;
                 </div>
 
                     <label for="">BIRTH</label>
-                    <input required type="date" name="birth">
+                    <input required type="date" name="birth" id="birth">
              
                     <label for="">NICKNAME</label>
-                    <input required type="text" placeholder="사용하실 닉네임을 입력해주세요." name="nick">
+                    <input required type="text" placeholder="사용하실 닉네임을 입력해주세요." name="nick" id="nick">
               
                 <div>
-                    <input style="font-family:'LINESeedKR-Bd';" type="submit" value="가입하기">
+                    <input style="font-family:'LINESeedKR-Bd';" type="button" value="가입하기" id="submit">
                 </div>
             </form>
             </div>
@@ -83,13 +83,39 @@ body{background-color: #f4f3ef;
 
     <script>
     
-    		var pw = document.getElementById('pw').value;
-    		var pw2 = document.getElementById('pw2').value;
-	    	if(pw == pw2){
-	    		alert("일치합니다.");
-	    	}else{
-	    		alert("불일치합니다.");
-	    	}
+    	$('#submit').on('click',function(){
+    		if($('#pw').val() == $('#pw2').val()){
+    			
+    			$.ajax({
+    			
+    				url : "AjaxCon",
+    				data : {
+    					id:$('#id').val(),
+    					pw:$('#pw').val(),
+    					birth:$('#birth').val(),
+    					nick:$('#nick').val()
+    				},
+    				type:"post",
+    				success:function(res){
+    					alert(res)
+    					if(res=="true"){
+    						location.href = "goLogin.do"
+    					}else{
+    						location.href = "goJoin.do"
+    					}
+    				},
+    				error:function(e){
+    				}
+    				
+    			})
+    			
+    			
+    			
+    		}else{
+    			alert("비밀번호가 일치하지 않습니다.")
+    		}
+    	})
+ 		
 	    	
         const passwordInput = document.querySelector('#pw')
         const eye = document.querySelector('#eye')
