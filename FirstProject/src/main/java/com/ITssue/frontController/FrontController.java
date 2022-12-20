@@ -22,6 +22,7 @@ import com.ITssue.controller.GoMainCon;
 import com.ITssue.controller.GoScheCon;
 import com.ITssue.controller.GoUpdateCon;
 import com.ITssue.controller.GoWelcomeCon;
+import com.ITssue.controller.LoginCon;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -50,6 +51,7 @@ public class FrontController extends HttpServlet {
 		//========================
 		// redirect
 		// handlerMapping.put("/join.do", new JoinCon() );
+		 handlerMapping.put("/login.do", new LoginCon());
 		
 	}
 

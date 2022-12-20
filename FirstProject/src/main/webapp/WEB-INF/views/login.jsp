@@ -41,14 +41,14 @@ body{background-color: #f4f3ef;
     <div id="main">
         <img src="./assets/img/Itssuelogo.png" alt="">
         <div id="form-container">
-            <form action="">
+            <form action="login.do" method="post">
                 <div>
                     <label for="">ID</label>
-                    <input type="text" placeholder="ID를 입력하세요">
+                    <input type="text" placeholder="ID를 입력하세요" name="id">
                 </div>
                 <div>
                     <label for="">PW</label>
-                    <input type="password" placeholder="PW를 입력하세요">
+                    <input type="password" placeholder="PW를 입력하세요" name="pw">
                 </div>
                 <div>
                     <input style="font-family:'LINESeedKR-Bd';" type="submit" value="LOGIN">

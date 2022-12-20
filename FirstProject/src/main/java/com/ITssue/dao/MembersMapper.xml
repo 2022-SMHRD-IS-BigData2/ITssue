@@ -15,6 +15,15 @@
 		)
 	
 	</insert>
+	
+	<select id="login"
+			parameterType="com.ITssue.entity.Members"
+			resultType="com.ITssue.entity.Members">
+		select *
+		from members
+		where id = #{id}
+		and pw = #{pw}
+	</select>
 
 
 

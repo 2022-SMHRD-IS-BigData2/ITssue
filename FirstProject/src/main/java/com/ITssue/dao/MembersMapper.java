@@ -20,6 +20,17 @@ public class MembersMapper {
 		
 		return cnt;
 	}
+	
+	public Members login(Members dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		Members result = session.selectOne("login",dto);
+		
+		session.close();
+		
+		return result;
+	}
 
 
 }
