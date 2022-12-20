@@ -135,7 +135,7 @@ $('#submit').on('click',function(){
 		
 		if($('#pw2').val() != $('#pw3').val() ){
 			alert('새로입력하신 비밀번호와 비밀번호 확인이 틀립니다.')
-		}else if( $('#pw2').val() != $('#pw3').val() ){
+		}else if( $('#pw2').val() == <%=info.getPw()%> ){
 			alert('기존 비밀번호와 동일합니다.')
 		}else{
 			
