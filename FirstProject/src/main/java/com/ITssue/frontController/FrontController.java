@@ -65,7 +65,7 @@ public class FrontController extends HttpServlet {
 
 			} else {
 
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + nextPage + ".jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + nextPage);
 				rd.forward(request, response);
 
 			}
