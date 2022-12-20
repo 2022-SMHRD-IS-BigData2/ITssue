@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goMain.do", new GoMainCon() );
 		 handlerMapping.put("/goSche.do", new GoScheCon() );
 		 handlerMapping.put("/goUpdate.do", new GoUpdateCon() );
-		 handlerMapping.put("/goWelcom.do", new GoWelcomeCon() );
+		 handlerMapping.put("/goWelcome.do", new GoWelcomeCon() );
 		 handlerMapping.put("/goCommList.do", new GoCommListCon() );
 		 handlerMapping.put("/goCommWrite.do", new GoCommWriteCon() );
 		

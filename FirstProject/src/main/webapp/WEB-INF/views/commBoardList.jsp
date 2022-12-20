@@ -49,6 +49,7 @@ Coded by www.creative-tim.com
   .col-md-12{text-align: center;}
   #board{display: inline-block; text-align: center;} 
   body{font-family: 'LINESeedKR-Bd';}
+  .btn{background-color: #6bd098; border: 2px solid #6bd098; font-family: 'LINESeedKR-Bd';}
 
   </style>
 </head>
@@ -138,7 +139,7 @@ Coded by www.creative-tim.com
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-gear"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
+                    <span class="d-lg-none d-md-block">Settings</span>
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -159,7 +160,7 @@ Coded by www.creative-tim.com
               <form action="tag_search">
                   <div>
                       <input type="text" name="tag" size="120" maxlength="20" placeholder="🔍# 해시태그를 입력해주세요">
-                      <input type="submit" name="search" value="검색">
+                      <input class="btn search" type="submit" name="search" value="검색">
                       <br><br>
                   </div>
               </form>
@@ -238,9 +239,9 @@ Coded by www.creative-tim.com
                     </thead>
               </table>
               <br>
-              <input type="submit" value="글쓰기" onclick="location.href='#write'" style="float: left;">
+              <input class="btn mine" type="submit" value="내글보기" onclick="location.href='#write'" style="float: left;">
                 <a href="./a_4_comm copy.html" id="write"></a>
-              <input type="submit" value="내글보기" style="float:right">
+              <input class="btn write" type="submit" value="글쓰기" style="float:right">
       
           </div>
           </div>

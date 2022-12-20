@@ -43,14 +43,14 @@ body{background-color: #f4f3ef;
         <div id="header"></div>
         <div id="center">
             <div id="joinform">
-            <form action="#" method="post">
+            <form onsubmit="false"  method="post">
           
                     <label for="">ID</label>
-                    <input required type="text" placeholder="ID를 입력하세요.">
+                    <input required type="text" placeholder="ID를 입력하세요." name="id">
 
                     <div class="eyecontain">
                     <label for="">PW</label>
-                    <input required type="password" placeholder="비밀번호를 입력해주세요." id="pw">
+                    <input required type="password" placeholder="비밀번호를 입력해주세요." id="pw" name="pw">
                     <div class="eyes">
                     <i class="fa-solid fa-eye" id="eye"></i>
                 </div>
@@ -58,7 +58,7 @@ body{background-color: #f4f3ef;
 
                     <div class="eyecontain">
                     <label required for="">PW 확인</label>
-                    <input type="password" placeholder="비밀번호 확인" id="pw2">
+                    <input type="password" placeholder="비밀번호 확인" id="pw2" name="pw2">
                     <div class="eyes">
                     <i class="fa-solid fa-eye" id="eye2"
                     ></i>
@@ -66,10 +66,10 @@ body{background-color: #f4f3ef;
                 </div>
 
                     <label for="">BIRTH</label>
-                    <input required type="date">
+                    <input required type="date" name="birth">
              
                     <label for="">NICKNAME</label>
-                    <input required type="text" placeholder="사용하실 닉네임을 입력해주세요.">
+                    <input required type="text" placeholder="사용하실 닉네임을 입력해주세요." name="nick">
               
                 <div>
                     <input style="font-family:'LINESeedKR-Bd';" type="submit" value="가입하기">
@@ -82,6 +82,15 @@ body{background-color: #f4f3ef;
     </div>
 
     <script>
+    
+    		var pw = document.getElementById('pw').value;
+    		var pw2 = document.getElementById('pw2').value;
+	    	if(pw == pw2){
+	    		alert("일치합니다.");
+	    	}else{
+	    		alert("불일치합니다.");
+	    	}
+	    	
         const passwordInput = document.querySelector('#pw')
         const eye = document.querySelector('#eye')
 
