@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Itssue✨
+    Itssue
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -64,21 +64,21 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li >
+          <li>
             <a href="./a_1_main.html">
               <i class="fa-solid fa-house-chimney"></i>
               <p>Main</p> 
               <!-- 메인페이지 -->
             </a>
           </li>
-          <li>
+          <li  class="active ">
             <a href="./a_2_sche.html">
               <i class="fa-solid fa-calendar-days"></i>
               <p>My Schedule</p>
-<!-- 위클리 스케줄 설정, 디데이 설정 -->
+              <!-- 위클리 스케줄 설정, 디데이 설정 -->
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./a_3_board.html">
               <i class="fa-solid fa-clipboard-check"></i>
               <p>My Board</p>
@@ -183,4 +183,3 @@ Coded by www.creative-tim.com
 </body>
 
 </html>
-html>
