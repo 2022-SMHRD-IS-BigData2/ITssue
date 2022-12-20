@@ -50,10 +50,10 @@
                 <h1 class="comment study">Study With Us</h1>
                 <p class="comment join">지금 가입하시고 저희와 함께 공부해요.</p>
                 <br>
-                <a href="#" class="comment btn">REGISTER</a><br>
+                <a href="goJoin.do" class="comment btn">REGISTER</a><br>
                 <br>
                 <br>
-                <a href="#" class="comment btn">LOGIN</a>
+                <a href="goLogin.do" class="comment btn">LOGIN</a>
             </div>
         </div>
     </div>

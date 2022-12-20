@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.GoBoardCon;
 import com.ITssue.controller.GoCommCon;
+import com.ITssue.controller.GoCommListCon;
+import com.ITssue.controller.GoCommWriteCon;
 import com.ITssue.controller.GoJoinCon;
 import com.ITssue.controller.GoLoginCon;
 import com.ITssue.controller.GoMainCon;
@@ -42,6 +44,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goSche.do", new GoScheCon() );
 		 handlerMapping.put("/goUpdate.do", new GoUpdateCon() );
 		 handlerMapping.put("/goWelcom.do", new GoWelcomeCon() );
+		 handlerMapping.put("/goCommList.do", new GoCommListCon() );
+		 handlerMapping.put("/goCommWrite.do", new GoCommWriteCon() );
 		
 		//========================
 		// redirect
