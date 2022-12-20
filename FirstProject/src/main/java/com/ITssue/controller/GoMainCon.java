@@ -11,7 +11,7 @@ public class GoMainCon implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "";
+		return "a_0_welcome";
 	}
 
 }
