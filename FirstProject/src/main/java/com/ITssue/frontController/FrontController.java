@@ -1,7 +1,6 @@
 package com.ITssue.frontController;
 
 import java.io.IOException;
-import java.lang.ModuleLayer.Controller;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -12,18 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/FrontController")
+import com.ITssue.controller.Controller;
+import com.ITssue.controller.GoMainCon;
+
+@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HashMap<String, Controller> handlerMapping;
+	
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("Servlet 생성");
+		
+		
 		handlerMapping = new HashMap<>();
 		
-		
 		// forward
-		// handlerMapping.put("/goMain.do", new GoMainCon() );
+		 handlerMapping.put("/goMain.do", new GoMainCon() );
 		
 		//========================
 		// redirect
