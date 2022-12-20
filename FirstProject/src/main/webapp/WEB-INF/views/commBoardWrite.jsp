@@ -74,6 +74,9 @@ Coded by www.creative-tim.com
     }
 
     input[type=submit]{border: 2px solid #6bd098; border-radius: 5px; padding: 5px 10px 5px 10px; background-color: #6bd098; font-family: 'LINESeedKR-Bd';}
+    
+      .hashtag-container{list-style: none;}
+    .hashtag{float: left; margin: 3px; display: block; width: 50px; height: 20px; text-align: center; border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098;}
   </style>
 </head>
 
@@ -219,6 +222,13 @@ Coded by www.creative-tim.com
                   <form action="">
                     <textarea name="" id="" cols="132" rows="25" style="font-size: medium; text-align: center;"
                       placeholder="내용을 입력하세요."></textarea>
+                      <textarea name="" id="" cols="30" rows="1" placeholder="해시태그 입력"></textarea>
+                    <ul class="hashtag-container">
+                      <li class="hashtag">수학</li>
+                       <li class="hashtag">IT</li>
+                       <li class="hashtag">자격증</li>
+                      
+                    </ul>
                   </form>
                 </th>
               </tr>
