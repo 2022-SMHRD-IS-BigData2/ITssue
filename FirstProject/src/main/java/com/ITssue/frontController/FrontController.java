@@ -12,7 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ITssue.controller.Controller;
+import com.ITssue.controller.GoBoardCon;
+import com.ITssue.controller.GoCommCon;
+import com.ITssue.controller.GoJoinCon;
+import com.ITssue.controller.GoLoginCon;
 import com.ITssue.controller.GoMainCon;
+import com.ITssue.controller.GoScheCon;
+import com.ITssue.controller.GoUpdateCon;
+import com.ITssue.controller.GoWelcomeCon;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -27,7 +34,14 @@ public class FrontController extends HttpServlet {
 		handlerMapping = new HashMap<>();
 		
 		// forward
+		handlerMapping.put("/goBoard.do", new GoBoardCon() );
+		handlerMapping.put("/goComm.do", new GoCommCon() );
+		 handlerMapping.put("/goJoin.do", new GoJoinCon() );
+		 handlerMapping.put("/goLogin.do", new GoLoginCon() );
 		 handlerMapping.put("/goMain.do", new GoMainCon() );
+		 handlerMapping.put("/goSche.do", new GoScheCon() );
+		 handlerMapping.put("/goUpdate.do", new GoUpdateCon() );
+		 handlerMapping.put("/goWelcom.do", new GoWelcomeCon() );
 		
 		//========================
 		// redirect
