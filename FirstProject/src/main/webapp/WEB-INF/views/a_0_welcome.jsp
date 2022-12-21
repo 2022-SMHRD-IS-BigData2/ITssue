@@ -63,7 +63,7 @@
 
     <script>
         $( document ).ready( function() {
-            var time = 2000;
+            var time = 1000;
         $( 'h4.mate' ).animate({
             opacity: '1'
         }, time, function(){

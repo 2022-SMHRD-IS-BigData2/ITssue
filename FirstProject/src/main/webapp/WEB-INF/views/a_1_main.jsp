@@ -1,6 +1,20 @@
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!doctype html>
 <html lang="en">
 
@@ -33,16 +47,40 @@
         font-weight: 700;
         font-style: normal;
     }
-    body{font-family: 'LINESeedKR-Bd';}
+    body{font-family: 'LINESeedKR-Bd'; overflow: hidden;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
+  #left-main{width: 60%;height: 100%; float: left; min-width: 1070px; min-height: 390px;}
+  #top-main{width: 100%; height: 40%;}
+  #timer{width: 50%; height: 90%; float: left; margin: 10px; text-align: center; color: #66615B; min-width: 460px; min-height: 320px;}
+  #dday{width: 40%; height: 90%; float: right; background-color: #6bd098; margin: 10px; border-radius: 10px; display: flex; align-items: center; text-align: center; margin: 0 auto; flex-direction: column; min-width: 380px; min-height: 320px;}         
+  #schedule{width: 100%; height: 50%; margin: 10px; background-color: white; border-radius: 10px;}
+  #postIt{ width: 30%; height: 90%; float: right; margin: 10px;}
+  textarea{width: 100%; height: 100%; box-sizing: border-box;
+			border: solid 3px #6bd098;;
+			border-radius: 5px;
+			font-size: 16px;
+    text-align: center;
+  resize: none;
+padding: 40px;
+margin: 0 10px 30px 10px;
+outline-color: #6bd098;
+font-family: 'LINESeedKR-Bd';}
+
+  #MyClockDisplay{padding: 80px 100px 30px 100px; font-size: 50px;}
+  .btn{background-color: #6bd098; margin: 10px 10px 10px 20px;}
+  .btnfour{padding: 11px 26px 11px 26px;}
+
+  .ddayline{position: relative; color: #66615B;}
+  .ddayline.title{padding-top: 70px;}
+  .ddayline.date{padding-top: 50px;}
+  .ddaybox{width: 100%; height: 50%; position: relative;} 
+
+ 
 
   </style>
 </head>
 
 <body class="">
-<%
-	Members info = (Members)session.getAttribute("info");
-%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -77,7 +115,7 @@
             </a>
           </li>
           <li>
-            <a href="goCommList.do">
+            <a href="goComm.do">
               <i class="fa-solid fa-message"></i>
               <p>Community Board</p>
               <!-- 질문게시판 -->
@@ -94,7 +132,7 @@
       </div>
       </div>
     </div>
-    <div class="main-panel" style="height: 100vh;">
+    <div class="main-panel" >
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
@@ -106,7 +144,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
+            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -128,8 +166,8 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
-                  <a class="dropdown-item" href="logout.do">로그아웃</a>
+                  <a class="dropdown-item" href="#">회원정보 수정</a>
+                  <a class="dropdown-item" href="#">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -137,12 +175,40 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="description">Your content here</h3>
-          </div>
-        </div>
+      <div class="content" style="height: 100vh;">
+        
+         
+            <div id="left-main">
+              <div id="top-main">
+                <div id="timer">
+                  <div id="MyClockDisplay" class="clock">00:00:00.00</div>
+    <div id="MyClockbtn">
+        <button class="btn">Start</button>
+        <button class="btn btnfour">Stop</button><br>
+        <button class="btn save_btn btnfour">Save</button>
+        <button class="btn">Reset</button>
+      </div>
+      <div>
+      </div>
+  
+                </div>
+                <div id="dday">
+                  <div class="ddaybox">
+                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">D-DAY 설정하러가기</a></h2>
+                </div>
+                <div class="ddaybox">
+                  <h1 class="ddayline date">D-40</h1>
+                </div>
+                </div>
+              </div>
+              <div id="schedule">
+                <iframe src="dayplanner.jsp" frameborder="0" width="100%" height="100%"></iframe>
+              </div>
+            </div>
+            
+            <div id="postIt">
+              <textarea name="" id="" placeholder="간단한 메모장으로 이용하세요!"></textarea>
+           
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
         <div class="container-fluid">
@@ -152,8 +218,6 @@
             </nav>
             <div class="credits ml-auto">
               
-            </div>
-          </div>
         </div>
       </footer>
     </div>
@@ -171,6 +235,7 @@
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <script src="./clock/js/stopWatch.js"></script>
 </body>
 
 </html>
