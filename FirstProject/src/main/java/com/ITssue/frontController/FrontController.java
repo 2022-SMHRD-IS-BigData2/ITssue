@@ -27,6 +27,7 @@ import com.ITssue.controller.GoWelcomeCon;
 import com.ITssue.controller.JoinCon;
 import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
+import com.ITssue.controller.StudyTimePlusCon;
 import com.ITssue.controller.UpdateCon;
 
 
@@ -63,6 +64,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/logout.do", new LogoutCon());
 		 handlerMapping.put("/update.do", new UpdateCon());
 		 handlerMapping.put("/boardList.do", new BoardListCon());
+		 handlerMapping.put("/studyTimePlus.do", new StudyTimePlusCon());
 		 
 		 
 		

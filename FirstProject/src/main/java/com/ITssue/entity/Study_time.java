@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Study_time {
-	private int studyNo;
-	private String studySTime;
-	private String studyETime;
+	private int stud_no;
+	private String study_s_time;
+	private String study_e_time;
 	private String id;
 }

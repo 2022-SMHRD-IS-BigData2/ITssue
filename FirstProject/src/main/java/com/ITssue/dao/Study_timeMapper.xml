@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ITssue.dao.Study_timeMapper"></mapper>
+<mapper namespace="com.ITssue.dao.Study_timeMapper">
+
+	<insert id="plus" parameterType="com.ITssue.entity.Study_time">
+		insert into study_time
+		values
+		(
+   			study_no_seq.nextval,
+    		sysdate,
+    		(sysdate + interval '${study_e_time}' hour to second),
+    		#{id}
+		)
+	
+	</insert>
+	
+	
+
+</mapper>

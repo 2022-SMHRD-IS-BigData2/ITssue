@@ -107,5 +107,9 @@
 
   <div id='calendar'></div>
 
+<script type="text/javascript">
+	var tr =document.querySelectorAll('td.fc-timegrid-slot')
+	console.log(tr)
+</script>
 </body>
 </html>

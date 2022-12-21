@@ -81,6 +81,8 @@ font-family: 'LINESeedKR-Bd';}
 </head>
 
 <body class="">
+<%	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -115,7 +117,7 @@ font-family: 'LINESeedKR-Bd';}
             </a>
           </li>
           <li>
-            <a href="goComm.do">
+            <a href="goCommList.do">
               <i class="fa-solid fa-message"></i>
               <p>Community Board</p>
               <!-- 질문게시판 -->
@@ -144,7 +146,7 @@ font-family: 'LINESeedKR-Bd';}
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -166,8 +168,8 @@ font-family: 'LINESeedKR-Bd';}
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">회원정보 수정</a>
-                  <a class="dropdown-item" href="#">로그아웃</a>
+                  <a class="dropdown-item" href="update.do">회원정보 수정</a>
+                  <a class="dropdown-item" href="logout.do">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -185,7 +187,7 @@ font-family: 'LINESeedKR-Bd';}
     <div id="MyClockbtn">
         <button class="btn">Start</button>
         <button class="btn btnfour">Stop</button><br>
-        <button class="btn save_btn btnfour">Save</button>
+        <button class="btn save_btn btnfour" id="timeSave">Save</button>
         <button class="btn">Reset</button>
       </div>
       <div>
@@ -236,6 +238,29 @@ font-family: 'LINESeedKR-Bd';}
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="./assets/js/stopWatch.js"></script>
+  <script type="text/javascript">
+  	
+  	$('#timeSave').on('click',function(){
+  		console.log($('#MyClockDisplay').html());
+  		
+  		$.ajax({
+  			url:'studyTimePlus.do',
+  			data:{
+  				id:<%=info.getId()%>,
+  				time: $('#MyClockDisplay').html()
+  			},
+  			type:"post",
+  			success:function(res){
+  				console.log(res)
+  			},
+  			error:function(e){
+  				alert(e);
+  			}
+  			
+  		})
+  	})
+  
+  </script>
 </body>
 
 </html>
