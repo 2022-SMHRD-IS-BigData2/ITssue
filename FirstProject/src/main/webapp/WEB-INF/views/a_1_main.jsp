@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -39,6 +40,9 @@
 </head>
 
 <body class="">
+<%
+	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -102,7 +106,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
