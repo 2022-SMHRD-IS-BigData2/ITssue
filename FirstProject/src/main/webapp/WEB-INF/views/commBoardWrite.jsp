@@ -68,6 +68,7 @@ Coded by www.creative-tim.com
     textarea {
       resize: none;
       border-color: #dfe6e9;
+      font-family: 'LINESeedKR-Bd';
     }
 
     table{

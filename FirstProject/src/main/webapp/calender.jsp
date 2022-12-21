@@ -64,7 +64,9 @@
    
    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
    
-      Swal.fire('일정이 삭제되었습니다.');
+	   Swal.fire({
+	        title : '일정이 삭제되었습니다.',
+	        confirmButtonColor : '#6bd098'});
       arg.event.remove()
    }}
 )},
