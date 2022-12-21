@@ -166,10 +166,10 @@ Coded by www.creative-tim.com
         <div class="row">
           <div class="col-md-12">
             <div id="board" style="width: 1000px;" align="center">
-              <form action="tag_search">
+              <form onsubmit="false">
                   <div>
-                      <input type="text" name="tag" size="120" maxlength="20" placeholder="🔍# 해시태그를 입력해주세요">
-                      <input class="btn search" type="submit" name="search" value="검색">
+                      <input type="text" name="tag" size="120" maxlength="20" placeholder="🔍# 해시태그를 입력해주세요" id="hashTag">
+                      <input class="btn search" type="button" name="search" value="검색" id="tagSearch">
                       <br><br>
                   </div>
               </form>
@@ -208,7 +208,7 @@ Coded by www.creative-tim.com
                   </tbody>
               </table>
               <br>
-              <input class="btn mine" type="button" value="내글보기" onclick="myList()" style="float: left;">
+              <input class="btn mine" type="button" value="내글보기" id="myList" style="float: left;">
                 <a href="./a_4_comm copy.html" id="write"></a>
               <input class="btn write" type="button" value="글쓰기" style="float:right" id="newWrite">
       
@@ -248,29 +248,74 @@ Coded by www.creative-tim.com
   <script type="text/javascript">
   	$('#newWrite').on('click',function(){
   		location.href="goCommWrite.do";
+  	}) 
+  	
+  	$('#tagSearch').on('click',function(){
+		$('tbody').html('');
+  		$.ajax({
+  	  		
+  			url: 'boardList.do',
+  			dataType:'json',
+  			success: function(res){
+  				console.log(res);
+  				var tag = res[0].hash_tag;
+  				console.log(tag);
+  				var ser = $('#hashTag').val();
+				for(let i = 0; i < res.length; i++){
+  					if(res[i].hash_tag.includes(ser)){
+						var board = res[i];
+						
+						tr = `
+						<tr>
+							<td>` + board.board_no + `</td>
+							<td>` + board.board_title + `</td>
+							<td>` + board.id + `</td>
+							<td>` + board.board_date.split(' ')[0] + `</td>
+							<td>` + board.likes + `</td>
+						</tr>
+						`
+						// 준비한 tr을 tbody에 집어넣기
+						// $('선택자').html() : 안에 있는 html코드 리턴
+						// $('선택자').html('코드') : 안에 있는 html코드 덮어쓰기
+						// $('선택자').append('코드') : 안에 html코드 추가
+						$('tbody').append( tr );
+						
+					}
+  				}
+  				
+  				
+  				
+  			},
+  			error : function(e){
+  				console.log('요청실패했니?')
+  				
+  			}
+  			
+  		})
+  		
   	})
-  	function myList(){
+  
+  	$('#myList').on('click',function(){
   		$('tbody').html('');
   		
   		<%for(Board board : list){%>
-  			
-  			<%if(board.getId().equals(info.getId())){%>
-  				tr = `
-  				<tr>
-					<td><%=board.getBoard_no()%></td>
-					<td><%=board.getBoard_title()%></td>
-					<td><%=board.getId()%></td>
-					<td><%=board.getBoard_date().split(" ")[0] %></td>
-					<td><%=board.getLikes() %> </td>
+			
+			<%if(board.getId().equals(info.getId())){%>
+				tr = `
+					<tr>
+				<td><%=board.getBoard_no()%></td>
+				<td><%=board.getBoard_title()%></td>
+				<td><%=board.getId()%></td>
+				<td><%=board.getBoard_date().split(" ")[0] %></td>
+				<td><%=board.getLikes() %> </td>
 				</tr>
-  				`
-  			<%}%>
+				`
+			<%}%>
  	 		$('tbody').append( tr );
   			
   		<%}%>
   		
-  		
-  	}
+  	})
   </script>
 </body>
 

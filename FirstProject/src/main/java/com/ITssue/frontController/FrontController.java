@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ITssue.controller.BoardListCon;
 import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.GoBoardCon;
@@ -61,6 +62,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/commWrite.do", new CommWriteCon());
 		 handlerMapping.put("/logout.do", new LogoutCon());
 		 handlerMapping.put("/update.do", new UpdateCon());
+		 handlerMapping.put("/boardList.do", new BoardListCon());
 		 
 		 
 		
