@@ -36,7 +36,7 @@
     input[type=button]:hover{background-color: #00b894; font-weight: bold;}
     #btn-out{border: 2px solid #ee5253; border-radius: 5px; color: white; background-color: #ee5253; padding: 5px; width: 200px; height: 50px; font-weight: bold; display: block; margin: auto;}
     #btn-out:hover{background-color: #ff6b6b; font-weight: bold; border: 2px solid #ff6b6b;}
-    .fa-solid{position: absolute; top: 2px; bottom: 0; right: 10px; margin: auto 2px; height: 0px; font-size: 15px; cursor: pointer;}
+    
     .eyecontain{position: relative;}
     </style>
 </head>
@@ -59,17 +59,17 @@
                     <div class="eyecontain">
                         <label for="">현재 비밀번호</label>
                         <input type="password" placeholder="현재 비밀번호를 입력해주세요" id="pw">
-                        <i class="fa-solid fa-eye" id="eye"></i>
+                     
                     </div>
                     <div class="eyecontain">
                         <label for="">변경할 비밀번호</label>
                         <input type="password" placeholder="변경할 비밀번호를 입력해주세요" id="pw2">
-                        <i class="fa-solid fa-eye" id="eye2"></i>
+                        
                     </div>
                     <div class="eyecontain">
                         <label for="">비밀번호 확인</label>
                         <input type="password" placeholder="변경한 비밀번호 확인" id="pw3">
-                        <i class="fa-solid fa-eye" id="eye3"></i>
+                        
                     </div>
                     <div>
                         <label for="">BIRTH</label>
@@ -95,48 +95,52 @@
 </div>
 
 
-<script>
-    const passwordInput = document.querySelector('#pw')
-    const eye = document.querySelector('#eye')
 
-    eye.addEventListener('click', function(){
-        this.classList.toggle('fa-eye')
-        this.classList.toggle('fa-eye-slash')
-        const type = passwordInput.getAttribute("type") === "password" ? " text" : "password"
-        passwordInput.setAttribute("type", type)
-    })
-
-    const passwordInput2 = document.querySelector('#pw2')
-    const eye2 = document.querySelector('#eye2')
-
-    eye2.addEventListener('click', function(){
-        this.classList.toggle('fa-eye')
-        this.classList.toggle('fa-eye-slash')
-        const type = passwordInput2.getAttribute("type") === "password" ? " text" : "password"
-        passwordInput2.setAttribute("type", type)
-    })
-
-    const passwordInput3 = document.querySelector('#pw3')
-    const eye3 = document.querySelector('#eye3')
-
-    eye3.addEventListener('click', function(){
-        this.classList.toggle('fa-eye')
-        this.classList.toggle('fa-eye-slash')
-        const type = passwordInput3.getAttribute("type") === "password" ? " text" : "password"
-        passwordInput3.setAttribute("type", type)
-    })
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 $('#submit').on('click',function(){
 	if($('#pw').val() != <%=info.getPw()%>){
-		alert('비밀번호가 틀렸습니다.')
+		Swal.fire({
+			  title: '비밀번호가 일치하지 않습니다.',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  },
+			  icon : 'warning',
+			  confirmButtonColor: '#6bd098',
+			  confirmButtonText:'확인'
+			})
 	
 	}else{
 		
 		if($('#pw2').val() != $('#pw3').val() ){
-			alert('새로입력하신 비밀번호와 비밀번호 확인이 틀립니다.')
+			Swal.fire({
+				  title: '새로 입력하신 비밀번호와 비밀번호 확인이 틀립니다.',
+				  showClass: {
+				    popup: 'animate__animated animate__fadeInDown'
+				  },
+				  hideClass: {
+				    popup: 'animate__animated animate__fadeOutUp'
+				  },
+				  icon : 'warning',
+				  confirmButtonColor: '#6bd098',
+				  confirmButtonText:'확인'
+				})
 		}else if( $('#pw2').val() == <%=info.getPw()%> ){
-			alert('기존 비밀번호와 동일합니다.')
+			 Swal.fire({
+				  title: '기존 비밀번호와 동일합니다.',
+				  showClass: {
+				    popup: 'animate__animated animate__fadeInDown'
+				  },
+				  hideClass: {
+				    popup: 'animate__animated animate__fadeOutUp'
+				  },
+				  icon : 'warning',
+				  confirmButtonColor: '#6bd098',
+				  confirmButtonText:'확인'
+				})
 		}else{
 			
 			$.ajax({
