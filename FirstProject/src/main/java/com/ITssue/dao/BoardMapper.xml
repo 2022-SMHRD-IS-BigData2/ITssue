@@ -17,7 +17,19 @@
 		
 		)
 	</insert>
+	
+	<select id="listView" resultType="com.ITssue.entity.Board">
+		select *
+		from board
+		order by board_no desc
+	</select>
 
+	<select id="boardRank" resultType="com.ITssue.entity.Board">
+		select *
+		from (select * from board
+			order by likes desc, board_no desc)
+		where rownum between 1 and 3
+	</select>
 
 
 

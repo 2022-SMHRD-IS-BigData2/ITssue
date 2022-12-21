@@ -1,5 +1,7 @@
 package com.ITssue.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -20,6 +22,29 @@ public class BoardMapper {
 		
 		return cnt;
 		
+	}
+	
+	public List<Board> boardList() {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		List<Board> result = session.selectList("listView");
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+	public List<Board> boardRank(){
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		List<Board> result = session.selectList("boardRank");
+		
+		session.close();
+		
+		return result;
 	}
 	
 	

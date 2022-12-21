@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.ITssue.entity.Board"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -58,6 +60,9 @@ Coded by www.creative-tim.com
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
+	List<Board> list = (List<Board>)request.getAttribute("boardList");
+	List<Board> rank = (List<Board>)request.getAttribute("boardRank");
+	int rankNum = 1;
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -178,72 +183,32 @@ Coded by www.creative-tim.com
                           <th scope="col" class="td_reco" width="200" align="center">추천</th>
                       </tr>
                   </thead>
-                  <thead>
-                      <tr>
-                          <th scope="col" class="td_title" width="250">🥇BEST1 </th>
-                          <th scope="col" class="td_title" width="365">베스트게시물1</th>
-                          <th scope="col" class="td_wirter" width="280">작성자1</th>
-                          <th scope="col" class="td_date" width="300">작성일1</th>
-                          <th scope="col" class="td_reco" width="90">570</th>
-                        </tr>
-                  </thead>
-                  <thead>
-                      <tr>
-                          <th scope="col" class="td_title" width="250">🥈BEST2 </th>
-                          <th scope="col" class="td_title" width="365">베스트게시물2</th>
-                          <th scope="col" class="td_wirter" width="280">작성자2</th>
-                          <th scope="col" class="td_date" width="300">작성일2</th>
-                          <th scope="col" class="td_reco" width="90">486</th>
-                        </tr>
-                  </thead>
-                  <thead>
-                      <tr>
-                          <th scope="col" class="td_title" width="250">🥉BEST3 </th>
-                          <th scope="col" class="td_title" width="365">베스트게시물3</th>
-                          <th scope="col" class="td_wirter" width="280">작성자3</th>
-                          <th scope="col" class="td_date" width="300">작성일3</th>
-                          <th scope="col" class="td_reco" width="90">381</th>
-                        </tr>
-                  </thead>
-                  <thead>
-                      <tr>
-                        <td scope="col" class="td_title" width="250">65349 </td>
-                        <td scope="col" class="td_title" width="365">게시물</td>
-                        <td scope="col" class="td_wirter" width="280">작성자</td>
-                        <td scope="col" class="td_date" width="300">작성일</td>
-                        <td scope="col" class="td_reco" width="90">0</td>
-                      </tr>
-                    </thead>
-                    <thead>
-                      <tr>
-                        <td scope="col" class="td_title" width="250">65348 </td>
-                        <td scope="col" class="td_title" width="365">게시물</td>
-                        <td scope="col" class="td_wirter" width="280">작성자</td>
-                        <td scope="col" class="td_date" width="300">작성일</td>
-                        <td scope="col" class="td_reco" width="90">5</td>
-                      </tr>
-                    </thead>
-                    <thead>
-                      <tr>
-                        <td scope="col" class="td_title" width="250">65347 </td>
-                        <td scope="col" class="td_title" width="365">게시물</td>
-                        <td scope="col" class="td_wirter" width="280">작성자</td>
-                        <td scope="col" class="td_date" width="300">작성일</td>
-                        <td scope="col" class="td_reco" width="90">4</td>
-                      </tr>
-                    </thead>
-                    <thead>
-                      <tr>
-                        <td scope="col" class="td_title" width="250" >65346 </td>
-                        <td scope="col" class="td_title" width="365">게시물</td>
-                        <td scope="col" class="td_wirter" width="280">작성자</td>
-                        <td scope="col" class="td_date" width="300">작성일</td>
-                        <td scope="col" class="td_reco" width="90">0</td>
-                      </tr>
-                    </thead>
+                  <tbody>
+                  	
+                  	<%for(Board board : rank){ %>
+                  			<tr>
+		                        <td scope="col" class="td_title" width="250">&#12935<%=rankNum %> BEST<%=rankNum++ %> </td>
+		                        <td scope="col" class="td_title" width="365"><%=board.getBoard_title() %></td>
+		                        <td scope="col" class="td_wirter" width="280"><%=board.getId() %></td>
+		                        <td scope="col" class="td_date" width="300"><%=board.getBoard_date().split(" ")[0] %></td>
+		                        <td scope="col" class="td_reco" width="90"><%=board.getLikes() %></td>
+	                      	</tr>
+                  	<%} %>
+                  	
+                  	<%for(Board board : list){ %>
+                    		<tr>
+		                        <td scope="col" class="td_title" width="250"><%=board.getBoard_no() %> </td>
+		                        <td scope="col" class="td_title" width="365"><%=board.getBoard_title() %></td>
+		                        <td scope="col" class="td_wirter" width="280"><%=board.getId() %></td>
+		                        <td scope="col" class="td_date" width="300"><%=board.getBoard_date().split(" ")[0] %></td>
+		                        <td scope="col" class="td_reco" width="90"><%=board.getLikes() %></td>
+	                      	</tr>
+                  	<%} %>
+                  	
+                  </tbody>
               </table>
               <br>
-              <input class="btn mine" type="button" value="내글보기" onclick="location.href='#write'" style="float: left;">
+              <input class="btn mine" type="button" value="내글보기" onclick="myList()" style="float: left;">
                 <a href="./a_4_comm copy.html" id="write"></a>
               <input class="btn write" type="button" value="글쓰기" style="float:right" id="newWrite">
       
@@ -252,10 +217,6 @@ Coded by www.creative-tim.com
         </div>
       </div>
 
-      <body>
-
-        
-    </body>
 
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
         <div class="container-fluid">
@@ -288,7 +249,28 @@ Coded by www.creative-tim.com
   	$('#newWrite').on('click',function(){
   		location.href="goCommWrite.do";
   	})
-  
+  	function myList(){
+  		$('tbody').html('');
+  		
+  		<%for(Board board : list){%>
+  			
+  			<%if(board.getId().equals(info.getId())){%>
+  				tr = `
+  				<tr>
+					<td><%=board.getBoard_no()%></td>
+					<td><%=board.getBoard_title()%></td>
+					<td><%=board.getId()%></td>
+					<td><%=board.getBoard_date().split(" ")[0] %></td>
+					<td><%=board.getLikes() %> </td>
+				</tr>
+  				`
+  			<%}%>
+ 	 		$('tbody').append( tr );
+  			
+  		<%}%>
+  		
+  		
+  	}
   </script>
 </body>
 
