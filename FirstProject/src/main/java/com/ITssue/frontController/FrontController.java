@@ -29,6 +29,7 @@ import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
 import com.ITssue.controller.StudyTimePlusCon;
 import com.ITssue.controller.UpdateCon;
+import com.ITssue.controller.memoWriteCon;
 
 
 @WebServlet("*.do")
@@ -65,6 +66,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/update.do", new UpdateCon());
 		 handlerMapping.put("/boardList.do", new BoardListCon());
 		 handlerMapping.put("/studyTimePlus.do", new StudyTimePlusCon());
+		 handlerMapping.put("/memoWrite.do", new memoWriteCon());
 		 
 		 
 		

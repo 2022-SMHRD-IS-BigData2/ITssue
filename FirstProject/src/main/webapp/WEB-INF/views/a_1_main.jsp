@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -82,6 +83,7 @@ font-family: 'LINESeedKR-Bd';}
 
 <body class="">
 <%	Members info = (Members)session.getAttribute("info");
+	
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -209,7 +211,7 @@ font-family: 'LINESeedKR-Bd';}
             </div>
             
             <div id="postIt">
-              <textarea name="" id="" placeholder="간단한 메모장으로 이용하세요!"></textarea>
+              <textarea name="" id="memoIt" ><%=info.getContent() %></textarea>
            
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
@@ -240,6 +242,7 @@ font-family: 'LINESeedKR-Bd';}
   <script src="./assets/js/stopWatch.js"></script>
   <script type="text/javascript">
   	
+  
   	$('#timeSave').on('click',function(){
   		console.log($('#MyClockDisplay').html());
   		
@@ -251,7 +254,6 @@ font-family: 'LINESeedKR-Bd';}
   			},
   			type:"post",
   			success:function(res){
-  				console.log(res)
   			},
   			error:function(e){
   				alert(e);
@@ -259,6 +261,27 @@ font-family: 'LINESeedKR-Bd';}
   			
   		})
   	})
+  	
+  	$('#memoIt').on('keyup',function(){
+  		
+  		$.ajax({
+  		
+  			url:"memoWrite.do",
+  			data:{
+  				content:$('#memoIt').val()
+  			},
+  			type:'post',
+  			success:function(res){
+  				
+  			},
+  			error:function(e){
+  				alert(e)
+  			}
+  			
+  		})
+  		
+  	})
+
   
   </script>
 </body>

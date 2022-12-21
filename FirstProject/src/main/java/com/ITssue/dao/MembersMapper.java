@@ -43,6 +43,17 @@ public class MembersMapper {
 		return cnt;
 		
 	}
+	
+	public int memoWrite(Members dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.update("memoWrite",dto);
+		
+		session.close();
+		
+		return cnt;
+	}
 
 
 }

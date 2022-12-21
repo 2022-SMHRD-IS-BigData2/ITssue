@@ -31,4 +31,9 @@
 		where id=#{id}
 	</update>
 
+	<update id="memoWrite" parameterType="com.ITssue.entity.Members">
+		update members
+		set content = #{content}
+		where id=#{id}
+	</update>
 </mapper>

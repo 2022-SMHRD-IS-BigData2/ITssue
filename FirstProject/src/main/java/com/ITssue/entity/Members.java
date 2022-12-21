@@ -13,5 +13,6 @@ public class Members {
 	private String nick;
 	private String joindate;
 	private String mb_type;
+	private String content;
 	
 }

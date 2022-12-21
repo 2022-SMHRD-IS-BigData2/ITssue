@@ -26,7 +26,6 @@
 		<mapper resource="com/ITssue/dao/D_dayMapper.xml" />
 		<mapper resource="com/ITssue/dao/DiaryMapper.xml" />
 		<mapper resource="com/ITssue/dao/MembersMapper.xml" />
-		<mapper resource="com/ITssue/dao/MemoMapper.xml" />
 		<mapper resource="com/ITssue/dao/ScheduleMapper.xml" />
 		<mapper resource="com/ITssue/dao/ScoreMapper.xml" />
 		<mapper resource="com/ITssue/dao/Study_timeMapper.xml" />
