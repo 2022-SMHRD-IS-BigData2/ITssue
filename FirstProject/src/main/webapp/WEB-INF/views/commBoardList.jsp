@@ -53,7 +53,7 @@ Coded by www.creative-tim.com
   #board{display: inline-block; text-align: center;} 
   body{font-family: 'LINESeedKR-Bd';}
   .btn{background-color: #6bd098; border: 2px solid #6bd098; font-family: 'LINESeedKR-Bd';}
-
+input::placeholder{font-family: 'LINESeedKR-Bd';}
   </style>
 </head>
 

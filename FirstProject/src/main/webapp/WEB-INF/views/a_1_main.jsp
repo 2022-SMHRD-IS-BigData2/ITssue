@@ -77,7 +77,7 @@ font-family: 'LINESeedKR-Bd';}
   .ddayline.date{padding-top: 50px;}
   .ddaybox{width: 100%; height: 50%; position: relative;} 
 
- 
+ input::placeholder{font-family: 'LINESeedKR-Bd';}
 
   </style>
 </head>

@@ -74,7 +74,7 @@ Coded by www.creative-tim.com
     table{
       border-color: #dfe6e9;
     }
-
+input::placeholder{font-family: 'LINESeedKR-Bd';}
      input[type=submit]{border: 2px solid #6bd098; border-radius: 5px; padding: 3px 10px 3px 10px; background-color: #10ac84; font-family: 
     'LINESeedKR-Bd';}
     input[type=button]{border: 1px solid #6bd098; border-radius: 5px; padding: 2px 10px 2px 10px; background-color: #10ac84; font-family: 'LINESeedKR-Bd';}
