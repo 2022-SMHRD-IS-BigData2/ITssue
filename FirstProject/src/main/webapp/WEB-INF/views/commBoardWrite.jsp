@@ -231,9 +231,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                     <input id="push-hash" type='button' value='추가' onclick='addList()'>
                       <input type='button' value='삭제' onclick='removeItem()'>
                     <ul id="hashtag-container">
-                      <li class="hashtag">수학</li>
-                       <li class="hashtag">IT</li>
-                       <li class="hashtag">자격증</li>
+                      <li class="hashtag">예시:수학</li>
                       
                     </ul>
                   
@@ -315,7 +313,7 @@ function removeItem()  {
   
   // 3. <li> 목록 중 첫번째 item 삭제
   if(items.length > 0)  {
-    items[0].remove();
+    items[items.length-1].remove();
   }
   
 }
