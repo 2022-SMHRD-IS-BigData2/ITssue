@@ -85,7 +85,7 @@ font-family: 'LINESeedKR-Bd';}
 <body class="">
 <%	
 	Members info = (Members)session.getAttribute("info");
-	D_day d_day = (D_day)session.getAttribute("d_day");
+	D_day d_day = (D_day)request.getAttribute("d_day");
 	String time = (String)request.getAttribute("time");
 %>
   <div class="wrapper ">

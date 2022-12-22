@@ -32,7 +32,7 @@ public class GoMainCon implements Controller {
 		
 		
 		if(result != null) {
-			session.setAttribute("d_day", result);
+			request.setAttribute("d_day", result);
 			
 			String date = result.getD_day_dt().split(" ")[0];
 			String time = result.getD_day_dt().split(" ")[1];

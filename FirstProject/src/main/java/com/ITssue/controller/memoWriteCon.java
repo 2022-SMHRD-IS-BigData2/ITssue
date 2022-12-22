@@ -21,7 +21,6 @@ public class memoWriteCon implements Controller {
 		
 		HttpSession session = request.getSession();
 		Members dto = (Members)session.getAttribute("info");
-		System.out.println(content);
 		
 		dto.setContent(content);
 		
