@@ -29,8 +29,9 @@
         .comment{font-family: 'LINESeedKR-Bd'; margin-left: 30px; opacity: 0;}
         .study{color: white;}
         .mate{margin-top: 200px;}
-        .btn{margin: 20px auto 0 30px; border: 2px solid white; font-size: 0.875rem; letter-spacing: 2px; padding: 10px 34px; color: white; text-decoration: none; font-weight: bold;}
+        .btn{margin: 20px auto 0 30px; border: 3px solid white; font-size: 0.875rem; letter-spacing: 2px; padding: 10px 34px; color: white; text-decoration: none; font-weight: bold;}
         img{object-fit: scale-down;}
+        .kakao{margin: 20px auto 0 30px; border: 3px solid #fed330; background-color:#fed330; font-size: 0.875rem; padding: 10px 34px; color: black; text-decoration : none; font-weight:bold; font-family: 'LINESeedKR-Bd';}
 
         
     </style>
@@ -53,7 +54,22 @@
                 <a href="goJoin.do" class="comment btn">REGISTER</a><br>
                 <br>
                 <br>
-                <a href="goLogin.do" class="comment btn">LOGIN</a>
+                <a href="goLogin.do" class="comment btn">LOGIN</a><br>
+                <br>
+                <br>
+               
+      			<a href="javascript:void(0)" onclick="kakaoLogin();" class="kakao comment btn">
+          	     카카오 로그인
+      		    </a>
+      		    <ul>
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃(테스트)</span>
+      </a>
+	</li>
+</ul>
+						
+                </div>
             </div>
         </div>
     </div>
@@ -84,5 +100,46 @@
 
 
     </script>
+    
+    <!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('cdcd53cff82aeec615bc251258c0690d'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+</script>
 </body>
 </html>
