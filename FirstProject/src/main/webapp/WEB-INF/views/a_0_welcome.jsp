@@ -22,7 +22,7 @@
         #header{height: 10%; width: 100%;}
         #footer{height: 10%; width: 100%;}
         #container{height: 80%; width: 100%; position: relative;}
-        #main{position: absolute; width: 1500px; height: 700px; top: 50%; left: 50%; margin-top: -350px; margin-left: -750px;} 
+        #main{position: absolute; width: 1500px; height: 700px; top: 50%; left: 50%; margin-top: -400px; margin-left: -750px;} 
         #section-left{width: 50%; height: 100%; float: left; background-size: cover;
         background-image: url(./assets/img/WalkingSelfie_AdobeExpress.gif);}
         #section-right{width: 50%; height: 100%; float: right; background-color: #6bd098;}
