@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.D_day"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -82,8 +83,10 @@ font-family: 'LINESeedKR-Bd';}
 </head>
 
 <body class="">
-<%	Members info = (Members)session.getAttribute("info");
-	
+<%	
+	Members info = (Members)session.getAttribute("info");
+	D_day d_day = (D_day)session.getAttribute("d_day");
+	String time = (String)request.getAttribute("time");
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -198,10 +201,16 @@ font-family: 'LINESeedKR-Bd';}
                 </div>
                 <div id="dday">
                   <div class="ddaybox">
-                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">D-DAY 설정하러가기</a></h2>
+                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">
+                  <%if(d_day == null){ %>
+                  	D-DAY 설정하러가기
+                  <%}else{ %>
+                  	<%=d_day.getD_day_content() %>
+                  <%} %>
+                  </a></h2>
                 </div>
                 <div class="ddaybox">
-                  <h1 class="ddayline date">D-40</h1>
+                  <h1 class="ddayline date"><%=time %></h1>
                 </div>
                 </div>
               </div>

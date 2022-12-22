@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ITssue.dao.D_dayMapper"></mapper>
+<mapper namespace="com.ITssue.dao.D_dayMapper">
+
+	<select id="d_day" resultType="com.ITssue.entity.D_day">
+		select *
+		from (	select * 
+				from d_day
+				where id=#{id}
+				and to_date(d_day_dt) <![CDATA[>=]]> (sysdate -1)
+				order by d_day_dt)
+		where rownum <![CDATA[<=]]> 1
+	</select>
+
+</mapper>
