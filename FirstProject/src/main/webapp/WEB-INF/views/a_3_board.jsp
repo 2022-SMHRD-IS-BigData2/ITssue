@@ -54,6 +54,7 @@ Coded by www.creative-tim.com
     .boardlist:visited{color: #66615B;}
     .boardlist:hover{color: white; text-decoration: none;}
     .boardlist:active{color: white;}
+     #searchbtn{border: 0;}
 
   </style>
 </head>
@@ -103,12 +104,16 @@ Coded by www.creative-tim.com
             </a>
           </li>
         </ul>
-        <div class="input-group no-border"> 
+        <form action="">
+        <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
           <div class="input-group-text">
-            <i class="nc-icon nc-zoom-split"></i>
+            <button type="submit" id="searchbtn">
+               <i class="nc-icon nc-zoom-split"></i>
+            </button>
           </div>
+        </form>
         </div>
       </div>
       </div>
@@ -202,6 +207,13 @@ Coded by www.creative-tim.com
     var src = $(this).data('src');
     $('#mainIframe').attr('src',src);
   })
+  
+  $('#search').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#searchbtn').click();
+         return false;
+     }
+});
   </script>
   
 </body>

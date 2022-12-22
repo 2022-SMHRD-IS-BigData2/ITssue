@@ -123,6 +123,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   -moz-appearance: none;
   appearance: none;
 }
+ #searchbtn{border: 0;}
   </style>
 </head>
 
@@ -171,14 +172,18 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
             </a>
           </li>
         </ul>
+        <form action="">
         <div class="input-group no-border">
-          <input id="search" type="text" value="" class="form-control" placeholder="회원 검색">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="nc-icon nc-zoom-split"></i>
-            </div>
+        <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <button type="submit" id="searchbtn">
+               <i class="nc-icon nc-zoom-split"></i>
+            </button>
           </div>
+        </form>
         </div>
+      </div>
       </div>
     </div>
     <div class="main-panel" style="height: 100vh;">
@@ -425,6 +430,13 @@ $('#addValue').keypress(function(event){
     $(this).siblings('.upload-name').val(filename);
   });
 }); 
+  
+  $('#search').keypress(function(event){
+	     if ( event.which == 13 ) {
+	         $('#searchbtn').click();
+	         return false;
+	     }
+	});
   </script>
 </body>
 
