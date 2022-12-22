@@ -161,7 +161,7 @@ font-family: 'LINESeedKR-Bd';}
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             
               <div class="alert-icon">
-                <i class="fa-regular fa-bell"></i>
+                
               </div>
             
             <ul class="navbar-nav">
