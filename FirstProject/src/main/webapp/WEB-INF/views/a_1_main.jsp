@@ -77,7 +77,7 @@ font-family: 'LINESeedKR-Bd';}
   .ddaybox{width: 100%; height: 50%; position: relative;} 
 
  input::placeholder{font-family: 'LINESeedKR-Bd';}
-
+ #searchbtn{border: 0;}
   </style>
 </head>
 
@@ -128,7 +128,7 @@ font-family: 'LINESeedKR-Bd';}
             </a>
           </li>
         </ul>
-        <div class="input-group no-border"> 
+        <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
           <div class="input-group-text">
@@ -248,6 +248,8 @@ font-family: 'LINESeedKR-Bd';}
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="./assets/js/stopWatch.js"></script>
+  <script src="./assets/js/jquery-3.6.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script type="text/javascript">
   	
   
@@ -290,7 +292,12 @@ font-family: 'LINESeedKR-Bd';}
   		
   	})
 
-  
+  $('#search').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#searchbtn').click();
+         return false;
+     }
+});
   </script>
 </body>
 

@@ -60,6 +60,7 @@ Coded by www.creative-tim.com
     .ddaytrue{width: 120px; height: 120px; background-color: #6bd098; border-radius: 10px; margin: 10px 10px 10px 30px; float: left;}
     #ddayname{height: 50%; width: 100%; text-align: center; padding: 10px;}
     #ddaydate{ height: 50%; width: 100%; text-align: center; padding: 10px;}
+   #searchbtn{border: 0;}
   </style>
 </head>
 
@@ -108,12 +109,16 @@ Coded by www.creative-tim.com
             </a>
           </li>
         </ul>
-        <div class="input-group no-border"> 
+        <form action="">
+        <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
           <div class="input-group-text">
-            <i class="nc-icon nc-zoom-split"></i>
+            <button type="submit" id="searchbtn">
+               <i class="nc-icon nc-zoom-split"></i>
+            </button>
           </div>
+        </form>
         </div>
       </div>
       </div>
@@ -273,6 +278,13 @@ function removeItem()  {
   }
   
 }
+
+$('#search').keypress(function(event){
+    if ( event.which == 13 ) {
+        $('#searchbtn').click();
+        return false;
+    }
+});
   </script>
 </body>
 

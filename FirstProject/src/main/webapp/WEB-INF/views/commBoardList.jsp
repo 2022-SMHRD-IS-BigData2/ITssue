@@ -54,6 +54,7 @@ Coded by www.creative-tim.com
   body{font-family: 'LINESeedKR-Bd';}
   .btn{background-color: #6bd098; border: 2px solid #6bd098; font-family: 'LINESeedKR-Bd';}
 input::placeholder{font-family: 'LINESeedKR-Bd';}
+ #searchbtn{border: 0;}
   </style>
 </head>
 
@@ -105,12 +106,16 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
             </a>
           </li>
         </ul>
-        <div class="input-group no-border"> 
+        <form action="">
+        <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
           <div class="input-group-text">
-            <i class="nc-icon nc-zoom-split"></i>
+            <button type="submit" id="searchbtn">
+               <i class="nc-icon nc-zoom-split"></i>
+            </button>
           </div>
+        </form>
         </div>
       </div>
       </div>
@@ -316,6 +321,19 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   		<%}%>
   		
   	})
+  	$('#hashTag').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#tagSearch').click();
+         return false;
+     }
+});
+  	
+  	$('#search').keypress(function(event){
+  	     if ( event.which == 13 ) {
+  	         $('#searchbtn').click();
+  	         return false;
+  	     }
+  	});
   </script>
 </body>
 
