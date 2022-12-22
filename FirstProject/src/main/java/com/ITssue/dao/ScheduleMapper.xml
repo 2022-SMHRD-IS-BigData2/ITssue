@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ITssue.dao.ScheduleMapper"></mapper>
+<mapper namespace="com.ITssue.dao.ScheduleMapper">
+
+	<insert id="SCinsert" parameterType="com.ITssue.entity.Schedule">
+		insert into schedule
+		values
+		(
+		    sche_no_seq.nextval,
+		    #{sche_content},
+		    to_date('${sche_s_dt}', 'yyyy-mm-dd hh24:mi:ss'),
+		    to_date('${sche_e_dt}', 'yyyy-mm-dd hh24:mi:ss'),
+		    #{id},
+		    #{scheduel_type}
+		)
+	</insert>
+	
+	<delete id="">
+	</delete>
+
+
+
+</mapper>

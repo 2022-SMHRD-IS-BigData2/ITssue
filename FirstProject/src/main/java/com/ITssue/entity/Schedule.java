@@ -12,5 +12,7 @@ public class Schedule {
 	private String sche_s_dt;
 	private String sche_e_dt;
 	private String id;
+	private String scheduel_type; // allday가 True인지 False 인지 판단하기 위함
+								  // T , F 문자만 넣으면 됨
 	
 }
