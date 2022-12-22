@@ -146,8 +146,8 @@
 							url:"scheduleDelete.do",
 							data:{
 								all: arg.event.allDay,
-								start: arg.event.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
-								end: arg.event.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
+								start: arg.event.startStr.split('+')[0].split('T')[0]+" "+arg.event.startStr.split('+')[0].split('T')[1],
+								end: arg.event.endStr.split('+')[0].split('T')[0]+" "+arg.event.endStr.split('+')[0].split('T')[1],
 								content: arg.event.title
 							},
 							type:"post",

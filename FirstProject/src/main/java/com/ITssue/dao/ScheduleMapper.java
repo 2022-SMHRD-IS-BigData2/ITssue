@@ -22,4 +22,16 @@ public class ScheduleMapper {
 		
 	}
 	
+	public int sche_delete(Schedule dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("SCdelete",dto);
+		
+		session.close();
+		
+		return cnt;
+		
+	}
+	
 }

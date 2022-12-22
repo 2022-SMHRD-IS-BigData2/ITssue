@@ -15,8 +15,13 @@
 		)
 	</insert>
 	
-	<delete id="">
-		
+	<delete id="SCdelete" parameterType="com.ITssue.entity.Schedule">
+		delete from schedule
+		where  to_char(sche_s_dt, 'yyyy-mm-dd hh24:mi:ss') <![CDATA[<=]]> #{sche_s_dt}
+		and to_char(sche_e_dt, 'yyyy-mm-dd hh24:mi:ss') <![CDATA[<=]]> #{sche_e_dt}
+		and id = #{id}
+		and scheduel_type = #{scheduel_type}
+		and sche_content = #{sche_content}
 	</delete>
 
 
