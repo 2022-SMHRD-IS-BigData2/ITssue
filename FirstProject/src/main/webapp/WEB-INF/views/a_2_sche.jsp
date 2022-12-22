@@ -21,6 +21,7 @@ Coded by www.creative-tim.com
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Itssue
@@ -46,8 +47,19 @@ Coded by www.creative-tim.com
         font-weight: 700;
         font-style: normal;
     }
-    body{font-family: 'LINESeedKR-Bd';}
+    body{font-family: 'LINESeedKR-Bd'; overflow-y: hidden;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
+    #ddayset{ width: 1600px; height: 200px; margin: 10px 10px 50px 10px;}
+    #scheduleset{ width: 1600px; height: 600px; margin: 10px;}
+    .ddayin{ width: 150px; height: 30px; font-family: 'LINESeedKR-Bd'; border: 0; border-radius: 5px; margin: 0px 0px 0px 5px;
+    }
+    #ddaybtn{ border: 1px solid #6bd098; background-color: #6bd098; font-family: 'LINESeedKR-Bd'; color: #66615B; width: 130px; height: 30px;  border-radius: 5px; margin: 0px 0px 0px 5px;}
+    #removebtn{ border: 1px solid #6bd098; background-color: #6bd098; font-family: 'LINESeedKR-Bd'; color: #66615B; width: 130px; height: 30px;  border-radius: 5px; margin: 0px 0px 0px 5px;}
+
+    #ddaycontain{width: 1570px; height: 130px;}
+    .ddaytrue{width: 120px; height: 120px; background-color: #6bd098; border-radius: 10px; margin: 10px 10px 10px 30px; float: left;}
+    #ddayname{height: 50%; width: 100%; text-align: center; padding: 10px;}
+    #ddaydate{ height: 50%; width: 100%; text-align: center; padding: 10px;}
   </style>
 </head>
 
@@ -128,7 +140,7 @@ Coded by www.creative-tim.com
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             
               <div class="alert-icon">
-            
+               
               </div>
             
             <ul class="navbar-nav">
@@ -150,11 +162,26 @@ Coded by www.creative-tim.com
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="description">Your content here</h3>
+       <div id="ddayset">
+        <form action="">
+          <label for="">내용</label>
+          <input class="ddayin" type="text" name="" id="ddaycontent">
+          <label for="">날짜</label>
+          <input class="ddayin" type="date" id="ddaydatecon">
+          <input id="ddaybtn" type="button" value="D-Day 생성하기" onclick="addList()">
+          <input id="removebtn" type='button' value='삭제' onclick='removeItem()'>
+        </form>
+        <div id="ddaycontain">
+          <div class="ddaytrue">
+            <div id="ddayname">시험(예시)</div>
+            <div id="ddaydate">D-40</div>
           </div>
         </div>
+        
+       </div>
+       <div id="scheduleset">
+        <iframe src="./selectable.html" frameborder="0" width="100%" height="100%"></iframe>
+       </div>
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
         <div class="container-fluid">
@@ -183,6 +210,71 @@ Coded by www.creative-tim.com
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <script src="./assets/js/jquery-3.6.1.min.js"></script>
+
+
+  <script>
+function addList()  {
+  
+  const parent = document.getElementById('ddaycontain');
+  const newDiv = document.createElement("div");
+  newDiv.setAttribute('class', 'ddaytrue');
+  parent.appendChild(newDiv);
+  addDiv(newDiv)
+}
+function addDiv(newDiv){
+     // 1. 추가할 값을 input창에서 읽어온다
+  const addValue 
+    = document.getElementById('ddaycontent').value;
+  const addValue2
+  =document.getElementById('ddaydatecon').value;
+  
+  // 2. 추가할 li element 생성
+  // 2-1. 추가할 li element 생성
+  const list = document.createElement("div");
+  const list2 = document.createElement("div");
+
+  
+  // 2-2. li에 id 속성 추가 
+  list.setAttribute('id','ddayname');
+  list2.setAttribute('id','ddaydate');
+ 
+  
+  // 2-3. li에 text node 추가 
+  const textNode = document.createTextNode(addValue);
+  list.appendChild(textNode);
+  const textNode2 = document.createTextNode(addValue2);
+  list2.appendChild(textNode2);
+
+  console.log(newDiv);
+  // 3. 생성된 li를 ul에 추가
+  
+newDiv.appendChild(list);
+newDiv.appendChild(list2);
+
+$('#ddaycontent').val('');
+
+
+  }
+
+
+function removeItem()  {
+  
+  // 1. <ul> element 선택
+  const ul = document
+    .getElementById('ddaycontain');
+  
+  // 2. <li> 목록 선택
+  const items = ul.getElementsByClassName('ddaytrue');
+  
+  // 3. <li> 목록 중 첫번째 item 삭제
+  if(items.length > 0)  {
+    items[items.length-1].remove();
+  }
+  
+}
+  </script>
 </body>
 
 </html>
+
