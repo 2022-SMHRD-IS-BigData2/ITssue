@@ -316,6 +316,12 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   		<%}%>
   		
   	})
+  	$('#hashTag').keypress(function(event){
+     if ( event.which == 13 ) {
+         $('#tagSearch').click();
+         return false;
+     }
+});
   </script>
 </body>
 

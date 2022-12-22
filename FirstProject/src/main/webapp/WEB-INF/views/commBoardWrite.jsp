@@ -68,6 +68,7 @@ Coded by www.creative-tim.com
       resize: none;
       border-color: #dfe6e9;
       font-family: 'LINESeedKR-Bd';
+      outline-color: #6bd098;
     }
 
     table{
@@ -80,6 +81,48 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
     
       .hashtag-container{list-style: none;}
     .hashtag{float: left; margin: 3px; display: block; width: 80px; height: 20px; text-align: center; border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098;}
+    
+    #filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+#filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #6bd098;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+/* named upload */
+#filebox .upload-name {
+  display: inline-block;
+  padding: .5em .75em;  /* label의 패딩값과 일치 */
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
   </style>
 </head>
 
@@ -208,8 +251,10 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
           <div>
             <thead>
               <tr>
-                <td scope="col" class="td_title" width="500" style="text-align: center;" colspan="2">📸사진첨부 </td>
-                <td scope="col" class="td_title" width="500" style="text-align: center;" colspan="2">📂파일첨부 </td>
+                <td scope="col" id="filebox" class="td_title" width="500" style="text-align: center;" colspan="4">
+                <input class="upload-name" value="파일선택" disabled="disabled">
+  <label for="ex_filename">업로드</label> 
+  <input type="file" id="ex_filename" class="upload-hidden"> </td>
               </tr>
             </thead>
           </div>
@@ -364,6 +409,22 @@ $('#addValue').keypress(function(event){
 		
 	  		
   })
+  
+  $(document).ready(function(){
+  var fileTarget = $('#filebox .upload-hidden');
+
+  fileTarget.on('change', function(){  // 값이 변경되면
+    if(window.FileReader){  // modern browser
+      var filename = $(this)[0].files[0].name;
+    } 
+    else {  // old IE
+      var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+    }
+    
+    // 추출한 파일명 삽입
+    $(this).siblings('.upload-name').val(filename);
+  });
+}); 
   </script>
 </body>
 
