@@ -53,7 +53,7 @@ Coded by www.creative-tim.com
   #left-main{width: 60%;height: 100%; float: left; min-width: 1070px; min-height: 390px;}
   #top-main{width: 100%; height: 40%;}
   #timer{width: 50%; height: 90%; float: left; margin: 10px; text-align: center; color: #66615B; min-width: 460px; min-height: 320px;}
-  #dday{width: 40%; height: 90%; float: right; background-color: #6bd098; margin: 10px; border-radius: 10px; display: flex; align-items: center; text-align: center; margin: 0 auto; flex-direction: column; min-width: 380px; min-height: 320px;}         
+  #dday{width: 40%; height: 90%; float: right; background-color: #6bd098; margin: 10px; border-radius: 10px; display: flex; align-items: center; text-align: center; flex-direction: column; min-width: 380px; min-height: 320px;}         
   #schedule{width: 100%; height: 50%; margin: 10px; background-color: white; border-radius: 10px;}
   #postIt{ width: 30%; height: 90%; float: right; margin: 10px;}
   textarea{width: 100%; height: 100%; box-sizing: border-box;
@@ -128,12 +128,16 @@ font-family: 'LINESeedKR-Bd';}
             </a>
           </li>
         </ul>
+        <form action="">
         <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
           <div class="input-group-text">
-            <i class="nc-icon nc-zoom-split"></i>
+            <button type="submit" id="searchbtn">
+               <i class="nc-icon nc-zoom-split"></i>
+            </button>
           </div>
+        </form>
         </div>
       </div>
       </div>
