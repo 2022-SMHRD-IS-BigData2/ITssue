@@ -49,6 +49,13 @@ Coded by www.creative-tim.com
     }
     body{font-family: 'LINESeedKR-Bd';}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
+    #mainlist{list-style: none; height: 80px; width: 100%;}
+    #iframe-content{height: 700px; width: 100%;}
+    .boardlist{float: left; margin: 20px; font-size: 30px; color: #66615B; text-decoration: none; text-align: center; background-color: #6bd098; display: block; width: 200px; padding: 15px; border-radius: 5px; }
+    .boardlist:visited{color: #66615B;}
+    .boardlist:hover{color: white; text-decoration: none;}
+    .boardlist:active{color: white;}
+
   </style>
 </head>
 
@@ -129,7 +136,7 @@ Coded by www.creative-tim.com
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             
               <div class="alert-icon">
-                <i class="fa-regular fa-bell"></i>
+              
               </div>
             
             <ul class="navbar-nav">
@@ -151,10 +158,15 @@ Coded by www.creative-tim.com
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="description">Your content here</h3>
-          </div>
+        <div id="menu">
+          <ul id="mainlist">
+            <li><a class="boardlist" href="javascript:;" data-src="myboarddiary.jsp">나의 일기장</a></li>
+            <li><a class="boardlist" href="javascript:;" data-src="myboardtime.jsp">공부시간 관리</a></li>
+            <li><a class="boardlist" href="javascript:;" data-src="myboardscore.jsp">성적관리</a></li>
+          </ul>
+        </div>
+        <div id="iframe-content">
+          <iframe src="myboarddiary.jsp" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
         </div>
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
@@ -184,6 +196,16 @@ Coded by www.creative-tim.com
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <script src="./assets/js/jquery-3.6.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+  $('.boardlist').click(function(){
+    var src = $(this).data('src');
+    $('#mainIframe').attr('src',src);
+  })
+  </script>
+  
 </body>
 
 </html>
+

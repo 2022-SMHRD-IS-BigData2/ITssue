@@ -161,7 +161,7 @@ font-family: 'LINESeedKR-Bd';}
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             
               <div class="alert-icon">
-                <i class="fa-regular fa-bell"></i>
+                
               </div>
             
             <ul class="navbar-nav">
@@ -173,7 +173,7 @@ font-family: 'LINESeedKR-Bd';}
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="update.do">회원정보 수정</a>
+                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
                   <a class="dropdown-item" href="logout.do">로그아웃</a>
                 </div>
               </li>
