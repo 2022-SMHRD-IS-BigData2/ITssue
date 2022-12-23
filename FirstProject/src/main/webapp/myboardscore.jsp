@@ -88,6 +88,8 @@
             text-align: center;
             height: 150px;
         }
+        #writescore{margin: auto; display: block; border: 1px solid #6bd098; background-color:#6bd098; font-family: 'LINESeedKR-Bd';
+         border-radius:5px;}
 
     </style>
 </head>
@@ -113,6 +115,7 @@
                     <li id="score_semi_title">시험점수 상세정보</li>
                     <p id="score_comment">&nbsp;&nbsp;&nbsp;&nbsp;당신의 시험점수에 대한 상세정보를 보여줍니다.</p>
                 </span>
+                <button type=button id="writescore">시험 정보 입력하기</button>
             </div>
 
         </div>
