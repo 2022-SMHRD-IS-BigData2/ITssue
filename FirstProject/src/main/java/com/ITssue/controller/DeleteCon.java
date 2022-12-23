@@ -29,15 +29,21 @@ public class DeleteCon implements Controller {
 		
 		// delete 메서드 사용
 		MembersMapper dao = new MembersMapper();
-		int result = dao.delete(dto);
+		int cnt = dao.delete(dto);
 		
 		// 성공 실패 구분
-		if(result > 0) {
-			response.getWriter().print("true");
+		String nextPage = "";
+		if(cnt > 0) {
+			System.out.println("회원 삭제 성공!");
+			nextPage = "redirect:/goWelcome.do";
 		} else {
-			response.getWriter().print("false");
+			System.out.println("회원 삭제 실패");
+			nextPage = "redirect:/goLogin.do";
 		}
-		return null;
+		
+		return nextPage;
+
+
 	}
 
 }
