@@ -30,6 +30,13 @@ public class DeleteCon implements Controller {
 		// delete 메서드 사용
 		MembersMapper dao = new MembersMapper();
 		int result = dao.delete(dto);
+		
+		// 성공 실패 구분
+		if(result > 0) {
+			response.getWriter().print("true");
+		} else {
+			response.getWriter().print("false");
+		}
 		return null;
 	}
 

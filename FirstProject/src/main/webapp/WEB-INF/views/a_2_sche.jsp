@@ -226,10 +226,31 @@ Coded by www.creative-tim.com
 
 <script type="text/javascript">
 	<%List<D_day> list = (List<D_day>)request.getAttribute("D_dayList");%>
+	let day_content = [];
+	let day_dt = [];
 	
+	 
+	let listNull = <%=list != null %>;
+	if(listNull){
+		 <%for(D_day d_day : list){%>
+		 	var content = "<%=d_day.getD_day_content()%>";
+		 	var dt = "<%=d_day.getD_day_dt()%>";
+		 	
+		  	day_content.push(content);
+		  	day_dt.push(dt);
+		  <%}%>	
 	
-	$('#ddayname').html('<%=list.get(0).getD_day_content() %>');
-	
+		$('#ddaycontain').html('');
+		
+		for(var i = 0; i < day_dt.length; i++){
+		$('#ddaycontain').append(
+				'<div class="ddaytrue">'
+        			+'<div id="ddayname">'+day_content[i]+'</div>'
+        			+'<div id="ddaydate">'+day_dt[i]+'</div>'
+      			+'</div>'
+      			);
+		}
+	}
 	
 </script>
 
