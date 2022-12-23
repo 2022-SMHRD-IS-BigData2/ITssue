@@ -1,5 +1,7 @@
 package com.ITssue.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -31,6 +33,18 @@ public class ScheduleMapper {
 		session.close();
 		
 		return cnt;
+		
+	}
+	
+	public List<Schedule> sche_List(String id) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		List<Schedule> result =session.selectList("scheList",id);
+		
+		session.close();
+		
+		return result;
 		
 	}
 	

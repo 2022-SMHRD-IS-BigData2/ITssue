@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Schedule"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -169,12 +171,13 @@
 			     
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
-			events: [ ]
+			events: []
+			
 		});
 		
 		calendar.render();
 	});
-
+	
 </script>
 
 <style>

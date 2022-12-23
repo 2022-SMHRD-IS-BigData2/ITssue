@@ -1,5 +1,7 @@
 package com.ITssue.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -15,6 +17,29 @@ public class D_dayMapper {
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
 		D_day result = session.selectOne("d_day",id);
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+	public int d_dayInsert(D_day dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.insert("d_day_insert",dto);
+		
+		session.close();
+		
+		return cnt;
+	}
+	
+	public List<D_day> d_dayList(String id) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		List<D_day> result = session.selectList("d_dayList",id);
 		
 		session.close();
 		

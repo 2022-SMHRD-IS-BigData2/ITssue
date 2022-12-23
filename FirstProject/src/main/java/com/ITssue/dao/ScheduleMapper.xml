@@ -23,6 +23,12 @@
 		and scheduel_type = #{scheduel_type}
 		and sche_content = #{sche_content}
 	</delete>
+	
+	<select id="scheList" resultType="com.ITssue.entity.Schedule">
+		select *
+		from schedule
+		where id = #{id}
+	</select>
 
 
 

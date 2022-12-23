@@ -2,11 +2,11 @@ package com.ITssue.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,20 +14,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ITssue.dao.D_dayMapper;
+import com.ITssue.dao.ScheduleMapper;
 import com.ITssue.entity.D_day;
 import com.ITssue.entity.Members;
+import com.ITssue.entity.Schedule;
 
 public class GoMainCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		HttpSession session = request.getSession();
 		Members info = (Members)session.getAttribute("info");
 		
-		D_dayMapper dao = new D_dayMapper();
-		D_day result = dao.d_day(info.getId());
+		
+		//=======================================================
+		// D-day 반환
+		D_dayMapper d_dayDao = new D_dayMapper();
+		D_day result = d_dayDao.d_day(info.getId());
 		
 		
 		
@@ -83,8 +88,16 @@ public class GoMainCon implements Controller {
 			}else{
 				d_day = "D-day";
 			}
+			//===========================================================================
+			ScheduleMapper scheDao = new ScheduleMapper();
+			List<Schedule> scheList = scheDao.sche_List(info.getId());
+			
+			//============================================================================
+			
+			
 			
 			request.setAttribute("time", d_day);
+			request.setAttribute("schedule", scheList);
 			
 		}else {
 			System.out.println("실패했다와");
