@@ -36,4 +36,11 @@
 		set content = #{content}
 		where id=#{id}
 	</update>
+	
+	<delete id="delete" parameterType="com.ITssue.entity.Members">
+	delete from members
+	where id=#{id}
+	and pw=#{pw}
+	</delete>
+	
 </mapper>
