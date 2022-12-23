@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Schedule"%>
 <%@page import="com.ITssue.entity.D_day"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
@@ -225,7 +226,10 @@ Coded by www.creative-tim.com
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
 
 <script type="text/javascript">
-	<%List<D_day> list = (List<D_day>)request.getAttribute("D_dayList");%>
+	<%
+		List<D_day> list = (List<D_day>)request.getAttribute("D_dayList");
+		List<Schedule> schedule = (List<Schedule>)request.getAttribute("schedule");
+	%>
 	let day_content = [];
 	let day_dt = [];
 	
@@ -251,6 +255,55 @@ Coded by www.creative-tim.com
       			);
 		}
 	}
+	
+	let = eventsList = [];
+	
+	if(<%=schedule != null%>){
+		
+		<%for(Schedule sche : schedule){%>
+			var id = "<%=sche.getSche_no()%>";
+			var content = "<%=sche.getSche_content()%>";
+			var alldays = "<%=sche.getScheduel_type()%>";
+			
+			if(alldays == "t"){
+				var startDT = "<%=sche.getSche_s_dt().split(" ")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split(" ")[0]%>";
+			}else{
+				var startDT = "<%=sche.getSche_s_dt().split("\\.")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split("\\.")[0]%>";
+			}
+			
+			
+			if(alldays == "t"){
+				eventsList.push({
+					groupid: id,
+					title: content,
+					start: startDT
+				})
+			}else{
+				eventsList.push({
+					groupid: id,
+					title: content,
+					start: startDT,
+					end: endDT
+				})
+			}
+			
+			
+		<%}%>
+		
+	}
+		
+	console.log(eventsList)
+	
+		
+		
+		
+	
+	
+	
+	
+	
 	
 </script>
 
@@ -358,7 +411,49 @@ $('#search').keypress(function(event){
           })
         }
         calendar.unselect()
-    
+		if(arg.allDay){
+			console.log('하루종일');
+			console.log(arg)
+			$.ajax({
+				
+				url:"scheduleJoin.do",
+				data:{
+					all: arg.allDay,
+					start: arg.startStr,
+					end: arg.endStr,
+					content: getName
+				},
+				type:"post",
+				success:function(res){
+				},
+				error:function(e){
+				}
+				
+			})
+			
+		}else{
+			console.log('시간지정');
+			console.log(arg);
+			$.ajax({
+				
+				url:"scheduleJoin.do",
+				data:{
+					all: arg.allDay,
+					start: arg.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
+					end: arg.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
+					content: getName
+				},
+				type:"post",
+				success:function(res){
+					console.log("요청성공")
+				},
+				error:function(e){
+					console.log("요청실패")
+				}
+				
+			})
+			
+		}
 })()
 
       },
@@ -386,12 +481,58 @@ $('#search').keypress(function(event){
 	        title : '일정이 삭제되었습니다.',
 	        confirmButtonColor : '#6bd098'});
       arg.event.remove()
+      console.log(arg.event.title)
+		
+		if(arg.event.allDay){
+			console.log(arg.event.startStr);
+			console.log(arg.event.endStr);
+			$.ajax({
+				
+				url:"scheduleDelete.do",
+				data:{
+					all: arg.event.allDay,
+					start: arg.event.startStr,
+					end: arg.event.endStr,
+					content: arg.event.title
+				},
+				type:"post",
+				success:function(res){
+					console.log("요청성공")
+				},
+				error:function(e){
+					console.log("요청실패")
+				}
+				
+			})
+			
+		}else{
+			console.log(arg.event.startStr.split("+")[0].split("T")[0]+" "+arg.event.startStr.split("+")[0].split("T")[1])
+			console.log(arg.event.endStr.split("+")[0].split("T")[0]+" "+arg.event.endStr.split("+")[0].split("T")[1])
+			$.ajax({
+			
+			url:"scheduleDelete.do",
+			data:{
+				all: arg.event.allDay,
+				start: arg.event.startStr.split('+')[0].split('T')[0]+" "+arg.event.startStr.split('+')[0].split('T')[1],
+				end: arg.event.endStr.split('+')[0].split('T')[0]+" "+arg.event.endStr.split('+')[0].split('T')[1],
+				content: arg.event.title
+			},
+			type:"post",
+			success:function(res){
+				console.log("요청성공")
+			},
+			error:function(e){
+				console.log("요청실패")
+			}
+			
+		})
+		}
    }}
 )},
      
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: [ ]
+      events: eventsList
     });
 
     calendar.render();
