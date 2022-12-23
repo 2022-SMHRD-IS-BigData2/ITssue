@@ -81,6 +81,13 @@ font-family: 'LINESeedKR-Bd';}
  input::placeholder{font-family: 'LINESeedKR-Bd';}
  #searchbtn{border: 0;}
  
+ #calendar{max-width: 1070px; max-height: 470px; margin: 0 auto;}
+.fc-day-today {
+    background: #ecf0f1 !important;
+    border: none !important;
+  
+} 
+ 
  
   </style>
 </head>
@@ -333,6 +340,7 @@ font-family: 'LINESeedKR-Bd';}
 <script>
 
 	document.addEventListener('DOMContentLoaded', function() {
+		
 		var calendarEl = document.getElementById('calendar');
 		
 		var calendar = new FullCalendar.Calendar(calendarEl, {
