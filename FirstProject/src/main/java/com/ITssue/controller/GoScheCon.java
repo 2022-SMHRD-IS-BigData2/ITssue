@@ -2,7 +2,6 @@ package com.ITssue.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -14,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ITssue.dao.D_dayMapper;
+import com.ITssue.dao.ScheduleMapper;
 import com.ITssue.entity.D_day;
 import com.ITssue.entity.Members;
+import com.ITssue.entity.Schedule;
 
 public class GoScheCon implements Controller {
 
@@ -29,15 +30,12 @@ public class GoScheCon implements Controller {
 		D_dayMapper dao = new D_dayMapper();
 		List<D_day> list = dao.d_dayList(info.getId());
 		
+		//==========================================================================
 		LocalDate now = LocalDate.now();
-		LocalTime nowT = LocalTime.now();
 		
 		int nowYear = now.getYear();
 		int nowMonth = now.getMonthValue();
 		int nowDays = now.getDayOfMonth();
-		int nowHour = nowT.getHour();
-		int nowMin = nowT.getMinute();
-		int nowSec = nowT.getSecond();
 		
 		for(D_day d_day : list) {
 			
@@ -62,22 +60,16 @@ public class GoScheCon implements Controller {
 			}else{
 				d_day.setD_day_dt("D-day");
 			}
-			
-			System.out.println(d_day.getD_day_dt());
-			
-			
-			
 		}
+		//========================================================================
+		ScheduleMapper scheDao = new ScheduleMapper();
+		List<Schedule> scheList = scheDao.sche_List(info.getId());
 		
-		
-		
+		//========================================================================
 		
 		
 		request.setAttribute("D_dayList", list);
-		
-		
-		
-		
+		request.setAttribute("schedule", scheList);
 		
 		
 		
