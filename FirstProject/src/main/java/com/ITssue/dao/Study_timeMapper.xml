@@ -9,7 +9,8 @@
    			study_no_seq.nextval,
     		sysdate,
     		(sysdate + interval '${study_e_time}' hour to second),
-    		#{id}
+    		#{id},
+    		#{amounts}
 		)
 	
 	</insert>

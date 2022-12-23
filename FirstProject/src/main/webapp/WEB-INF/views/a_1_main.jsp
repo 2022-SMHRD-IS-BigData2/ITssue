@@ -299,6 +299,7 @@ font-family: 'LINESeedKR-Bd';}
   			},
   			type:"post",
   			success:function(res){
+  				restart();
   			},
   			error:function(e){
   				alert(e);

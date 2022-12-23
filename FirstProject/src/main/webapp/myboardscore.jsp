@@ -88,7 +88,9 @@
             text-align: center;
             height: 150px;
         }
-        #writescore{margin: auto; display: block; border: 1px solid #6bd098; background-color:#6bd098; font-family: 'LINESeedKR-Bd';
+        #enterscore{margin: auto; display: block; border: 1px solid #6bd098; background-color:#6bd098; font-family: 'LINESeedKR-Bd';
+         border-radius:5px;}
+         #delscore{margin: auto; display: block; border: 1px solid #6bd098; background-color:#6bd098; font-family: 'LINESeedKR-Bd';
          border-radius:5px;}
 
     </style>
@@ -115,7 +117,8 @@
                     <li id="score_semi_title">시험점수 상세정보</li>
                     <p id="score_comment">&nbsp;&nbsp;&nbsp;&nbsp;당신의 시험점수에 대한 상세정보를 보여줍니다.</p>
                 </span>
-                <button type=button id="writescore">시험 정보 입력하기</button>
+                <button type=button id="enterscore" onclick="">시험 정보 입력하기</button><br>
+                <button type="button" id="delscore">마지막 시험 삭제하기</button>
             </div>
 
         </div>
@@ -162,6 +165,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script>
         const ctx = document.getElementById('myChart');
 
@@ -187,6 +191,13 @@ new Chart(ctx, {
     }
   }
 });
+
+$("#delscore").click(function(){
+    var trCnt = $('#score_table thead').length;
+    if(trCnt > 1){
+      $('#score_table > thead:last').remove()
+    }
+    })
     </script>
 
 </body>

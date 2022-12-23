@@ -10,4 +10,5 @@ public class Study_time {
 	private String study_s_time;
 	private String study_e_time;
 	private String id;
+	private String amounts;
 }
