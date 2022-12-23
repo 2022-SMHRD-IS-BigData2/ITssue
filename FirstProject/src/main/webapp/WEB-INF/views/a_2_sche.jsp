@@ -61,7 +61,12 @@ Coded by www.creative-tim.com
     #ddayname{height: 50%; width: 100%; text-align: center; padding: 10px;}
     #ddaydate{ height: 50%; width: 100%; text-align: center; padding: 10px;}
    #searchbtn{border: 0;}
+   #calendar{max-width: 1570px; max-height: 580px; margin: 0 auto;}
+.fc-day-today {
+    background: #ecf0f1 !important;
+    border: none !important;
   </style>
+  
 </head>
 
 <body class="">
@@ -185,7 +190,7 @@ Coded by www.creative-tim.com
         
        </div>
        <div id="scheduleset">
-        <iframe src="calender.jsp" frameborder="0" width="100%" height="100%"></iframe>
+       <div id='calendar'></div>
        </div>
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
@@ -286,6 +291,83 @@ $('#search').keypress(function(event){
     }
 });
   </script>
+  <script src='./assets/js/index.global.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'timeGridWeek,timeGridDay'
+      },
+      //initialDate: '2020-09-12',
+      initialView: 'timeGridWeek',
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectMirror: true,
+      select: function(arg) {
+
+        (async () => {
+    const { value: getName } = await Swal.fire({
+        title: '일정을 입력하세요.',
+        input: 'text',
+        confirmButtonColor : '#6bd098'
+    })
+
+    if (getName) {
+          calendar.addEvent({
+            title: getName,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+          })
+        }
+        calendar.unselect()
+    
+})()
+
+      },
+
+      eventClick: function(arg) {
+  Swal.fire({
+   title: '일정을 삭제하시겠습니까?',
+   text: '삭제된 일정은 복구되지 않습니다.',
+   icon: 'warning',
+   
+   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+   confirmButtonColor: '#6bd098', // confrim 버튼 색깔 지정
+   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+   
+   reverseButtons: false, // 버튼 순서 거꾸로
+   
+}).then(result => {
+   // 만약 Promise리턴을 받으면,
+   
+   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+   
+	   Swal.fire({
+	        title : '일정이 삭제되었습니다.',
+	        confirmButtonColor : '#6bd098'});
+      arg.event.remove()
+   }}
+)},
+     
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [ ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+  
 </body>
 
 </html>
