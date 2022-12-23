@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -134,6 +135,10 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
+
+<%
+	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -203,7 +208,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -224,7 +229,7 @@ Coded by www.creative-tim.com
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-gear"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
+                    <span class="d-lg-none d-md-block">Settings</span>
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
