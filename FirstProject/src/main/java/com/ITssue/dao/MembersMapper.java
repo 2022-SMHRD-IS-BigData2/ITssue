@@ -55,5 +55,16 @@ public class MembersMapper {
 		return cnt;
 	}
 
+	public int delete(Members dto) {
+
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.insert("delete",dto);
+		
+		session.close();
+		
+		return cnt;
+	}
+
 
 }
