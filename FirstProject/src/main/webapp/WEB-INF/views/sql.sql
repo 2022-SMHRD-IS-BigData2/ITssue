@@ -15,3 +15,9 @@ from (select *
       and to_date(d_day_dt) >= (sysdate-1)
       order by d_day_dt)
 where rownum <= 1;
+
+select * from schedule;
+
+select * from board;
+
+select * from study_time;

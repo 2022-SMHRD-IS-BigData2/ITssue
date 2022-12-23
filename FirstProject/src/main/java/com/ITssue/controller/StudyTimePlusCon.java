@@ -24,6 +24,7 @@ public class StudyTimePlusCon implements Controller {
 		Study_time dto = new Study_time();
 		dto.setId(id);
 		dto.setStudy_e_time(plusTime);
+		dto.setAmounts(plusTime);
 		
 		
 		
