@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.D_day"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -222,6 +224,14 @@ Coded by www.creative-tim.com
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
 
+<script type="text/javascript">
+	<%List<D_day> list = (List<D_day>)request.getAttribute("D_dayList");%>
+	
+	
+	$('#ddayname').html('<%=list.get(0).getD_day_content() %>');
+	
+	
+</script>
 
   <script>
 function addList()  {

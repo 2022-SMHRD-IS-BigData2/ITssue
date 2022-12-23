@@ -25,6 +25,21 @@ public class GoScheCon implements Controller {
 		List<D_day> list = dao.d_dayList(info.getId());
 		
 		
+		for(D_day d_day : list) {
+			
+			System.out.println(d_day.getD_day_dt().split(" ")[0]);
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		request.setAttribute("D_dayList", list);
+		
+		
 		
 		
 		
