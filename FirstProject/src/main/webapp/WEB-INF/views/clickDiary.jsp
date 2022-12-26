@@ -60,7 +60,7 @@ Coded by www.creative-tim.com
 
     #list{width: 1020px; text-align: center; border: 3px solid #6bd098;}
 
-    #btnback{border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd';  border-radius: 5px; background-color: #6bd098;}
+    .btnon{border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd';  border-radius: 5px; background-color: #6bd098;}
     
    
     
@@ -198,7 +198,8 @@ Coded by www.creative-tim.com
           <tr></tr>
           <tr></tr>
           <tr>
-            <td colspan="2"><a href=""><button id="btnback">뒤로가기</button></a></td>
+            <td colspan="2"><a href=""><button id="btnback" class="btnon">목록보기</button></a>
+            <button class="btnon" onclick="javascript:delcom(this);">삭제하기</button></td>
           </tr>
         </table>
       </div>
@@ -231,6 +232,7 @@ Coded by www.creative-tim.com
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script>
       $('#search').keypress(function(event){
@@ -239,6 +241,30 @@ Coded by www.creative-tim.com
          return false;
      }
 });
+      
+      function delbtn(){
+    	  
+    	  Swal.fire({
+    	    title: '삭제하시겠습니까?',
+    	    text: "삭제한 게시물은 복구되지 않습니다",
+    	    icon: 'warning',
+    	    showCancelButton: true,
+    	    confirmButtonColor: '#6bd098',
+    	    cancelButtonColor: '#d33',
+    	    confirmButtonText: 'Yes'
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	      Swal.fire(
+    	        '삭제완료',
+    	        '성공적으로 삭제되었습니다',
+    	        'success',
+    	        false,
+    	       '#6bd098'
+    	      )
+    	    }
+    	  })
+
+    	}
     </script>
 </body>
 
