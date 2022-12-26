@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!--
 =========================================================
 * Paper Dashboard 2 - v2.0.1
@@ -44,7 +45,8 @@ Coded by www.creative-tim.com
         font-weight: 700;
         font-style: normal;
     }
-    body{font-family: 'LINESeedKR-Bd';}
+    body{font-family: 'LINESeedKR-Bd';
+    background-color: #f4f3ef}
     .input-group.no-border {
       position: absolute;
       bottom: 40px;
@@ -71,7 +73,6 @@ Coded by www.creative-tim.com
 
     #content2{
       margin: 0 auto;
-      margin-top: 2%;
       text-align: center;
 
     }
@@ -135,117 +136,26 @@ label {
   -moz-appearance: none;
   appearance: none;
 }
+
+.content{width: 100%; height: 100%;}
+#title{width: 100%; height: 20%;}
+#filebox{width: 100%; height: 15%;}
+#content2{width: 100%; height: 60%;}
+#commit{width: 100%; height: 5%;}
   </style>
 </head>
 
 <body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="white" data-active-color="success">
-      <div class="logo">
-        <div id="container">
-          <a href="goMain.do" class="simple-text logo-normal">
-            <img id="logo" src="./assets/img/Itssuelogo.png">
-
-          </a>
-        </div>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li>
-            <a href="goMain.do">
-              <i class="fa-solid fa-house-chimney"></i>
-              <p>Main</p>
-              <!-- 메인페이지 -->
-            </a>
-          </li>
-          <li>
-            <a href="goSche.do">
-              <i class="fa-solid fa-calendar-days"></i>
-              <p>My Schedule</p>
-              <!-- 위클리 스케줄 설정, 디데이 설정 -->
-            </a>
-          </li>
-          <li class="active ">
-            <a href="goBoard.do">
-              <i class="fa-solid fa-clipboard-check"></i>
-              <p>My Board</p>
-              <!-- 일기 게시판 -->
-            </a>
-          </li>
-          <li>
-            <a href="goCommList.do">
-              <i class="fa-solid fa-message"></i>
-              <p>Community Board</p>
-
-
-              <!-- 질문게시판 -->
-            </a>
-          </li>
-        </ul>
-        <div class="input-group no-border">
-          <input id="search" type="text" value="" class="form-control" placeholder="회원 검색" style="font-family:'LINESeedKR-Bd';">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="nc-icon nc-zoom-split"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="main-panel" style="height: 100vh;">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="javascript:;">user nickname</a>
-          </div>
-        
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
-            <div class="alert-icon">
-          
-            </div>
-
-            <ul class="navbar-nav">
-              <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa-solid fa-gear"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Settings</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
-                  <a class="dropdown-item" href="logout.do">로그아웃</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+  <div class="wrapper" style="height: 100vh; width: 100%; overflow-x: hidden;">
+    
       <div class="content">
         <div class="row"><br>
-          <div id="title">
+          <div id="title" style="display: block; margin:0 auto">
             <form>
               <textarea name="title" id="write_title" cols="150" rows="2" placeholder="제목을 입력해주세요"></textarea>
             </form>
           </div>
-          <div style="margin: 0 auto;">
+          <div id="filebox" style="margin: 0 auto; text-align: center;">
            <input class="upload-name" value="파일선택" disabled="disabled">
   <label for="ex_filename" >업로드</label> 
   <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);"><br>
@@ -266,18 +176,7 @@ label {
         </div>
       </div>
 
-      <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-
-            </nav>
-            <div class="credits ml-auto">
-
-            </div>
-          </div>
-        </div>
-      </footer>
+      
     </div>
   </div>
   <!--   Core JS Files   -->

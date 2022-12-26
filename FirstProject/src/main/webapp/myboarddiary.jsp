@@ -43,7 +43,9 @@ text-align : left;}
             <h1>나의 일기장</h1>
         </div>
         <div id="btngo">
-            <button onclick="createDiv()">일기 쓰기</button>
+        <a href="goDiaryWrite.do">
+            <button onclick="createDiv()" >일기 쓰기</button>
+            </a>
         </div>
         <div id="diary">
 

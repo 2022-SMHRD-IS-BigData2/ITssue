@@ -22,6 +22,7 @@ import com.ITssue.controller.GoBoardViewCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
 import com.ITssue.controller.GoCommWriteCon;
+import com.ITssue.controller.GoDiaryWriteCon;
 import com.ITssue.controller.GoJoinCon;
 import com.ITssue.controller.GoLoginCon;
 import com.ITssue.controller.GoMainCon;
@@ -64,6 +65,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goCommList.do", new GoCommListCon() );
 		 handlerMapping.put("/goCommWrite.do", new GoCommWriteCon() );
 		 handlerMapping.put("/goBoardView.do", new GoBoardViewCon() );
+		 handlerMapping.put("/goDiaryWrite.do", new GoDiaryWriteCon() );
+		 
 		 
 		
 		//========================
