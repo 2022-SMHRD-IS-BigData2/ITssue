@@ -120,7 +120,7 @@ label {
 }
 
 /* named upload */
-#filebox .upload-name {
+.upload-name {
   display: inline-block;
   padding: .5em .75em;  /* label의 패딩값과 일치 */
   font-size: inherit;
