@@ -276,13 +276,13 @@ Coded by www.creative-tim.com
 			
 			if(alldays == "t"){
 				eventsList.push({
-					groupid: id,
+					id: id,
 					title: content,
 					start: startDT
 				})
 			}else{
 				eventsList.push({
-					groupid: id,
+					id: id,
 					title: content,
 					start: startDT,
 					end: endDT
@@ -309,19 +309,24 @@ Coded by www.creative-tim.com
 
   <script>
 function addList()  {
+  console.log('추가된다');
   
   const parent = document.getElementById('ddaycontain');
   const newDiv = document.createElement("div");
   newDiv.setAttribute('class', 'ddaytrue');
   parent.appendChild(newDiv);
   addDiv(newDiv)
+  
 }
-function addDiv(newDiv){
+function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
      // 1. 추가할 값을 input창에서 읽어온다
   const addValue 
     = document.getElementById('ddaycontent').value;
   const addValue2
   =document.getElementById('ddaydatecon').value;
+  
+  console.log(addValue); // D-day의 이름부분
+  console.log(addValue2); // 필요한 날짜 데이터
   
   // 2. 추가할 li element 생성
   // 2-1. 추가할 li element 생성
@@ -349,11 +354,14 @@ newDiv.appendChild(list2);
 $('#ddaycontent').val('');
 
 
+
   }
 
 
-function removeItem()  {
+function removeItem()  { // 삭제되었을때의 로직이 실행되는 부분
   
+	 console.log('삭제된당')
+	
   // 1. <ul> element 선택
   const ul = document
     .getElementById('ddaycontain');
@@ -363,8 +371,13 @@ function removeItem()  {
   
   // 3. <li> 목록 중 첫번째 item 삭제
   if(items.length > 0)  {
+
+	console.log(items[items.length-1].innerText.split('\n'));
     items[items.length-1].remove();
   }
+  
+ 
+  
   
 }
 
@@ -374,6 +387,13 @@ $('#search').keypress(function(event){
         return false;
     }
 });
+
+
+
+
+
+
+
   </script>
   <script src='./assets/js/index.global.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -411,9 +431,7 @@ $('#search').keypress(function(event){
           })
         }
         calendar.unselect()
-		if(arg.allDay){
-			console.log('하루종일');
-			console.log(arg)
+		if(arg.allDay){ // allday true
 			$.ajax({
 				
 				url:"scheduleJoin.do",
@@ -431,9 +449,7 @@ $('#search').keypress(function(event){
 				
 			})
 			
-		}else{
-			console.log('시간지정');
-			console.log(arg);
+		}else{ // allday false
 			$.ajax({
 				
 				url:"scheduleJoin.do",
@@ -445,10 +461,8 @@ $('#search').keypress(function(event){
 				},
 				type:"post",
 				success:function(res){
-					console.log("요청성공")
 				},
 				error:function(e){
-					console.log("요청실패")
 				}
 				
 			})
@@ -481,11 +495,8 @@ $('#search').keypress(function(event){
 	        title : '일정이 삭제되었습니다.',
 	        confirmButtonColor : '#6bd098'});
       arg.event.remove()
-      console.log(arg.event.title)
 		
 		if(arg.event.allDay){
-			console.log(arg.event.startStr);
-			console.log(arg.event.endStr);
 			$.ajax({
 				
 				url:"scheduleDelete.do",
@@ -497,10 +508,8 @@ $('#search').keypress(function(event){
 				},
 				type:"post",
 				success:function(res){
-					console.log("요청성공")
 				},
 				error:function(e){
-					console.log("요청실패")
 				}
 				
 			})
@@ -519,10 +528,8 @@ $('#search').keypress(function(event){
 			},
 			type:"post",
 			success:function(res){
-				console.log("요청성공")
 			},
 			error:function(e){
-				console.log("요청실패")
 			}
 			
 		})
@@ -532,7 +539,42 @@ $('#search').keypress(function(event){
      
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: eventsList
+      events: eventsList,
+      droppable: true,
+      eventDrop: function(info){
+		console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
+		
+		let id = info.event.id;
+		let endStr = info.event.endStr.split("+")[0].split('T');			
+		let startStr = info.event.startStr.split("+")[0].split('T');
+		
+		if(info.event.allDay){
+			
+			console.log(id);
+			console.log(startStr);
+			console.log(endStr);
+			
+			
+			
+		}else{
+			
+			console.log(id);
+			console.log(startStr);
+			console.log(endStr);
+			
+		}
+		
+		
+		
+		
+      }
+      
+      
+      
+      
+      
+      
+      
     });
 
     calendar.render();

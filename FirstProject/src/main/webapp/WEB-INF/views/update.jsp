@@ -143,9 +143,9 @@ $('#submit').on('click',function(){
 				})
 		}else{
 			
-			$.ajax({
+			$.ajax({ 
     			
-				url : "update.do",
+				url : "memberUpdate.do",
 				data : {
 					id:$('#id').val(),
 					pw:$('#pw2').val(),
