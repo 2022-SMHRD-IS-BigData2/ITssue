@@ -59,7 +59,7 @@ public class MembersMapper {
 
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		int cnt = session.insert("delete",dto);
+		int cnt = session.delete("delete",dto);
 		
 		session.close();
 		
