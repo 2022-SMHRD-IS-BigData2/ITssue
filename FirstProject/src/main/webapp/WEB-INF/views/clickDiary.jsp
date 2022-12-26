@@ -1,4 +1,3 @@
-<%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -21,10 +20,10 @@ Coded by www.creative-tim.com
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Itssue 성적입력관리
+    일기 상세 조회
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -46,6 +45,8 @@ Coded by www.creative-tim.com
         font-weight: 700;
         font-style: normal;
     }
+    body{font-family: 'LINESeedKR-Bd';
+  }
     .input-group.no-border {
       position: absolute;
       bottom: 40px;
@@ -53,92 +54,20 @@ Coded by www.creative-tim.com
       padding-left: 10px;
     }
 
-    body {
-      font-family: 'LINESeedKR-Bd';
-    }
-
-    .alert-icon {
-      position: absolute;
-      right: 100px;
-      top: 20px;
-    }
-
-    #span_add1 {
-      display: inline-block;
-      margin-right: 30%;
-      margin-top: 1%;
-    }
-
-    #span_add2 {
-      display: inline-block;
-      margin-left: -28%;
-      margin-right: 23%;
-    }
-
-    #add_btn {
-      text-align: right;
-    }
-
-    #span_commit {
-      text-align: center;
-    }
-
-    #insertScore {
-      margin-top: 2%;
-      text-align: center;
-      width: 900px;
-      height: 500px;
-      color:black
-    }
-
-    #addSubject {
-      background-color: #6bd098;
-    }
-
-    #addScore {
-      background-color: #6bd098;
-    }
-
-    #commit_btn {
-      background-color: #6bd098;
-      margin-top: 1%;
-    }
-
-    #title_insertScore {
-      height: 100px;
-    }
-
-    #test_name {
-      width: 500px;
-      height: 30px;
-    }
-
-    #test_date {
-      width: 500px;
-      height: 30px;
-    }
-
-    .test_subjectName {
-      width: 500px;
-      height: 30px;
-    }
-
-    .test_score {
-      width: 500px;
-      height: 30px;
-    }
-    #searchbtn{border: 0;  outline:none;}
+    #searchbtn{border: 0; outline: none;}
+    #searchbtn:focus{outline: none;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
-    .mybtn{border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098; width: 120px; height: 40px; font-family: 'LINESeedKR-Bd'; letter-spacing: 1px;}
-    .mybtn:focus{outline: none; border: 0;}
+
+    #list{width: 1020px; text-align: center; border: 3px solid #6bd098;}
+
+    .btnon{border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd';  border-radius: 5px; background-color: #6bd098;}
+    
+   
+    
   </style>
 </head>
 
 <body class="">
-
-<%
-	Members info = (Members)session.getAttribute("info");
-%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -208,9 +137,8 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
+            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
           </div>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -220,7 +148,7 @@ Coded by www.creative-tim.com
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
             <div class="alert-icon">
-              
+              <i class="fa-regular fa-bell"></i>
             </div>
 
             <ul class="navbar-nav">
@@ -243,121 +171,101 @@ Coded by www.creative-tim.com
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="add_btn">
-              <span id="span_add2">
-                <form action="">
-                  <button id="addScore" type="button" class="mybtn">과목추가하기</button>
-                  <button id="delScore" class="mybtn" type="button">삭제하기</button>
-                </form>
-              </span>
-            </div>
+        <table id="list" border="1" bordercolor="#6bd098" word-break="break-all" height="auto" align="center">
+          <tr>
+            <td>제목</td>
+            <td>가져온 제목</td>
+          </tr>
+          <tr>
+            <td>작성일</td>
+            <td>가져온 작성날짜</td>
+          </tr>
+          <tr>
+            <td colspan="2">내용</td>
+          </tr>
+          <tr>
+            <td colspan="2" rowspan="4">
+              <div style="text-align: center;">
+            <img id="userimg" alt="이미지 없음" src="">
           </div>
-        </div>
-        <table id="insertScore" border="4" bordercolor="#66615B" align="center" style="background-color:mediumaquamarine">
-          <thead>
-            <tr>
-              <td id="title_insertScore" scope="col" colspan="2" style="font-size: xx-large; font-weight: bolder;">
-                성적을 입력해주세요</td>
-            </tr>
-          </thead>
-            <tbody>
-            <tr>
-              <td style="font-size:large; font-weight: bold;background-color: #9ED6C0;">📌 시험명</td>
-              <td style="background-color: #9ED6C0;"><input id="test_name" type="text" placeholder="시험명을 입력해주세요">
-              </td>
-            </tr>
-            <tr>
-              <td style="font-size:large; font-weight: bold;">📌 시험날짜</td>
-              <td><input id="test_date" type="text" placeholder="시험날짜를 입력해주세요"></td>
-            </tr>
-            <tr class="scoresub">
-              <td style="font-size:large; font-weight: bold; background-color: #9ED6C0;">📌 과목명</td>
-              <td style="background-color: #9ED6C0;"><input class="test_subjectName" type="text" placeholder="과목명을 입력해주세요">
-              </td>
-            </tr>
-            <tr class="scoretrue">
-              <td style="font-size:large; font-weight: bold;">📌 점수</td>
-              <td><input class="test_score" type="text" placeholder="점수를 입력해주세요"></td>
-            </tr>
-          </tbody>
+             가져온 내용 블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블<br>
+             라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라<br>
+             ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라<br>
+             블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ
+            </td>
+          </tr>
+          <tr></tr>
+          <tr></tr>
+          <tr></tr>
+          <tr>
+            <td colspan="2"><a href=""><button id="btnback" class="btnon">목록보기</button></a>
+            <button class="btnon" onclick="javascript:delcom(this);">삭제하기</button></td>
+          </tr>
         </table>
       </div>
-      <div>
-        <span id="span_commit">
-          <form action="">
-            <button id="commit_btn" class="mybtn" type="button" onclick="javascript:alert()">저장하기</button>
-          </form>
-        </span>
+
+        <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
+          <div class="container-fluid">
+            <div class="row">
+              <nav class="footer-nav">
+
+              </nav>
+              <div class="credits ml-auto">
+
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
-  </div>
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/jquery.min.js"></script>
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/core/bootstrap.min.js"></script>
+    <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="./assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-
-
-  <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="footer-nav">
-
-        </nav>
-        <div class="credits ml-auto">
-
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="./assets/js/core/jquery.min.js"></script>
-  <script src="./assets/js/core/popper.min.js"></script>
-  <script src="./assets/js/core/bootstrap.min.js"></script>
-  <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="./assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="./assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
-  <script src="./assets/js/jquery-3.6.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script>
-    function alert(){
-    Swal.fire({
-     title: '성적정보가 저장되었습니다',
-     confirmButtonColor: '#6bd098'
-    });
-  }
-
-  $(function(){
-    var newRow = $('.scoresub').eq(0);
-    var newRow2 = $('.scoretrue').eq(0);
-    $("#addScore").click(function(){
-      $('#insertScore tbody').append(newRow.clone(true));
-      $('#insertScore tbody').append(newRow2.clone(true));
-    })
-  })
-  $("#delScore").click(function(){
-    var trCnt = $('#insertScore tr').length;
-    if(trCnt >5){
-      $('#insertScore > tbody:last > tr:last').remove()
-      $('#insertScore > tbody:last > tr:last').remove()
-    }
-    })
-  
-  
-    $('#search').keypress(function(event){
+    <script>
+      $('#search').keypress(function(event){
      if ( event.which == 13 ) {
          $('#searchbtn').click();
          return false;
      }
 });
-  </script>
+      
+      function delbtn(){
+    	  
+    	  Swal.fire({
+    	    title: '삭제하시겠습니까?',
+    	    text: "삭제한 게시물은 복구되지 않습니다",
+    	    icon: 'warning',
+    	    showCancelButton: true,
+    	    confirmButtonColor: '#6bd098',
+    	    cancelButtonColor: '#d33',
+    	    confirmButtonText: 'Yes'
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	      Swal.fire(
+    	        '삭제완료',
+    	        '성공적으로 삭제되었습니다',
+    	        'success',
+    	        false,
+    	       '#6bd098'
+    	      )
+    	    }
+    	  })
+
+    	}
+    </script>
 </body>
 
 </html>

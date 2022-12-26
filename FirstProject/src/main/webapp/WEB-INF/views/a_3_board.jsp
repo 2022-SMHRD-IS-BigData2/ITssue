@@ -54,7 +54,7 @@ Coded by www.creative-tim.com
     .boardlist:visited{color: #66615B;}
     .boardlist:hover{color: white; text-decoration: none;}
     .boardlist:active{color: white;}
-     #searchbtn{border: 0;}
+     #searchbtn{border: 0;  outline:none;}
 
   </style>
 </head>

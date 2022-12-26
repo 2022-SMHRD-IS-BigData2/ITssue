@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    게시글 조회
+    Itssue 게시글 조회
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -100,11 +100,11 @@ Coded by www.creative-tim.com
       margin-left: 65%;
       margin-top: -120px;
     }
-    #searchbtn{border: 0;}
+    #searchbtn{border: 0;  outline:none;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
     .sidebar-wrapper{overflow-x: hidden;}
 
-    #btnback{background-color: #6bd098; border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd'; border-radius: 5px; color: #66615B;}
+    .btnon{background-color: #6bd098; border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd'; border-radius: 5px; color: #66615B;}
     .btngo{background-color: #6bd098; border: 1px solid #6bd098; font-family: 'LINESeedKR-Bd'; border-radius: 5px; color: #66615B;}
     textarea{resize: none; padding: 10px;}
     #commenttable{width: 760px;}
@@ -120,6 +120,9 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
+<%
+	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -187,7 +190,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -263,7 +266,8 @@ Coded by www.creative-tim.com
                   <tr></tr>
                   <tr></tr>
                   <tr>
-                    <td colspan="2"><a href=""><button id="btnback">뒤로가기</button></a></td>
+                    <td colspan="2"><a href=""><button id="btnback" class="btnon">뒤로가기</button></a>
+                    <button class="btnon" onclick="javascript:delcom(this);">삭제하기</button>
                   </tr>
                 </table>
               </span>
@@ -307,6 +311,7 @@ Coded by www.creative-tim.com
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
       $('#search').keypress(function(event){
      if ( event.which == 13 ) {
@@ -358,7 +363,29 @@ function delcom(obj){
 
 }
 //자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
+  function delbtn(){
   
+  Swal.fire({
+    title: '삭제하시겠습니까?',
+    text: "삭제한 게시물은 복구되지 않습니다",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#6bd098',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        '삭제완료',
+        '성공적으로 삭제되었습니다',
+        'success',
+        false,
+       '#6bd098'
+      )
+    }
+  })
+
+}
 
     </script>
 </body>
