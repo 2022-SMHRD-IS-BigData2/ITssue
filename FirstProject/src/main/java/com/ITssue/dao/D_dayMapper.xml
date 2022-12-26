@@ -31,5 +31,9 @@
 		order by d_day_no
 	</select>
 	
+	<delete id="d_day_delete">
+		delete from d_day
+		where d_day_no = #{d_day_no}
+	</delete>
 
 </mapper>
