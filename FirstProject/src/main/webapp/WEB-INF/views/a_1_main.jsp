@@ -273,26 +273,43 @@ font-family: 'LINESeedKR-Bd';}
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script type="text/javascript">
-  let eventsList = [];
   <%	List<Schedule> schedule = (List<Schedule>)request.getAttribute("schedule"); %>
-  <%if(schedule != null){%>
-  	<%for(Schedule dto : schedule){%>
-  		<%if(dto.getScheduel_type().equals("t")){%>
-  		eventsList.push({
-  				id: '<%=dto.getSche_no()%>',
-  				title: '<%=dto.getSche_content()%>',
-  				start: '<%=dto.getSche_s_dt().split(" ")[0]%>',
-  			})
-  		<%}else{%>
-  		eventsList.push({
-  				id: '<%=dto.getSche_no()%>',
-  				title: '<%=dto.getSche_content()%>',
-  				start: '<%=dto.getSche_s_dt().split("\\.")[0]%>',
-  				end: '<%=dto.getSche_e_dt().split("\\.")[0]%>'
-  			})
-  		<%}%>
-  	<%}%>
-  <%}%>
+	let eventsList = [];
+	let scheNull = <%=schedule != null%>
+	
+	if(scheNull){
+		
+		<%for(Schedule sche : schedule){%>
+			var id = "<%=sche.getSche_no()%>";
+			var content = "<%=sche.getSche_content()%>";
+			var alldays = "<%=sche.getScheduel_type()%>";
+			
+			if(alldays == "t"){
+				var startDT = "<%=sche.getSche_s_dt().split(" ")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split(" ")[0]%>";
+			}else{
+				var startDT = "<%=sche.getSche_s_dt().split("\\.")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split("\\.")[0]%>";
+			}
+			
+			
+			if(alldays == "t"){
+				eventsList.push({
+					id: id,
+					title: content,
+					start: startDT
+				})
+			}else{
+				eventsList.push({
+					id: id,
+					title: content,
+					start: startDT,
+					end: endDT
+				})
+			}
+			
+		<%}%>
+	}
   
   	$('#timeSave').on('click',function(){
   		console.log($('#MyClockDisplay').html());
@@ -300,7 +317,7 @@ font-family: 'LINESeedKR-Bd';}
   		$.ajax({
   			url:'studyTimePlus.do',
   			data:{
-  				id:<%=info.getId()%>,
+  				id: "<%=info.getId()%>",
   				time: $('#MyClockDisplay').html()
   			},
   			type:"post",
@@ -324,7 +341,6 @@ font-family: 'LINESeedKR-Bd';}
   			},
   			type:'post',
   			success:function(res){
-  				
   			},
   			error:function(e){
   				alert(e)
@@ -505,7 +521,7 @@ font-family: 'LINESeedKR-Bd';}
 			     
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
-			events: eventsList,
+			events:eventsList,
 			droppable: true,
 			eventDrop: function(info){
 			    	  
