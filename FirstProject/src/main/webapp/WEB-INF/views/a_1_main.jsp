@@ -241,7 +241,7 @@ font-family: 'LINESeedKR-Bd';}
             </div>
             
             <div id="postIt">
-              <textarea name="" id="memoIt" ><%=info.getContent() %></textarea>-
+              <textarea name="" id="memoIt" ><%=info.getContent() %></textarea>
            
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
@@ -279,13 +279,13 @@ font-family: 'LINESeedKR-Bd';}
   	<%for(Schedule dto : schedule){%>
   		<%if(dto.getScheduel_type().equals("t")){%>
   		eventsList.push({
-  				groupid: '<%=dto.getSche_no()%>',
+  				id: '<%=dto.getSche_no()%>',
   				title: '<%=dto.getSche_content()%>',
   				start: '<%=dto.getSche_s_dt().split(" ")[0]%>',
   			})
   		<%}else{%>
   		eventsList.push({
-  				groupid: '<%=dto.getSche_no()%>',
+  				id: '<%=dto.getSche_no()%>',
   				title: '<%=dto.getSche_content()%>',
   				start: '<%=dto.getSche_s_dt().split("\\.")[0]%>',
   				end: '<%=dto.getSche_e_dt().split("\\.")[0]%>'
@@ -505,7 +505,72 @@ font-family: 'LINESeedKR-Bd';}
 			     
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
-			events: eventsList
+			events: eventsList,
+			droppable: true,
+			eventDrop: function(info){
+			    	  
+				    	  
+				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
+				}
+					
+			}
 			
 		});
 		

@@ -27,10 +27,10 @@ public class GoScheCon implements Controller {
 		HttpSession session = request.getSession();
 		Members info = (Members)session.getAttribute("info");
 		
+		//==========================================================================
 		D_dayMapper dao = new D_dayMapper();
 		List<D_day> list = dao.d_dayList(info.getId());
 		
-		//==========================================================================
 		LocalDate now = LocalDate.now();
 		
 		int nowYear = now.getYear();

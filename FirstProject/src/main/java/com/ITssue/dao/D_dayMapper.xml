@@ -18,7 +18,7 @@
 		(
 			d_day_no_seq.nextval,
 			#{d_day_content},
-			#{d_day_dt},
+			to_date('${d_day_dt}', 'yyyy-mm-dd'),
 			#{id}
 		)
 	</insert>
@@ -28,7 +28,8 @@
 		from d_day
 		where id=#{id}
 		and to_date(d_day_dt) <![CDATA[>=]]> (sysdate -1)
-		order by d_day_dt
+		order by d_day_no
 	</select>
+	
 
 </mapper>
