@@ -82,6 +82,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/d_dayDelete.do", new D_dayDeleteCon());
 		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
 		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
+		
 		 
 		
 		 

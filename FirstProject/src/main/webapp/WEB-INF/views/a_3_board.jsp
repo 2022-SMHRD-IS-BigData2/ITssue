@@ -205,7 +205,9 @@ Coded by www.creative-tim.com
   <script>
   $('.boardlist').click(function(){
     var src = $(this).data('src');
-    $('#mainIframe').attr('src',src);
+    console.log(src)
+   
+   
   })
   
   $('#search').keypress(function(event){

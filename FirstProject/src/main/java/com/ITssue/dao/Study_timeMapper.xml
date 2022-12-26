@@ -16,5 +16,15 @@
 	</insert>
 	
 	
+	<select id="get"
+	resultType="com.ITssue.entity.Study_time"
+	parameterType="com.ITssue.entity.Study_time">
+	
+	select amounts from study_time
+	where id = #{id}	
+	
+	</select>
+	
+	
 
 </mapper>
