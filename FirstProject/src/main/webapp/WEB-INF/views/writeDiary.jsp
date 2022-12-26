@@ -229,8 +229,8 @@ label {
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">회원정보 수정</a>
-                  <a class="dropdown-item" href="#">로그아웃</a>
+                  <a class="dropdown-item" href="goUpdate.do">회원정보 수정</a>
+                  <a class="dropdown-item" href="logout.do">로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -245,7 +245,7 @@ label {
               <textarea name="title" id="write_title" cols="150" rows="2" placeholder="제목을 입력해주세요"></textarea>
             </form>
           </div>
-          <div>
+          <div style="margin: 0 auto;">
            <input class="upload-name" value="파일선택" disabled="disabled">
   <label for="ex_filename" >업로드</label> 
   <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);"><br>

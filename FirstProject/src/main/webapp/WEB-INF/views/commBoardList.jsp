@@ -61,8 +61,8 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
-	List<Board> list = (List<Board>)request.getAttribute("boardList");
-	List<Board> rank = (List<Board>)request.getAttribute("boardRank");
+	List<Board> list = (List<Board>)session.getAttribute("boardList");
+	List<Board> rank = (List<Board>)session.getAttribute("boardRank");
 	int rankNum = 1;
 %>
   <div class="wrapper ">
