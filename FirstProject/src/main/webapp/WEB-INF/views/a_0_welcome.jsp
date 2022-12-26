@@ -31,7 +31,7 @@
         .mate{margin-top: 200px;}
         .btn{margin: 20px auto 0 30px; border: 3px solid white; font-size: 0.875rem; letter-spacing: 2px; padding: 10px 34px; color: white; text-decoration: none; font-weight: bold;}
         img{object-fit: scale-down;}
-        .kakao{margin: 20px auto 0 30px; border: 3px solid #fed330; background-color:#fed330; font-size: 0.875rem; padding: 10px 34px; color: black; text-decoration : none; font-weight:bold; font-family: 'LINESeedKR-Bd';}
+        #naver_id_login{font-family: 'LINESeedKR-Bd'; margin-left: 30px; opacity: 0; }
 
         
     </style>
@@ -57,26 +57,27 @@
                 <a href="goLogin.do" class="comment btn">LOGIN</a><br>
                 <br>
                 <br>
+            	<a id="naver_id_login" style="margin-left: 30px; margin-top: 0px"></a>
                
-      			<a href="javascript:void(0)" onclick="kakaoLogin();" class="kakao comment btn">
-          	     카카오 로그인
-      		    </a>
-      		    <ul>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃(테스트)</span>
-      </a>
-	</li>
-</ul>
+      			
 						
-                </div>
             </div>
         </div>
     </div>
+    </div>
 </div>
 <div id="footer"></div>
-    </div>
-
+ <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript">
+  	var naver_id_login = new naver_id_login("WbaAQBDo9LlefnPLWxvr", "http://localhost:8084/FirstProject/");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 4,40);
+  	naver_id_login.setDomain("http://localhost:8084");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  </script>
     <script>
         $( document ).ready( function() {
             var time = 1000;
@@ -91,7 +92,12 @@
                 }, time, function(){
                     $( 'a.btn' ).animate({
                         opacity: '1'
-                }, time);
+                }, time, function(){
+                	$('a#naver_id_login').animate({
+                		opacity: '1'
+                	},time);
+                }
+                );
             });
         });
     });
@@ -101,45 +107,7 @@
 
     </script>
     
-    <!-- 카카오 스크립트 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-Kakao.init('cdcd53cff82aeec615bc251258c0690d'); //발급받은 키 중 javascript키를 사용해준다.
-console.log(Kakao.isInitialized()); // sdk초기화여부판단
-//카카오로그인
-function kakaoLogin() {
-    Kakao.Auth.login({
-      success: function (response) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (response) {
-        	  console.log(response)
-          },
-          fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
-  }
-//카카오로그아웃  
-function kakaoLogout() {
-    if (Kakao.Auth.getAccessToken()) {
-      Kakao.API.request({
-        url: '/v1/user/unlink',
-        success: function (response) {
-        	console.log(response)
-        },
-        fail: function (error) {
-          console.log(error)
-        },
-      })
-      Kakao.Auth.setAccessToken(undefined)
-    }
-  }  
-</script>
+
+
 </body>
 </html>

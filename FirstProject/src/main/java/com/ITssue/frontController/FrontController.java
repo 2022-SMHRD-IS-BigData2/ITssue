@@ -34,6 +34,7 @@ import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
 import com.ITssue.controller.MemberDeleteCon;
 import com.ITssue.controller.MemberUpdateCon;
+import com.ITssue.controller.NaverLoginCon;
 import com.ITssue.controller.ScheduleDeleteCon;
 import com.ITssue.controller.ScheduleJoinCon;
 import com.ITssue.controller.ScheduleUdateCon;
@@ -87,6 +88,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/d_dayDelete.do", new D_dayDeleteCon());
 		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
 		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
+		 handlerMapping.put("/naverLogin.do", new NaverLoginCon());
 		 
 		 
 		

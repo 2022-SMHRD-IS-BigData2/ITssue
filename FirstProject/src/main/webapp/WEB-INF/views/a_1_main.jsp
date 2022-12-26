@@ -216,7 +216,7 @@ font-family: 'LINESeedKR-Bd';}
                 </div>
                 <div id="dday">
                   <div class="ddaybox">
-                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">
+                  <h2 class="ddayline title"><a href="goSche.do" style="text-decoration: none; color :#66615B">
                   <%if(d_day == null){ %>
                   	D-DAY 설정하러가기
                   <%}else{ %>
