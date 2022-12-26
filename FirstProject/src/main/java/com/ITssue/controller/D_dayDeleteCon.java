@@ -1,44 +1,43 @@
 package com.ITssue.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ITssue.dao.MembersMapper;
+import com.ITssue.dao.D_dayMapper;
+import com.ITssue.entity.D_day;
 import com.ITssue.entity.Members;
 
-public class MemberDeleteCon implements Controller {
+public class D_dayDeleteCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		
 		Members info = (Members)session.getAttribute("info");
 		
 		
+		D_dayMapper dao = new D_dayMapper();
+		List<D_day> d_day_list = dao.d_dayList(info.getId());
 		
-		// delete 메서드 사용
-		MembersMapper dao = new MembersMapper();
-		int cnt = dao.delete(info);
+		D_day d_day = d_day_list.get(d_day_list.size()-1);
 		
-		// 성공 실패 구분
-		String nextPage = "";
-		if(cnt > 0) {
-			System.out.println("회원 삭제 성공!");
-			nextPage = "redirect:/goWelcome.do";
-		} else {
-			System.out.println("회원 삭제 실패");
-			nextPage = "redirect:/goUpdate.do";
+		int result = dao.d_dayDelete(d_day.getD_day_no());
+		
+		if(result > 0) {
+			System.out.println("삭제성공");
+			response.getWriter().print(true);
+		}else {
+			System.out.println("삭제실패");
 		}
 		
-		return nextPage;
-
-
+		
+		return null;
 	}
 
 }

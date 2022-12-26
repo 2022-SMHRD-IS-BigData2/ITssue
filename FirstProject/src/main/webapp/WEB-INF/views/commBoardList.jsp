@@ -61,8 +61,8 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
-	List<Board> list = (List<Board>)request.getAttribute("boardList");
-	List<Board> rank = (List<Board>)request.getAttribute("boardRank");
+	List<Board> list = (List<Board>)session.getAttribute("boardList");
+	List<Board> rank = (List<Board>)session.getAttribute("boardRank");
 	int rankNum = 1;
 %>
   <div class="wrapper ">
@@ -193,7 +193,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                   	<%for(Board board : rank){ %>
                   			<tr>
 		                        <td scope="col" class="td_title" width="250">&#12935<%=rankNum %> BEST<%=rankNum++ %> </td>
-		                        <td scope="col" class="td_title" width="365"><%=board.getBoard_title() %></td>
+		                        <td scope="col" class="td_title" width="365"><a href="goBoardView.do?num=<%=board.getBoard_no()%>"><%=board.getBoard_title() %></a></td>
 		                        <td scope="col" class="td_wirter" width="280"><%=board.getId() %></td>
 		                        <td scope="col" class="td_date" width="300"><%=board.getBoard_date().split(" ")[0] %></td>
 		                        <td scope="col" class="td_reco" width="90"><%=board.getLikes() %></td>
@@ -203,7 +203,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                   	<%for(Board board : list){ %>
                     		<tr>
 		                        <td scope="col" class="td_title" width="250"><%=board.getBoard_no() %> </td>
-		                        <td scope="col" class="td_title" width="365"><%=board.getBoard_title() %></td>
+		                        <td scope="col" class="td_title" width="365"><a href="goBoardView.do?num=<%=board.getBoard_no()%>"> <%=board.getBoard_title() %></a></td>
 		                        <td scope="col" class="td_wirter" width="280"><%=board.getId() %></td>
 		                        <td scope="col" class="td_date" width="300"><%=board.getBoard_date().split(" ")[0] %></td>
 		                        <td scope="col" class="td_reco" width="90"><%=board.getLikes() %></td>

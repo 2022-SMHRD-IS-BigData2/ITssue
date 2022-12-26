@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Board"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -122,6 +124,7 @@ Coded by www.creative-tim.com
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
+	Board board = (Board)session.getAttribute("boardinfo");
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -228,28 +231,29 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div id="top_btn">
               <span id="span_list">
-                <form action="">
-                  <button id="goList" class="btngo" type="button" style="background-color: #6bd098;">목록</button>
-                </form>
+                
               </span>
               
               <span id="span_reco">
                   <button id="recommend"  class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
               </span>
+              <span>
+              추천수 : 
+              </span>
               <span style="margin: 10px;">
-                추천수 : 0
+                0
               </span>
             </div>
             <div id="content">
               <span id="span_content">
-                <table id="list" border="1" bordercolor="#6bd098" word-break="break-all" height="auto">
+                <table id="list" border="1" bordercolor="#6bd098" word-break="break-all" height="auto" width="795px">
                   <tr>
                     <td>제목</td>
-                    <td>가져온 제목</td>
+                    <td><%=board.getBoard_title() %></td>
                   </tr>
                   <tr>
                     <td>작성자</td>
-                    <td>가져온 작성자</td>
+                    <td><%=board.getId()%></td>
                   </tr>
                   <tr>
                     <td colspan="2">내용</td>
@@ -259,21 +263,24 @@ Coded by www.creative-tim.com
                       <div style="text-align: center;">
                     <img id="userimg" alt="이미지 없음" src="">
                   </div>
-                     가져온 내용 블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ
+                     <%=board.getBoard_content()%>
                     </td>
                   </tr>
                   <tr></tr>
                   <tr></tr>
                   <tr></tr>
                   <tr>
-                    <td colspan="2"><a href=""><button id="btnback" class="btnon">뒤로가기</button></a>
-                    <button class="btnon" onclick="javascript:delcom(this);">삭제하기</button>
+                    <td colspan="2"><a href="goCommList.do"><button id="btnback" class="btnon">뒤로가기</button></a>
+                    
+                    
+                    <button class="btnon" id="boarddel" type="submit">삭제하기</button>
+                    
                   </tr>
                 </table>
               </span>
             </div>
             <div id="commentbox">
-              <table align="center" border="2" bordercolor="#66615B" id="commenttable">
+              <table align="center" border="2" bordercolor="#66615B" id="commenttable" style="margin-top:20px;">
                 <tr class="repletrue">
                   <td class="replewriter">작성자</td>
                   <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
@@ -312,6 +319,7 @@ Coded by www.creative-tim.com
     <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
       $('#search').keypress(function(event){
      if ( event.which == 13 ) {
@@ -362,6 +370,8 @@ function delcom(obj){
      tr.parentNode.removeChild(tr);
 
 }
+
+
 //자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
   function delbtn(){
   
@@ -386,6 +396,34 @@ function delcom(obj){
   })
 
 }
+
+$('#boarddel').on('click',function(){
+	var board_id = <%=board.getId()%>
+	var member_id = <%=info.getId()%>
+	
+	if(board_id == member_id){
+		$.ajax({
+			url: 'commDeleteOk.do',
+			data: {
+				board_no: '<%=board.getBoard_no()%>'
+			},
+			type: 'get',
+			success : function(res){
+				if(res){
+					console.log('삭제성공');
+					location.href = 'goCommList.do';
+				}else{
+					console.log('삭제실패')
+				}
+			},
+			error : function(e){
+		
+			}
+		})
+	}else{
+		alert("본인 게시물만 삭제 가능합니다.");
+	}
+})
 
     </script>
 </body>

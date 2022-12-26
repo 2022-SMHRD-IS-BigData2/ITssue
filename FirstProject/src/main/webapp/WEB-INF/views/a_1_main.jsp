@@ -216,7 +216,7 @@ font-family: 'LINESeedKR-Bd';}
                 </div>
                 <div id="dday">
                   <div class="ddaybox">
-                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">
+                  <h2 class="ddayline title"><a href="goSche.do" style="text-decoration: none; color :#66615B">
                   <%if(d_day == null){ %>
                   	D-DAY 설정하러가기
                   <%}else{ %>
@@ -225,7 +225,13 @@ font-family: 'LINESeedKR-Bd';}
                   </a></h2>
                 </div>
                 <div class="ddaybox">
-                  <h1 class="ddayline date"><%=time %></h1>
+                  <h1 class="ddayline date">
+                  <%if(d_day == null){ %>
+                  D-DAY
+                  <%}else{ %>
+                  <%=time %>
+                   <%} %>
+                  </h1>
                 </div>
                 </div>
               </div>
@@ -564,7 +570,74 @@ font-family: 'LINESeedKR-Bd';}
 								
 				}
 					
+			},
+			eventResizableFromStart: true,
+			eventResizeStop: function(info){
+				
+				console.log(info);    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
+				}
+				
+				
+				
 			}
+		
 			
 		});
 		
