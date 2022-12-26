@@ -120,9 +120,6 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
-<%
-	Members info = (Members)session.getAttribute("info");
-%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -190,7 +187,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
+            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -210,7 +207,7 @@ Coded by www.creative-tim.com
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-gear"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
+                    <span class="d-lg-none d-md-block">Settings</span>
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -256,7 +253,9 @@ Coded by www.creative-tim.com
                   </tr>
                   <tr>
                     <td colspan="2" rowspan="4">
-                    <img id="userimg" alt="이미지 없음" src="./assets/img/Itssuelogo.png">
+                      <div style="text-align: center;">
+                    <img id="userimg" alt="이미지 없음" src="">
+                  </div>
                      가져온 내용 블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라ㅍ
                     </td>
                   </tr>
@@ -358,7 +357,7 @@ function delcom(obj){
      tr.parentNode.removeChild(tr);
 
 }
-//자기 댓글일때만 삭제 가능하게 기능 추가하기!!!!
+//자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
   
 
     </script>
