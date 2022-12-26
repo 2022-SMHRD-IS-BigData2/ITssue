@@ -47,7 +47,16 @@ public class D_dayMapper {
 		
 	}
 	
-	
+	public int d_dayDelete(int d_day_no) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("d_day_delete", d_day_no);
+		
+		session.close();
+		
+		return cnt;
+	}
 	
 	
 }
