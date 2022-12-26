@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ITssue.dao.Study_timeMapper;
+import com.ITssue.entity.Members;
 import com.ITssue.entity.Study_time;
 
 public class StudyTimeGetCon implements Controller {
@@ -17,26 +18,22 @@ public class StudyTimeGetCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		String amounts = request.getParameter("amounts");
-		System.out.println(amounts);
 		
-		Study_time dto = new Study_time();
-		dto.setAmounts(amounts);
+		HttpSession session = request.getSession();
+		Members info = (Members)session.getAttribute("info");
 		
 		Study_timeMapper dao = new Study_timeMapper();
-		List<Study_time> result = dao.timeGet(dto);
+		List<Study_time> result = dao.timeGet(info.getId());
 		
 		if(result == null) {
 			System.out.println("조회 실패!!");
 		}else {
 			System.out.println("조회 성공...");
-		}	// 세션에 사용자 정보 저장
-			HttpSession session = request.getSession();
 			session.setAttribute("get", result);
+		}	// 세션에 사용자 정보 저장
 		
-						
-		return "META-INF/myboardtime.jsp";
+
+		return "myboardtime.jsp";
 	}
 
 }

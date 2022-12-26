@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ITssue.entity.Study_time"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,17 +37,12 @@
 </head>
 
 <body>
-<%
-String text = (String) session.getAttribute("get");
-ArrayList<String> list = (ArrayList<String>) session.getAttribute("list");
 
-
-%>
 <div id="wrap">
     <div id="topmain">
         <div class="time">
             <h2>전일대비 공부량</h2>
-            <span><%=list.get(0) %> +500min </span>
+            <span>500h</span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
