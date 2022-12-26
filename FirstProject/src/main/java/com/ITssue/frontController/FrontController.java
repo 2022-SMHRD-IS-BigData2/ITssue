@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.ITssue.controller.BoardListCon;
 import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
+import com.ITssue.controller.D_dayDeleteCon;
+import com.ITssue.controller.D_dayInsertCon;
 import com.ITssue.controller.GoBoardCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
@@ -73,6 +75,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/scheduleJoin.do", new ScheduleJoinCon());
 		 handlerMapping.put("/scheduleDelete.do", new ScheduleDeleteCon());
 		 handlerMapping.put("/scheduleupdate.do", new ScheduleUdateCon());
+		 handlerMapping.put("/d_dayInsert.do", new D_dayInsertCon());
+		 handlerMapping.put("/d_dayDelete.do", new D_dayDeleteCon());
 		 
 		 
 		

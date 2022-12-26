@@ -294,14 +294,6 @@ Coded by www.creative-tim.com
 		
 	}
 		
-	console.log(eventsList)
-	
-		
-		
-		
-	
-	
-	
 	
 	
 	
@@ -328,30 +320,47 @@ function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
   console.log(addValue); // D-day의 이름부분
   console.log(addValue2); // 필요한 날짜 데이터
   
-  // 2. 추가할 li element 생성
-  // 2-1. 추가할 li element 생성
-  const list = document.createElement("div");
-  const list2 = document.createElement("div");
+  $.ajax({
+	
+	  url:'d_dayInsert.do',
+	  data:{
+		content: addValue,
+		dt: addValue2
+	  },
+	  type:"post",
+	  dataType: "json",
+	  success:function(res){
+		  // 2. 추가할 li element 생성
+		  // 2-1. 추가할 li element 생성
+		  const list = document.createElement("div");
+		  const list2 = document.createElement("div");
 
-  
-  // 2-2. li에 id 속성 추가 
-  list.setAttribute('id','ddayname');
-  list2.setAttribute('id','ddaydate');
- 
-  
-  // 2-3. li에 text node 추가 
-  const textNode = document.createTextNode(addValue);
-  list.appendChild(textNode);
-  const textNode2 = document.createTextNode(addValue2);
-  list2.appendChild(textNode2);
+		  
+		  // 2-2. li에 id 속성 추가 
+		  list.setAttribute('id','ddayname');
+		  list2.setAttribute('id','ddaydate');
+		 
+		  
+		  // 2-3. li에 text node 추가 
+		  const textNode = document.createTextNode(res.d_day_content);
+		  list.appendChild(textNode);
+		  const textNode2 = document.createTextNode(res.d_day_dt);
+		  list2.appendChild(textNode2);
 
-  console.log(newDiv);
-  // 3. 생성된 li를 ul에 추가
-  
-newDiv.appendChild(list);
-newDiv.appendChild(list2);
+		  console.log("newDiv")
+		  console.log(newDiv);
+		  // 3. 생성된 li를 ul에 추가
+		  
+		newDiv.appendChild(list);
+		newDiv.appendChild(list2);
+		
+		$('#ddaycontent').val('');
 
-$('#ddaycontent').val('');
+	  },
+	  error:function(e){
+		  
+	  }
+  })
 
 
 
@@ -362,19 +371,28 @@ function removeItem()  { // 삭제되었을때의 로직이 실행되는 부분
   
 	 console.log('삭제된당')
 	
-  // 1. <ul> element 선택
-  const ul = document
-    .getElementById('ddaycontain');
-  
-  // 2. <li> 목록 선택
-  const items = ul.getElementsByClassName('ddaytrue');
-  
-  // 3. <li> 목록 중 첫번째 item 삭제
-  if(items.length > 0)  {
+	$.ajax({
+	
+		url:'d_dayDelete.do',
+		success:function(res){
+			  // 1. <ul> element 선택
+			  const ul = document
+			    .getElementById('ddaycontain');
+			  
+			  // 2. <li> 목록 선택
+			  const items = ul.getElementsByClassName('ddaytrue');
+			  
+			  // 3. <li> 목록 중 첫번째 item 삭제
+			  if(items.length > 0)  {
 
-	console.log(items[items.length-1].innerText.split('\n'));
-    items[items.length-1].remove();
-  }
+				console.log(items[items.length-1].innerText.split('\n'));
+			    items[items.length-1].remove();
+			  }
+		},
+		error:function(e){
+			
+		}
+	})
   
  
   
@@ -584,7 +602,7 @@ $('#search').keypress(function(event){
 								
 				}
 					
-			},
+			}
 		
 		});
 			calendar.render();
