@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -123,6 +124,9 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
+<%
+	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -190,7 +194,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">검색한 아이디의 닉네임</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -226,7 +230,7 @@ Coded by www.creative-tim.com
       <div class="content">
         <div>
           <div id="title">
-            <span>🚩 [닉네임] 님과 [닉네임] 님의 비교 결과입니다</span>
+            <span>🚩 [<%=info.getNick()%>] 님과 [닉네임] 님의 비교 결과입니다</span>
           </div>
           <hr>
           <div id="week_graph">

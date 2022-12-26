@@ -54,5 +54,15 @@ public class BoardMapper {
 		 return board;
 	 }
 	
+	public int deleteBoard(int board_no) {
+       SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("deleteBoard",board_no);
+		
+		session.close();
+		
+		return cnt;
+	}
+	
 	
 }
