@@ -30,7 +30,10 @@ public class D_dayDeleteCon implements Controller {
 		int result = dao.d_dayDelete(d_day.getD_day_no());
 		
 		if(result > 0) {
-			
+			System.out.println("삭제성공");
+			response.getWriter().print(true);
+		}else {
+			System.out.println("삭제실패");
 		}
 		
 		

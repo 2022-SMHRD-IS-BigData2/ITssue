@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ITssue.controller.BoardListCon;
+import com.ITssue.controller.CommDeleteOkCon;
 import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.D_dayDeleteCon;
@@ -82,6 +83,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/d_dayInsert.do", new D_dayInsertCon());
 		 handlerMapping.put("/d_dayDelete.do", new D_dayDeleteCon());
 		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
+		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
+		 
 		 
 		
 		 
