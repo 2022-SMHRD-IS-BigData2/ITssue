@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ITssue.dao.MembersMapper;
 import com.ITssue.entity.Members;
 
-public class DeleteCon implements Controller {
+public class MemberDeleteCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +38,7 @@ public class DeleteCon implements Controller {
 			nextPage = "redirect:/goWelcome.do";
 		} else {
 			System.out.println("회원 삭제 실패");
-			nextPage = "redirect:/goLogin.do";
+			nextPage = "redirect:/goUpdate.do";
 		}
 		
 		return nextPage;

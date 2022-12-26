@@ -86,7 +86,7 @@
                 </form>
             </div>
             <div id="btn-container">
-            <button id="btn-out">회원 탈퇴</button>
+            <button id="btn-out" onclick="location.href='memberDelete.do'">회원 탈퇴</button>
         </div>
         </div>
     </div>
@@ -177,7 +177,6 @@ $('#submit').on('click',function(){
 		
 	}
 })
-
 
 </script>
 </body>

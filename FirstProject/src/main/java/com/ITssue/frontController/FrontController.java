@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ITssue.controller.BoardListCon;
+import com.ITssue.controller.CommDeleteOkCon;
 import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.GoBoardCon;
@@ -27,6 +28,7 @@ import com.ITssue.controller.GoWelcomeCon;
 import com.ITssue.controller.JoinCon;
 import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
+import com.ITssue.controller.MemberDeleteCon;
 import com.ITssue.controller.ScheduleDeleteCon;
 import com.ITssue.controller.ScheduleJoinCon;
 import com.ITssue.controller.StudyTimePlusCon;
@@ -58,6 +60,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goWelcome.do", new GoWelcomeCon() );
 		 handlerMapping.put("/goCommList.do", new GoCommListCon() );
 		 handlerMapping.put("/goCommWrite.do", new GoCommWriteCon() );
+		 
 		
 		//========================
 		// redirect
@@ -73,6 +76,10 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/scheduleJoin.do", new ScheduleJoinCon());
 		 handlerMapping.put("/scheduleDelete.do", new ScheduleDeleteCon());
 		 handlerMapping.put("/scheduleupdate.do", new ScheduleUdateCon());
+		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
+		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
+		 
+		
 		 
 		 
 		
