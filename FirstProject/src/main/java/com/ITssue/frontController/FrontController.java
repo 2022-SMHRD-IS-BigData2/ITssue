@@ -18,6 +18,7 @@ import com.ITssue.controller.Controller;
 import com.ITssue.controller.D_dayDeleteCon;
 import com.ITssue.controller.D_dayInsertCon;
 import com.ITssue.controller.GoBoardCon;
+import com.ITssue.controller.GoBoardViewCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
 import com.ITssue.controller.GoCommWriteCon;
