@@ -32,7 +32,7 @@ body{background-color: #f4f3ef;
     input[type=button]{background-color: #6bd098; font-weight: bold; border: 1px solid #6bd098;}
     input[type=button]:hover{background-color: #00b894; font-weight: bold;}
     label{ width: 100%; text-align: start; display: inline-block; padding: 0 5px; margin-top: 10px;}
-    
+    .fa-solid{position: absolute; top: -10px; bottom: 0; right: 10px; margin: auto 2px; height: 0px; font-size: 15px; cursor: pointer;}
     .eyecontain{position: relative;}
 
 
@@ -53,6 +53,9 @@ body{background-color: #f4f3ef;
                     <input required type="password" placeholder="비밀번호를 입력해주세요." id="pw" name="pw">
                     <div class="eyes">
                     
+                    <i class="fa-solid fa-eye" id="eye"
+                    ></i>
+                
                 </div>
                     </div>
 
@@ -61,6 +64,9 @@ body{background-color: #f4f3ef;
                     <input type="password" placeholder="비밀번호 확인" id="pw2" name="pw2">
                     <div class="eyes">
                     
+                    <i class="fa-solid fa-eye" id="eye2"
+                    ></i>
+               
                 </div>
                 </div>
 
@@ -124,6 +130,26 @@ body{background-color: #f4f3ef;
     				})
     		}
     	})
+    	
+    	const passwordInput = document.querySelector('#pw')
+        const eye = document.querySelector('#eye')
+
+        eye.addEventListener('click', function(){
+            this.classList.toggle('fa-eye')
+            this.classList.toggle('fa-eye-slash')
+            const type = passwordInput.getAttribute("type") === "password" ? " text" : "password"
+            passwordInput.setAttribute("type", type)
+        })
+
+        const passwordInput2 = document.querySelector('#pw2')
+        const eye2 = document.querySelector('#eye2')
+
+        eye2.addEventListener('click', function(){
+            this.classList.toggle('fa-eye')
+            this.classList.toggle('fa-eye-slash')
+            const type = passwordInput2.getAttribute("type") === "password" ? " text" : "password"
+            passwordInput2.setAttribute("type", type)
+        })
  		
 	    	
         

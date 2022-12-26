@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Board"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -122,6 +124,7 @@ Coded by www.creative-tim.com
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
+	List<Board> list = (List<Board>)request.getAttribute("boardList");
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">

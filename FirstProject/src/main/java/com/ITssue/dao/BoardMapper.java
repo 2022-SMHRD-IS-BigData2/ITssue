@@ -47,5 +47,12 @@ public class BoardMapper {
 		return result;
 	}
 	
+	public Board boardView(int num) {
+		 SqlSession session = sqlSessionFactory.openSession(true);
+		 Board board = session.selectOne("boardView", num);
+		 session.close();
+		 return board;
+	 }
+	
 	
 }
