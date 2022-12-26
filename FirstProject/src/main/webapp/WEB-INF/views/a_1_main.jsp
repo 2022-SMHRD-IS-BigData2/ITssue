@@ -225,7 +225,13 @@ font-family: 'LINESeedKR-Bd';}
                   </a></h2>
                 </div>
                 <div class="ddaybox">
-                  <h1 class="ddayline date"><%=time %></h1>
+                  <h1 class="ddayline date">
+                  <%if(d_day == null){ %>
+                  D-DAY
+                  <%}else{ %>
+                  <%=time %>
+                   <%} %>
+                  </h1>
                 </div>
                 </div>
               </div>

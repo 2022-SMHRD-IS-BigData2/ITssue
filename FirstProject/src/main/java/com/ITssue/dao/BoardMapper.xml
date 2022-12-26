@@ -31,6 +31,10 @@
 		where rownum between 1 and 3
 	</select>
 
+<delete id="deleteBoard">
+delete from board
+where board_no = #{board_no}
+</delete>
 
 
 </mapper>
