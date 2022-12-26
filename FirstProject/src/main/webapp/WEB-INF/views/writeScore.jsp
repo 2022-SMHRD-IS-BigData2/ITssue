@@ -24,7 +24,7 @@ Coded by www.creative-tim.com
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Itssue
+    Itssue 성적입력관리
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -127,7 +127,7 @@ Coded by www.creative-tim.com
       width: 500px;
       height: 30px;
     }
-    #searchbtn{border: 0;}
+    #searchbtn{border: 0;  outline:none;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
     .mybtn{border: 1px solid #6bd098; border-radius: 5px; background-color: #6bd098; width: 120px; height: 40px; font-family: 'LINESeedKR-Bd'; letter-spacing: 1px;}
     .mybtn:focus{outline: none; border: 0;}

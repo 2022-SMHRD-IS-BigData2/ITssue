@@ -63,7 +63,7 @@ Coded by www.creative-tim.com
     .ddaytrue{width: 120px; height: 120px; background-color: #6bd098; border-radius: 10px; margin: 10px 10px 10px 30px; float: left;}
     #ddayname{height: 50%; width: 100%; text-align: center; padding: 10px;}
     #ddaydate{ height: 50%; width: 100%; text-align: center; padding: 10px;}
-   #searchbtn{border: 0;}
+   #searchbtn{border: 0;  outline:none;}
    #calendar{max-width: 1570px; max-height: 580px; margin: 0 auto;}
 .fc-day-today {
     background: #ecf0f1 !important;

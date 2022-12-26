@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    게시글 조회
+    Itssue 게시글 조회
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -100,7 +100,7 @@ Coded by www.creative-tim.com
       margin-left: 65%;
       margin-top: -120px;
     }
-    #searchbtn{border: 0;}
+    #searchbtn{border: 0;  outline:none;}
     input::placeholder{font-family: 'LINESeedKR-Bd';}
     .sidebar-wrapper{overflow-x: hidden;}
 
@@ -120,6 +120,9 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
+<%
+	Members info = (Members)session.getAttribute("info");
+%>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
       <div class="logo">
@@ -187,7 +190,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">사용자 닉네임 표시</a>
+            <a class="navbar-brand" href="javascript:;"><%=info.getNick() %>님</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

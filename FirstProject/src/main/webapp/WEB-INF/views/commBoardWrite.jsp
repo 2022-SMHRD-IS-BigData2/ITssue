@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Paper Dashboard 2 by Creative Tim
+    Itssue 게시글 작성 페이지
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -59,9 +59,16 @@ Coded by www.creative-tim.com
       top: 20px;
 
     }
+    
+    html, body{
+	width: 100%; height: 100%;
+}
 
     body {
       font-family: 'LINESeedKR-Bd';
+      margin: 0 auto;
+      height : 100vh;
+      width : 100%;
     }
 
     textarea {
@@ -123,7 +130,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   -moz-appearance: none;
   appearance: none;
 }
- #searchbtn{border: 0;}
+ #searchbtn{border: 0;  outline:none;}
   </style>
 </head>
 
@@ -186,7 +193,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
       </div>
       </div>
     </div>
-    <div class="main-panel" style="height: 100vh;">
+    <div class="main-panel" >
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
@@ -240,7 +247,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
       </div>
 
 
-      <body>
+      
         <table border="4" style="margin-right: auto; margin-left: auto;">
           <div style="width:1000px;" align="center"></div>
           <thead>
@@ -259,7 +266,10 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                 <td scope="col" id="filebox" class="td_title" width="500" style="text-align: center;" colspan="4">
                 <input class="upload-name" value="파일선택" disabled="disabled">
   <label for="ex_filename">업로드</label> 
-  <input type="file" id="ex_filename" class="upload-hidden"> </td>
+  <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);"><br>
+   <img id="preview" style="display:block; margin:auto;">
+  
+  </td>
               </tr>
             </thead>
           </div>
@@ -295,20 +305,9 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
         </div>
       </form>
     </div>
-  </body>
 
-    <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
-      <div class="container-fluid">
-        <div class="row">
-          <nav class="footer-nav">
 
-          </nav>
-          <div class="credits ml-auto">
-
-          </div>
-        </div>
-      </div>
-    </footer>
+    
   </div>
   </div>
   <!--   Core JS Files   -->
@@ -415,28 +414,17 @@ $('#addValue').keypress(function(event){
 	  		
   })
   
-  $(document).ready(function(){
-  var fileTarget = $('#filebox .upload-hidden');
-
-  fileTarget.on('change', function(){  // 값이 변경되면
-    if(window.FileReader){  // modern browser
-      var filename = $(this)[0].files[0].name;
-    } 
-    else {  // old IE
-      var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-    }
-    
-    // 추출한 파일명 삽입
-    $(this).siblings('.upload-name').val(filename);
-  });
-}); 
-  
-  $('#search').keypress(function(event){
-	     if ( event.which == 13 ) {
-	         $('#searchbtn').click();
-	         return false;
-	     }
-	});
+  function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('preview').src = "";
+  }
+}
   </script>
 </body>
 

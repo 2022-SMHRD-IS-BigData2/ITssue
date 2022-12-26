@@ -26,7 +26,7 @@ Coded by www.creative-tim.com
  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Paper Dashboard 2 by Creative Tim
+    Itssue 커뮤니티 보드
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -54,7 +54,7 @@ Coded by www.creative-tim.com
   body{font-family: 'LINESeedKR-Bd';}
   .btn{background-color: #6bd098; border: 2px solid #6bd098; font-family: 'LINESeedKR-Bd';}
 input::placeholder{font-family: 'LINESeedKR-Bd';}
- #searchbtn{border: 0;}
+ #searchbtn{border: 0;  outline:none;}
   </style>
 </head>
 

@@ -43,7 +43,7 @@ text-align : left;}
             <h1>나의 일기장</h1>
         </div>
         <div id="btngo">
-            <button>일기 쓰기</button>
+            <button onclick="createDiv()">일기 쓰기</button>
         </div>
         <div id="diary">
 
@@ -69,6 +69,7 @@ const newDiv2 = document.createElement('div');
         newDiv2.appendChild(newText);
         newDiv.setAttribute('class','diaryit');
         newDiv2.setAttribute('class', 'diarymemo');
+        newDiv2.setAttribute("onclick","location.href='이동할 주소';")
         newDiv.appendChild(newDiv2);
 
 
@@ -76,6 +77,8 @@ const newDiv2 = document.createElement('div');
   // 4. <body>에 1에서 만든 <div> element 붙이기
   document.getElementById("diary").appendChild(newDiv);
 } 
+
+
     </script>
 </body>
 </html>

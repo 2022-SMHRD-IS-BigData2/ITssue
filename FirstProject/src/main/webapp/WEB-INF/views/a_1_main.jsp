@@ -79,7 +79,7 @@ font-family: 'LINESeedKR-Bd';}
   .ddaybox{width: 100%; height: 50%; position: relative;} 
 
  input::placeholder{font-family: 'LINESeedKR-Bd';}
- #searchbtn{border: 0;}
+ #searchbtn{border: 0; outline:none;}
  
  #calendar{max-width: 1070px; max-height: 470px; margin: 0 auto;}
 .fc-day-today {
