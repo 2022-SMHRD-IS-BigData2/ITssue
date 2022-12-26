@@ -24,11 +24,11 @@ public class ScheduleMapper {
 		
 	}
 	
-	public int sche_delete(Schedule dto) {
+	public int sche_delete(int sche_no) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		int cnt = session.delete("SCdelete",dto);
+		int cnt = session.delete("SCdelete",sche_no);
 		
 		session.close();
 		
@@ -45,6 +45,18 @@ public class ScheduleMapper {
 		session.close();
 		
 		return result;
+		
+	}
+	
+	public int sche_update(Schedule dto) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.update("SCupdate",dto);
+		
+		session.close();
+		
+		return cnt;
 		
 	}
 	

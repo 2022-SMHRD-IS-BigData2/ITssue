@@ -19,43 +19,16 @@ public class ScheduleDeleteCon implements Controller {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String allDay = request.getParameter("all");
-		String startStr =request.getParameter("start");
-		String endStr = request.getParameter("end");
-		String content = request.getParameter("content");
+		int sche_no = Integer.parseInt(request.getParameter("sche_no"));
 		
-		System.out.println();
-		System.out.println("allDay:"+allDay);
-		System.out.println("startStr"+startStr);
-		System.out.println("endStr"+endStr);
-		System.out.println("content"+content);
 		
-		HttpSession session = request.getSession();
-		Members info = (Members)session.getAttribute("info");
+		System.out.println("sche_no"+sche_no);
 		
-		Schedule dto = new Schedule();
-		dto.setId(info.getId());
-		dto.setSche_content(content);
-		dto.setScheduel_type(allDay.split("")[0]);
-		if(dto.getScheduel_type().equals("t")) {
-			dto.setSche_e_dt(endStr+"00:00:00");
-			dto.setSche_s_dt(startStr+"00:00:00");
-		}else {
-			dto.setSche_e_dt(endStr);
-			dto.setSche_s_dt(startStr);
-		}
-		
-		System.out.println();
-		System.out.println("sche_s_dt:"+dto.getSche_s_dt());
-		System.out.println("sche_e_dt:"+dto.getSche_e_dt());
-		System.out.println("id:"+dto.getId());
-		System.out.println("scheduel_type:"+dto.getScheduel_type());
-		System.out.println("sche_content:"+dto.getSche_content());
 		
 		
 		
 		ScheduleMapper dao = new ScheduleMapper();
-		int result = dao.sche_delete(dto);
+		int result = dao.sche_delete(sche_no);
 		
 		System.out.println(result +"개 삭제 성공");
 		if(result > 0) {

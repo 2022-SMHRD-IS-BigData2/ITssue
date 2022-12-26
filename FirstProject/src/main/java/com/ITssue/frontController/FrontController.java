@@ -31,6 +31,7 @@ import com.ITssue.controller.ScheduleDeleteCon;
 import com.ITssue.controller.ScheduleJoinCon;
 import com.ITssue.controller.StudyTimePlusCon;
 import com.ITssue.controller.MemberUpdateCon;
+import com.ITssue.controller.ScheduleUdateCon;
 import com.ITssue.controller.memoWriteCon;
 
 
@@ -71,6 +72,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/memoWrite.do", new memoWriteCon());
 		 handlerMapping.put("/scheduleJoin.do", new ScheduleJoinCon());
 		 handlerMapping.put("/scheduleDelete.do", new ScheduleDeleteCon());
+		 handlerMapping.put("/scheduleupdate.do", new ScheduleUdateCon());
 		 
 		 
 		

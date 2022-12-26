@@ -399,186 +399,196 @@ $('#search').keypress(function(event){
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'timeGridWeek,timeGridDay'
-      },
-      //initialDate: '2020-09-12',
-      initialView: 'timeGridWeek',
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-
-        (async () => {
-    const { value: getName } = await Swal.fire({
-        title: '일정을 입력하세요.',
-        input: 'text',
-        confirmButtonColor : '#6bd098'
-    })
-
-    if (getName) {
-          calendar.addEvent({
-            title: getName,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        calendar.unselect()
-		if(arg.allDay){ // allday true
-			$.ajax({
-				
-				url:"scheduleJoin.do",
-				data:{
-					all: arg.allDay,
-					start: arg.startStr,
-					end: arg.endStr,
-					content: getName
-				},
-				type:"post",
-				success:function(res){
-				},
-				error:function(e){
-				}
-				
-			})
-			
-		}else{ // allday false
-			$.ajax({
-				
-				url:"scheduleJoin.do",
-				data:{
-					all: arg.allDay,
-					start: arg.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
-					end: arg.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
-					content: getName
-				},
-				type:"post",
-				success:function(res){
-				},
-				error:function(e){
-				}
-				
-			})
-			
-		}
-})()
-
-      },
-
-      eventClick: function(arg) {
-  Swal.fire({
-   title: '일정을 삭제하시겠습니까?',
-   text: '삭제된 일정은 복구되지 않습니다.',
-   icon: 'warning',
-   
-   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-   confirmButtonColor: '#6bd098', // confrim 버튼 색깔 지정
-   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-   
-   reverseButtons: false, // 버튼 순서 거꾸로
-   
-}).then(result => {
-   // 만약 Promise리턴을 받으면,
-   
-   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-   
-	   Swal.fire({
-	        title : '일정이 삭제되었습니다.',
-	        confirmButtonColor : '#6bd098'});
-      arg.event.remove()
+		document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
 		
-		if(arg.event.allDay){
-			$.ajax({
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'timeGridWeek,timeGridDay'
+				},
+				//initialDate: '2020-09-12',
+				initialView: 'timeGridWeek',
+				navLinks: true, // can click day/week names to navigate views
+				selectable: true,
+				selectMirror: true,
+				select: function(arg) {
+					
+					(async () => {
+						const { value: getName } = await Swal.fire({
+							title: '일정을 입력하세요.',
+							input: 'text',
+							confirmButtonColor : '#6bd098'
+						})
+						
+						if (getName) {
+							calendar.addEvent({
+								title: getName,
+								start: arg.start,
+								end: arg.end,
+								allDay: arg.allDay
+							})
+						}
+						calendar.unselect()
+						if(arg.allDay){ // allday true
+							$.ajax({
+											
+								url:"scheduleJoin.do",
+								data:{
+									all: arg.allDay,
+									start: arg.startStr,
+									end: arg.endStr,
+									content: getName
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+												
+							})
+										
+						}else{ // allday false
+							$.ajax({
+												
+								url:"scheduleJoin.do",
+								data:{
+									all: arg.allDay,
+									start: arg.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
+									end: arg.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
+									content: getName
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+												
+							})
+										
+						}
+					})()
+					
+				},
 				
-				url:"scheduleDelete.do",
-				data:{
-					all: arg.event.allDay,
-					start: arg.event.startStr,
-					end: arg.event.endStr,
-					content: arg.event.title
+				eventClick: function(arg) {
+					Swal.fire({
+						title: '일정을 삭제하시겠습니까?',
+						text: '삭제된 일정은 복구되지 않습니다.',
+						icon: 'warning',
+						   
+						showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+						confirmButtonColor: '#6bd098', // confrim 버튼 색깔 지정
+						cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+						confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+						cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+						   
+						reverseButtons: false, // 버튼 순서 거꾸로
+						   
+					}).then(result => {
+					// 만약 Promise리턴을 받으면,
+						   
+						if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+							   
+							Swal.fire({
+							title : '일정이 삭제되었습니다.',
+							confirmButtonColor : '#6bd098'});
+							arg.event.remove()
+
+							$.ajax({
+				
+								url:"scheduleDelete.do",
+								data:{
+									sche_no : arg.event.id
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+				
+							})
+										
+										
+										
+						}
+					})
 				},
-				type:"post",
-				success:function(res){
-				},
-				error:function(e){
+			
+			     
+			editable: true,
+			dayMaxEvents: true, // allow "more" link when too many events
+			events: eventsList,
+			droppable: true,
+			eventDrop: function(info){
+			    	  
+				    	  
+				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
 				}
-				
-			})
-			
-		}else{
-			console.log(arg.event.startStr.split("+")[0].split("T")[0]+" "+arg.event.startStr.split("+")[0].split("T")[1])
-			console.log(arg.event.endStr.split("+")[0].split("T")[0]+" "+arg.event.endStr.split("+")[0].split("T")[1])
-			$.ajax({
-			
-			url:"scheduleDelete.do",
-			data:{
-				all: arg.event.allDay,
-				start: arg.event.startStr.split('+')[0].split('T')[0]+" "+arg.event.startStr.split('+')[0].split('T')[1],
-				end: arg.event.endStr.split('+')[0].split('T')[0]+" "+arg.event.endStr.split('+')[0].split('T')[1],
-				content: arg.event.title
+					
 			},
-			type:"post",
-			success:function(res){
-			},
-			error:function(e){
-			}
-			
-		})
-		}
-   }}
-)},
-     
-      editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-      events: eventsList,
-      droppable: true,
-      eventDrop: function(info){
-		console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
 		
-		let id = info.event.id;
-		let endStr = info.event.endStr.split("+")[0].split('T');			
-		let startStr = info.event.startStr.split("+")[0].split('T');
-		
-		if(info.event.allDay){
-			
-			console.log(id);
-			console.log(startStr);
-			console.log(endStr);
-			
-			
-			
-		}else{
-			
-			console.log(id);
-			console.log(startStr);
-			console.log(endStr);
-			
-		}
-		
-		
-		
-		
-      }
-      
-      
-      
-      
-      
-      
-      
-    });
-
-    calendar.render();
-  });
+		});
+			calendar.render();
+	});
 
 </script>
   
