@@ -41,7 +41,7 @@ text-align : left;}
     </style>
 </head>
 <body>
-<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");%>
+<%List<Diary> diary = (List<Diary>)request.getAttribute("diaryList");%>
     <div id="wrap">
         <div id="head">
             <h1>나의 일기장</h1>
@@ -53,6 +53,9 @@ text-align : left;}
         </div>
         <div id="diary">
         <%if(diary == null){ %>
+        <div class='diaryit'>
+        <div class="diarymemo">일기를 작성해주세요</div>
+        </div>
         <%}else{ %>
             <% for(int i =0; i<diary.size(); i++){%>
             <div class="diaryit" onclick="location.href='goDiaryView.do?num=<%=diary.get(i).getDiary_no()%>'">
@@ -60,7 +63,7 @@ text-align : left;}
             <%=diary.get(i).getDiary_title()%><br>
             <%=diary.get(i).getDiary_content()%>
             </div>
-                </div>
+            </div>
             <%} %>
             <%} %>
         </div>

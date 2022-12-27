@@ -193,9 +193,9 @@ Coded by www.creative-tim.com
   			},
   			type: 'get',
   			success : function(res){
-  				if(res){
+  				if(res=='true'){
   					console.log('삭제성공');
-  					location.href = 'myboarddiary.jsp';
+  					location.href = 'goBoardDiary.do';
   				}else{
   					console.log('삭제실패')
   				}

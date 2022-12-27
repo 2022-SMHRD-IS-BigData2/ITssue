@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import com.ITssue.dao.BoardMapper;
 import com.ITssue.entity.Board;
 import com.ITssue.entity.Members;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class CommWriteCon implements Controller {
 
@@ -17,11 +19,31 @@ public class CommWriteCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+String savePath =request.getServletContext().getRealPath("images");
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String hashtag = request.getParameter("hashtag");
+		//최대 사이즈
+		 // byte 단위
+		int maxSize = 5*1024*1024; // 5MB
+		
+		// 인코딩 방식
+	    String encoding = "UTF-8";
+	    System.out.println(savePath);
+	    
+	    // Multipartrequest 생성
+	    MultipartRequest multi = new MultipartRequest(
+	    		request,
+	    		savePath,
+	    		maxSize,
+	    		encoding,
+	    		new DefaultFileRenamePolicy() // 중복된 파일 이름을 변경
+	    		);
+		
+		String title = multi.getParameter("title");
+		String content = multi.getParameter("content");
+		String hashtag = multi.getParameter("hashtag");
+		String file = multi.getFilesystemName("file"); 
+		content = content.replace("\r\n","<br>");
+		
 		
 		HttpSession session = request.getSession();
 		Members info = (Members)session.getAttribute("info");
@@ -32,7 +54,7 @@ public class CommWriteCon implements Controller {
 		dto.setBoard_content(content);
 		dto.setHash_tag(hashtag);
 		dto.setId(id);
-		dto.setBoard_file("");
+		dto.setBoard_file(file);
 		
 		BoardMapper dao = new BoardMapper();
 		int result = dao.boardWrite(dto);

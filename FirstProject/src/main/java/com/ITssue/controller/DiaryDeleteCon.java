@@ -20,15 +20,15 @@ public class DiaryDeleteCon implements Controller {
 		
 		int cnt = dao.deleteDiary(diary_no);
 		
-		String nextPage="";
+		
 		if(cnt > 0) {
-			nextPage="redirect:/goBoardDiary.do";
+			response.getWriter().print(true);
 		}else {
-			nextPage="redirect:/goBoardDiary.do";
+			response.getWriter().print(false);
 			
 		}
 		
-		return nextPage;
+		return null;
 	}
 	}
 
