@@ -119,7 +119,7 @@ Coded by www.creative-tim.com
         </ul>
         <form action="goMembersChart.do">
         <div class="input-group no-border">
-        <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
+        <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색" name="other">
         <div class="input-group-append">
           <div class="input-group-text">
             <button type="submit" id="searchbtn">

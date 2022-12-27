@@ -44,4 +44,10 @@
 		and pw=#{pw}
 	</delete>
 	
+	<select id="idSearch" resultType="com.ITssue.entity.Members">
+		select nick
+		from members
+		where id = #{id}
+	</select>
+	
 </mapper>

@@ -45,7 +45,7 @@ public class NaverLoginCon implements Controller {
 			int nowMonth = now.getMonthValue();
 			int nowDay = now.getDayOfMonth();
 			
-			birthyear = nowMonth+"-"+nowDay;
+			birthday = nowMonth+"-"+nowDay;
 		}
 		
 		

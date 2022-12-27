@@ -65,6 +65,19 @@ public class MembersMapper {
 		
 		return cnt;
 	}
+	
+	public Members idSearch(String id) {
+		
+SqlSession session = sqlSessionFactory.openSession(true);
+		
+		Members nick = session.selectOne("idSearch",id);
+		
+		session.close();
+		
+		return nick;
+		
+		
+	}
 
 
 }

@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Study_time"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -126,6 +128,11 @@ Coded by www.creative-tim.com
 <body class="">
 <%
 	Members info = (Members)session.getAttribute("info");
+	Members outher = (Members)request.getAttribute("outher");
+	String outherNick = "닉네임";
+	if(outher != null){
+		outherNick = outher.getNick();
+	}
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -170,7 +177,7 @@ Coded by www.creative-tim.com
         </ul>
         <form action="goMembersChart.do">
           <div class="input-group no-border">
-          <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
+          <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색" name="other">
           <div class="input-group-append">
             <div class="input-group-text">
               <button type="submit" id="searchbtn">
@@ -230,7 +237,7 @@ Coded by www.creative-tim.com
       <div class="content">
         <div>
           <div id="title">
-            <span>🚩 [<%=info.getNick()%>] 님과 [닉네임] 님의 비교 결과입니다</span>
+            <span>🚩 [<%=info.getNick()%>] 님과 [<%=outherNick %>] 님의 비교 결과입니다</span>
           </div>
           <hr>
           <div id="week_graph">
@@ -277,9 +284,59 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+  	<%
+		List<Study_time> myStudyList = (List<Study_time>)request.getAttribute("myStudy");
+		List<Study_time> outherStudyList = (List<Study_time>)request.getAttribute("outherStudy");
+	%>
+  	
+  	var myData = [];
+  	var labelsData = [];
+  	
+  	<%if(myStudyList != null){%>
+  			
+	var amountsSum = 0;
+  		<%for(Study_time study : myStudyList){%>
+  			var startData = '<%= study.getStudy_s_time()%>';
+  			var amountsData = <%= study.getAmounts() %>;
+  			amountsSum += amountsData;
+  			if(labelsData[labelsData.length - 1] != startData){
+  				labelsData.push(startData);
+  				myData.push( amountsSum );
+  				amountsSum = 0;
+  			}
+  			console.log(amountsData);
+  		<%}%>
+  	
+  	<%}%>
+  
+  	var outherData = [];
+  	var amountsSum = 0;
+  	<%if(outherStudyList != null){%>
+		
+		<%for(Study_time study : outherStudyList){%>
+			var startData = '<%= study.getStudy_s_time()%>';
+			var amountsData =<%= study.getAmounts() %>;
+			console.log(amountsData);
+			amountsSum += amountsData;
+  			if(labelsData[labelsData.length - 1] != startData){
+  				labelsData.push(startData);
+  				outherData.push( amountsSum );
+  				amountsSum = 0;
+  			}
+  			console.log(amountsData);
+		
+		<%}%>
+	
+	<%}%>
+	var temp = labelsData;
+	labelsData = [...new Set(temp)];
+  	labelsData.sort()
+  
+  
+  
+  
     $('#search').keypress(function(event){
      if ( event.which == 13 ) {
          $('#searchbtn').click();
@@ -292,18 +349,18 @@ const ctx = document.getElementById('myChart');
 new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', '최근7일'],
+    labels: labelsData,
     datasets: [{
       label: '내 공부시간',
-      data: [12, 8, 6, 7,12, 5,10],
-      borderWidth: 1,
+      data: myData,
+      borderWidth: 5,
       borderColor : '#6bd098',
       backgroundColor: '#6bd098',
       yAxisID:'y',
     },
   {label:'상대방 공부시간',
-data:[5,6,9,7,10,6,8],
-borderWidth:1,
+data:outherData,
+borderWidth:5,
 borderColor:'#ff7979',
 backgroundColor:'#ff7979',
 yAxisID:'y1'}]
