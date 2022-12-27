@@ -287,13 +287,21 @@ Coded by www.creative-tim.com
                   <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
                   <td class="repletime">2022.12.23 10:42</td>
                   <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
+                 <%--  <%for(int i =0; i< ; i++){ %> --%>
+                  <td class="replewriter">작성자</td>
+                  <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
+                  <td class="repletime">2022.12.23 10:42</td>
+                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
+              <%--     <%} %> --%>
                 </tr>
               </table>
             </div>
             <div id="inner_text_write">
               <div>
+              <form action="">
                 <textarea id="commentarea" cols="30" rows="3" placeholder="댓글을 작성해주세요" maxlength="600"
                   style="width: 750px; margin-top: 1%; margin-left: 430px;"></textarea>
+                  </form>
               </div>
               <div>
                 <button id="reple_btn" type="button" style="margin-left: 48%; margin-top: 1%; background-color: #6bd098;" class="btngo" onclick="addComment()">댓글등록</button>
@@ -340,15 +348,18 @@ function addComment(){
   $ajax({
 	  url: 'wirteComment.do',
 		data: {
-			comment : $()
+			comment : $('#commentarea').val(),
+			boardNo: <%=board.getBoard_no() %>,
+			id: <%= info.getId() %>
 		},
-		type: 'get',
+		type: 'post',
 		success : function(res){
-			if(res){
-				console.log('삭제성공');
-				location.href = 'goCommList.do';
+			if(res>0){
+				selectRepleList();
+				$('#commentarea').val("");
+				console.log('등록성공');
 			}else{
-				console.log('삭제실패')
+				console.log('등록실패')
 			}
 		},
 		error : function(e){
@@ -388,6 +399,7 @@ function addbox(newcomment){
   $('textarea').val('');
 }
 
+
 function delcom(obj){
   var tr = obj.parentNode.parentNode;
      tr.parentNode.removeChild(tr);
@@ -421,7 +433,7 @@ function delcom(obj){
 } */
 
 $('#boarddel').on('click',function(){
-	var board_id = <%=board.getId()%>
+	var board_id = <%=board.getId() %>
 	var member_id = <%=info.getId()%>
 	
 	if(board_id == member_id){
