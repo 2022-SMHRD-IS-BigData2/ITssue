@@ -21,3 +21,4 @@ select * from schedule;
 select * from board;
 
 select * from study_time;
+

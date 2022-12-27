@@ -4,8 +4,8 @@
 
 <select id="diaryList" resultType="com.ITssue.entity.Diary">
 
-select * from diary
-where id = #{id}
+	select * from diary
+	where id = #{id}
 </select>
 
 </mapper>

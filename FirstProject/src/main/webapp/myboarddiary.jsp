@@ -61,6 +61,9 @@ text-align : left;}
 
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script>
+    
+    
+    
 
 //함수 사용해서 내용추가시 블럭추가만들기
 function createDiv() {
@@ -69,20 +72,21 @@ const newDiv = document.createElement('div');
 const newDiv2 = document.createElement('div');
 
 // 2. <div>에 들어갈 text node 만들기
-    const newText = document.createTextNode(<%=diary.get(0).getDiary_content()%>);
+    const newText = document.createTextNode(<%=diary.get(diary.size()-1).getDiary_content()%>);
     
     // 3. <div>에 text node 붙이기
         newDiv2.appendChild(newText);
         newDiv.setAttribute('class','diaryit');
         newDiv2.setAttribute('class', 'diarymemo');
-        newDiv2.setAttribute("onclick","location.href='이동할 주소';")
         newDiv.appendChild(newDiv2);
 
 
   
   // 4. <body>에 1에서 만든 <div> element 붙이기
   document.getElementById("diary").appendChild(newDiv);
-} 
+ 
+	  
+  }
 
 
     </script>
