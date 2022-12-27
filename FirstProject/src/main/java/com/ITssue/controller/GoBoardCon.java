@@ -30,11 +30,6 @@ public class GoBoardCon implements Controller {
 		List<Diary> diary = dao.diaryList(info.getId());
 		
 
-<<<<<<< HEAD
-		
-=======
-		session.setAttribute("diaryList", diary);
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData2/ITssue.git
 		
 		
 
