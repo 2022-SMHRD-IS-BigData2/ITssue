@@ -256,7 +256,7 @@ Coded by www.creative-tim.com
 		}
 	}
 	
-	let = eventsList = [];
+	let eventsList = [];
 	
 	if(<%=schedule != null%>){
 		

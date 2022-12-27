@@ -24,11 +24,11 @@ public class Study_timeMapper {
 		
 	}
 	
-	public List<Study_time> timeGet(Study_time dto) {
+	public List<Study_time> timeGet(String id) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		List<Study_time> result = session.selectList("get", dto);
+		List<Study_time> result = session.selectList("get", id);
 		
 		session.close();
 		
