@@ -235,14 +235,14 @@ Coded by www.creative-tim.com
                 
               </span>
               
-              <span id="span_reco">
-                  <button id="recommend"  class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
+              <span id="span_reco"> 
+                  <button id="recommend" class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
               </span>
-              <span>
+              <span >
               추천수 : 
               </span>
-              <span style="margin: 10px;">
-                0
+              <span style="margin: 10px;" id="recommendnum">
+                <%=board.getLikes() %>
               </span>
             </div>
             <div id="content">
@@ -287,13 +287,10 @@ Coded by www.creative-tim.com
                   <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
                   <td class="repletime">2022.12.23 10:42</td>
                   <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
-                 <%--  <%for(int i =0; i< ; i++){ %> --%>
-                  <td class="replewriter">작성자</td>
-                  <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
-                  <td class="repletime">2022.12.23 10:42</td>
-                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
-              <%--     <%} %> --%>
                 </tr>
+                 <%--  <%for(int i =0; i< ; i++){ %> --%>
+               
+              <%--     <%} %> --%>
               </table>
             </div>
             <div id="inner_text_write">
@@ -336,6 +333,8 @@ Coded by www.creative-tim.com
          return false;
      }
 });
+      
+      
 
 function addComment(){
   const parent =document.getElementById('commenttable');
@@ -366,7 +365,6 @@ function addComment(){
 	
 		}
 	})
-  })
 	  
   
 }
@@ -399,12 +397,18 @@ function addbox(newcomment){
   $('textarea').val('');
 }
 
-
 function delcom(obj){
-  var tr = obj.parentNode.parentNode;
-     tr.parentNode.removeChild(tr);
-
+	  var tr = obj.parentNode.parentNode;
+	     tr.parentNode.removeChild(tr);
 }
+
+
+
+
+
+
+
+
 
 
 //자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
@@ -434,7 +438,7 @@ function delcom(obj){
 
 $('#boarddel').on('click',function(){
 	var board_id = <%=board.getId() %>
-	var member_id = <%=info.getId()%>
+	var member_id = <%= info.getId() %>
 	
 	if(board_id == member_id){
 		$.ajax({
