@@ -23,19 +23,19 @@ public class GoBoardCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		Members info = (Members)session.getAttribute("info");
 		
 		DiaryMapper dao = new DiaryMapper();
-		List<Diary> diary = dao.diaryList();
+		List<Diary> diary = dao.diaryList(info.getId());
 		
 
-		HttpSession session = request.getSession();
+		
+		
+
 		session.setAttribute("diaryList", diary);
-		
-		
-
 
 		
-		Members info = (Members)session.getAttribute("info");
 		
 		Study_timeMapper dao2 = new Study_timeMapper();
 		List<Study_time> result = dao2.timeGet(info.getId());
