@@ -101,7 +101,7 @@
 <body>
 	<script type="text/javascript">
 		<%List<Score> list = (List<Score>)request.getAttribute("scoreList");
-			boolean listNull = list != null;
+			boolean listNull = list != null && list.size() > 0;
 			int size = 0;
 			if(listNull){
 				size = list.size() -1;
@@ -157,17 +157,19 @@
                     </tr>
                 </thead>
         		<tbody>
-        		<%for(Score score : list){%>
-        			<tr>
-                        <td><%=score.getScore_title() %></td>
-                        <td><%=score.getScore_date().split(" ")[0] %></td>
-                        <td><%=score.getGrade() %></td>
-                        <% for(int i = 0; i < score.getSubname().split(",").length; i++){
-                        	String subname = score.getSubname().split(",")[i];%>
-                        	<td><%=subname %></td>
-                        <%} %>
-                    </tr>
-        		<%}%>
+        		<%if(listNull){ %>
+	        		<%for(Score score : list){%>
+	        			<tr>
+	                        <td><%=score.getScore_title() %></td>
+	                        <td><%=score.getScore_date().split(" ")[0] %></td>
+	                        <td><%=score.getGrade() %></td>
+	                        <% for(int i = 0; i < score.getSubname().split(",").length; i++){
+	                        	String subname = score.getSubname().split(",")[i];%>
+	                        	<td><%=subname %></td>
+	                        <%} %>
+	                    </tr>
+	        		<%}%>
+        		<%} %>
 				</tbody>
             </table>
         </div>
@@ -207,12 +209,16 @@ $("#delscore").click(function(){
 		console.log('삭제됨')
 	    var trCnt = $('#score_table>tbody tr').length;
 		console.log(trCnt)
+		var scoreNos = 0;
+		<%if(listNull){%>
+			scoreNos = <%=list.get(size).getScore_no()%>
+		<%}%>
 	    if(trCnt > 0){
 	    	console.log($('tbody>tr:last').html())
 	    	$.ajax({
 	    		url:'scoreDelete.do',
 	    		data:{
-	    			scoreNo : <%=list.get(size).getScore_no()%>
+	    			scoreNo : scoreNos
 	    		},
 	    		type: 'post',
 	    		success: function(res){

@@ -32,6 +32,7 @@ import com.ITssue.controller.GoDiaryWriteCon;
 import com.ITssue.controller.GoJoinCon;
 import com.ITssue.controller.GoLoginCon;
 import com.ITssue.controller.GoMainCon;
+import com.ITssue.controller.GoMembersChartCon;
 import com.ITssue.controller.GoNaverCallBackCon;
 import com.ITssue.controller.GoScheCon;
 import com.ITssue.controller.GoUpdateCon;
@@ -84,6 +85,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goBoardTime.do", new GoBoardTimeCon() );
 		 handlerMapping.put("/goBoardScore.do", new GoBoardScoreCon() );
 		 handlerMapping.put("/goWriteScore.do", new GoWriteScoreCon() );
+		 handlerMapping.put("/goMembersChart.do", new GoMembersChartCon() );
 		 
 		 
 		 
