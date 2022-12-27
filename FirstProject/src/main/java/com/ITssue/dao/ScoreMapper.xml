@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ITssue.dao.ScoreMapper"></mapper>
+<mapper namespace="com.ITssue.dao.ScoreMapper">
+
+	<select id="scoreList" resultType="com.ITssue.entity.Score">
+		select *
+		from score
+		where id = #{id}
+		order by score_date asc
+	</select>
+
+	<delete id="scoreDelete">
+		delete from score
+		where score_no = #{score_no}
+	</delete>
+	
+	<insert id="scoreInsert" parameterType="com.ITssue.entity.Score">
+		insert into score
+		values
+		(
+			score_no_seq.nextval,
+			#{subname},
+			#{grade},
+			#{score_date},
+			#{id},
+			#{score_title}
+		)
+	</insert>
+
+</mapper>
