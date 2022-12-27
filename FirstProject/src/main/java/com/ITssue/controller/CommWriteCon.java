@@ -19,7 +19,7 @@ public class CommWriteCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-String savePath =request.getServletContext().getRealPath("images");
+        String savePath =request.getServletContext().getRealPath("images");
 		
 		//최대 사이즈
 		 // byte 단위

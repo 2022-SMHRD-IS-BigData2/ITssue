@@ -402,21 +402,19 @@ function readURL(input) {
 		}
 
 		const formData = new FormData();
-        const file = $("#file").files[0];
-        formData.append('file', file);
+
+        formData.append('file',  $('input[name=file]')[0].files[0]);
         formData.append('title', $('#title').val());
         formData.append('content', $('#content').val());
-        formData.append('hashtag', hashtag);
+        formData.append('hashtag', hashtags);
 		
 		$.ajax({
 			
 			url : "commWrite.do",
-			data : {
-				formData
-			},
+			data : formData,
 			contentType : false,
 	        processData : false ,
-	        encType="multipart/form-data",
+	        encType :"multipart/form-data",
 			type:"post",
 			success:function(res){
 				if(res=="true"){

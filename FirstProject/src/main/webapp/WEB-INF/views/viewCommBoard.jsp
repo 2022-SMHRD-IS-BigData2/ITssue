@@ -262,7 +262,7 @@ Coded by www.creative-tim.com
                   <tr>
                     <td colspan="2" rowspan="4">
                       <div style="text-align: center;">
-                    <img id="userimg" alt="이미지 없음" src="">
+                    <img id="userimg" alt="이미지 없음" src="images/<%=board.getBoard_file()%>">
                   </div>
                      <%=board.getBoard_content()%>
                     </td>
@@ -336,6 +336,28 @@ function addComment(){
   parent.appendChild(newcomment);
 
   addbox(newcomment)
+  
+  $ajax({
+	  url: 'wirteComment.do',
+		data: {
+			comment : $()
+		},
+		type: 'get',
+		success : function(res){
+			if(res){
+				console.log('삭제성공');
+				location.href = 'goCommList.do';
+			}else{
+				console.log('삭제실패')
+			}
+		},
+		error : function(e){
+	
+		}
+	})
+  })
+	  
+  
 }
 
 function addbox(newcomment){
