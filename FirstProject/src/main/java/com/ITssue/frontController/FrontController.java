@@ -49,6 +49,8 @@ import com.ITssue.controller.ScheduleJoinCon;
 import com.ITssue.controller.ScheduleUdateCon;
 import com.ITssue.controller.ScoreDeleteCon;
 import com.ITssue.controller.StudyTimePlusCon;
+import com.ITssue.controller.ViewCommentCon;
+import com.ITssue.controller.WriteCommentCon;
 import com.ITssue.controller.WriteScoreCon;
 import com.ITssue.controller.memoWriteCon;
 
@@ -87,6 +89,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goMembersChart.do", new GoMembersChartCon() );
 		 
 		 
+		 
+		 
 		
 		//========================
 		// redirect
@@ -111,6 +115,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/diaryInsert.do", new DiaryInsertCon());
 		 handlerMapping.put("/scoreDelete.do", new ScoreDeleteCon());
 		 handlerMapping.put("/writeScore.do", new WriteScoreCon());
+		 handlerMapping.put("/writeComment.do", new WriteCommentCon());
+		 handlerMapping.put("/viewComment.do", new ViewCommentCon());
 		 
 		 
 		

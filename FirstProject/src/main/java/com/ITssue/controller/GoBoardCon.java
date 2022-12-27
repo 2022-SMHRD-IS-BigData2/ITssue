@@ -24,16 +24,7 @@ public class GoBoardCon implements Controller {
 		HttpSession session = request.getSession();
 		Members info = (Members) session.getAttribute("info");
 
-		System.out.println(info.getId());
-		DiaryMapper dao = new DiaryMapper();
-		List<Diary> diary = dao.diaryList(info.getId());
-
-		System.out.println("Test" + diary.size());
-		System.out.println(diary.size());
-		System.out.println(diary.size() > 0);
-		if (diary.size() > 0) {
-			session.setAttribute("diaryList", diary);
-		}
+		
 
 		Study_timeMapper dao2 = new Study_timeMapper();
 		List<Study_time> result = dao2.timeGet(info.getId());

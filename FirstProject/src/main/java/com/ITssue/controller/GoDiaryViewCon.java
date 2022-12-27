@@ -28,6 +28,8 @@ public class GoDiaryViewCon implements Controller {
 		HttpSession session = request.getSession();
 		session.setAttribute("diary", diary);
 		
+		
+		
 		return "clickDiary";
 	}
 

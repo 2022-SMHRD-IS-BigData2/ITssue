@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Comments"%>
 <%@page import="com.ITssue.entity.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
@@ -126,6 +127,7 @@ Coded by www.creative-tim.com
 <%
 	Members info = (Members)session.getAttribute("info");
 	Board board = (Board)session.getAttribute("boardinfo");
+	List<Comments> comm = (List<Comments>)session.getAttribute("comminfo");
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -235,14 +237,14 @@ Coded by www.creative-tim.com
                 
               </span>
               
-              <span id="span_reco">
-                  <button id="recommend"  class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
+              <span id="span_reco"> 
+                  <button id="recommend" class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
               </span>
-              <span>
+              <span >
               추천수 : 
               </span>
-              <span style="margin: 10px;">
-                0
+              <span style="margin: 10px;" id="recommendnum">
+                <%=board.getLikes() %>
               </span>
             </div>
             <div id="content">
@@ -262,7 +264,7 @@ Coded by www.creative-tim.com
                   <tr>
                     <td colspan="2" rowspan="4">
                       <div style="text-align: center;">
-                    <img id="userimg" alt="이미지 없음" src="">
+                    <img id="userimg" alt="이미지 없음" src="images/<%=board.getBoard_file()%>">
                   </div>
                      <%=board.getBoard_content()%>
                     </td>
@@ -288,12 +290,23 @@ Coded by www.creative-tim.com
                   <td class="repletime">2022.12.23 10:42</td>
                   <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
                 </tr>
+                <%for(int i =0; i<comm.size(); i++){ %>
+                 <tr class="repletrue">
+                  <td class="replewriter"><%=comm.get(i).getId() %></td>
+                  <td colspan="2" class="replebox"><%=comm.get(i).getCmt_content() %></td>
+                  <td class="repletime"><%=comm.get(i).getCmt_dt() %></td>
+                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
+                </tr>
+               
+               <%} %>
               </table>
             </div>
             <div id="inner_text_write">
               <div>
+              <form action="">
                 <textarea id="commentarea" cols="30" rows="3" placeholder="댓글을 작성해주세요" maxlength="600"
                   style="width: 750px; margin-top: 1%; margin-left: 430px;"></textarea>
+                  </form>
               </div>
               <div>
                 <button id="reple_btn" type="button" style="margin-left: 48%; margin-top: 1%; background-color: #6bd098;" class="btngo" onclick="addComment()">댓글등록</button>
@@ -328,6 +341,8 @@ Coded by www.creative-tim.com
          return false;
      }
 });
+      
+      
 
 function addComment(){
   const parent =document.getElementById('commenttable');
@@ -336,6 +351,30 @@ function addComment(){
   parent.appendChild(newcomment);
 
   addbox(newcomment)
+  
+  $ajax({
+	  url: 'wirteComment.do',
+		data: {
+			comment : $('#commentarea').val(),
+			boardNo: <%=board.getBoard_no() %>,
+			id: <%= info.getId() %>
+		},
+		type: 'post',
+		success : function(res){
+			if(res>0){
+				selectRepleList();
+				$('#commentarea').val("");
+				console.log('등록성공');
+			}else{
+				console.log('등록실패')
+			}
+		},
+		error : function(e){
+	
+		}
+	})
+	  
+  
 }
 
 function addbox(newcomment){
@@ -367,10 +406,17 @@ function addbox(newcomment){
 }
 
 function delcom(obj){
-  var tr = obj.parentNode.parentNode;
-     tr.parentNode.removeChild(tr);
-
+	  var tr = obj.parentNode.parentNode;
+	     tr.parentNode.removeChild(tr);
 }
+
+
+
+
+
+
+
+
 
 
 //자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
@@ -399,8 +445,8 @@ function delcom(obj){
 } */
 
 $('#boarddel').on('click',function(){
-	var board_id = <%=board.getId()%>
-	var member_id = <%=info.getId()%>
+	var board_id = <%=board.getId() %>
+	var member_id = <%= info.getId() %>
 	
 	if(board_id == member_id){
 		$.ajax({

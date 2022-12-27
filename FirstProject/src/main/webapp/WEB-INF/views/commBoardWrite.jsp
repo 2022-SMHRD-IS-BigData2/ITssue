@@ -253,7 +253,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
           <thead>
             <tr>
               <th colspan="4">
-                <form onsubmit="false">
+                <form onsubmit="false" >
                   <textarea name="title" id="title" cols="132" rows="1" style="text-align: center; font-size: medium"
                     placeholder="제목을 입력하세요."></textarea>
                 </form>
@@ -266,7 +266,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                 <td scope="col" id="filebox" class="td_title" width="500" style="text-align: center;" colspan="4">
                 <input class="upload-name" value="파일선택" disabled="disabled">
   <label for="ex_filename">업로드</label> 
-  <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);"><br>
+  <input type="file" id="ex_filename" class="upload-hidden" id="file" name="file" onchange="readURL(this);"> <br>
    <img id="preview" style="display:block; margin:auto;">
   
   </td>
@@ -276,10 +276,10 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
           <div>
             <thead>
               <tr>
-                <td scope="col" class="td_title" width="280" style="text-align: center;">서체</td>
-                <td scope="col" class="td_title" width="280" style="text-align: center;">14pt</td>
-                <td scope="col" class="td_title" width="280" style="text-align: center;">bold</td>
-                <td scope="col" class="td_title" width="280" style="text-align: center;">정렬방식</td>
+                <td scope="col" class="td_title" width="280" style="text-align: center;"></td>
+                <td scope="col" class="td_title" width="280" style="text-align: center;"></td>
+                <td scope="col" class="td_title" width="280" style="text-align: center;"></td>
+                <td scope="col" class="td_title" width="280" style="text-align: center;"></td>
               </tr>
             </thead>
             <tbody>
@@ -378,6 +378,18 @@ $('#addValue').keypress(function(event){
      }
 });
 
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	}
+
   </script>
   <script type="text/javascript">
   $('#submit').on('click',function(){
@@ -389,14 +401,20 @@ $('#addValue').keypress(function(event){
 			}
 		}
 
+		const formData = new FormData();
+
+        formData.append('file',  $('input[name=file]')[0].files[0]);
+        formData.append('title', $('#title').val());
+        formData.append('content', $('#content').val());
+        formData.append('hashtag', hashtags);
+		
 		$.ajax({
 			
 			url : "commWrite.do",
-			data : {
-				title:$('#title').val(),
-				content:$('#content').val(),
-				hashtag: hashtags,
-			},
+			data : formData,
+			contentType : false,
+	        processData : false ,
+	        encType :"multipart/form-data",
 			type:"post",
 			success:function(res){
 				if(res=="true"){
@@ -409,22 +427,10 @@ $('#addValue').keypress(function(event){
 			}
 			
 		})
-		
-		
-	  		
-  })
+			
+  });
   
-  function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('preview').src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    document.getElementById('preview').src = "";
-  }
-}
+  
   </script>
 </body>
 
