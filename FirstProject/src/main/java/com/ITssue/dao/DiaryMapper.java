@@ -12,11 +12,11 @@ public class DiaryMapper {
 
 	SqlSessionFactory sqlSessionFactory = SessionManger.getSqlSessionFactory();
 	
-public List<Diary> diaryList() {
+public List<Diary> diaryList(String id) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		List<Diary> result = session.selectList("diaryList");
+		List<Diary> result = session.selectList("diaryList",id);
 		
 		session.close();
 		
