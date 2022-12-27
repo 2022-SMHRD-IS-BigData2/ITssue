@@ -306,7 +306,6 @@ Coded by www.creative-tim.com
   				myData.push( amountsSum );
   				amountsSum = 0;
   			}
-  			console.log(amountsData);
   		<%}%>
   	
   	<%}%>
@@ -318,14 +317,12 @@ Coded by www.creative-tim.com
 		<%for(Study_time study : outherStudyList){%>
 			var startData = '<%= study.getStudy_s_time()%>';
 			var amountsData =<%= study.getAmounts() %>;
-			console.log(amountsData);
 			amountsSum += amountsData;
   			if(labelsData[labelsData.length - 1] != startData){
   				labelsData.push(startData);
   				outherData.push( amountsSum );
   				amountsSum = 0;
   			}
-  			console.log(amountsData);
 		
 		<%}%>
 	
