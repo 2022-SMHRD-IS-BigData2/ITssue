@@ -67,7 +67,7 @@ text-align : left;}
 
 //함수 사용해서 내용추가시 블럭추가만들기
 function createDiv() {
-  // 1. <div> element 만들기
+ // 1. <div> element 만들기
 const newDiv = document.createElement('div');
 const newDiv2 = document.createElement('div');
 

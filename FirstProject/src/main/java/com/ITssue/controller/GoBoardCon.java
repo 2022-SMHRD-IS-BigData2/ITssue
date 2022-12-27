@@ -29,9 +29,7 @@ public class GoBoardCon implements Controller {
 		DiaryMapper dao = new DiaryMapper();
 		List<Diary> diary = dao.diaryList(info.getId());
 		
-
-		
-		
+	 System.out.println("Test"+diary.size());
 
 		session.setAttribute("diaryList", diary);
 

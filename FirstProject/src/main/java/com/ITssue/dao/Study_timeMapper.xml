@@ -20,7 +20,7 @@
 	resultType="com.ITssue.entity.Study_time">
 	
 	select amounts from study_time
-	where id = '${id}'	
+	where id = #{id}
 	
 	</select>
 	
