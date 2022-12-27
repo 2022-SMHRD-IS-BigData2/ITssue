@@ -93,7 +93,7 @@ Coded by www.creative-tim.com
     textarea{resize: none; font-family: 'LINESeedKR-Bd'; padding: 30px;}
     textarea:focus{outline-color: #6bd098;}
     button{font-family: 'LINESeedKR-Bd'; background-color: #6bd098; border: 1px solid #6bd098; border-radius: 5px; width: 80px; height: 40px;}
-    button:focus{border: 1px solid #6bd098;}
+    button:focus{border: 1px solid #6bd098; outline: none; }
     
   input[type="file"] {
   position: absolute;
@@ -170,8 +170,8 @@ label {
         
         <div id="commit">
           <form action="">
-            <button id="write_commit" type="button">작성완료</button>
-            <button id="back" type="button">뒤로가기</button>
+            <a href=""  style="text-decoration=none;"><button id="write_commit" type="button">작성완료</button></a>
+            <a href=""  style="text-decoration=none;"><button id="back" type="button">뒤로가기</button></a>
           </form>
         </div>
       </div>
