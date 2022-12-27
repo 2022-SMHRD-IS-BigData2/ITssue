@@ -8,9 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import com.ITssue.dao.DiaryMapper;
+import com.ITssue.entity.Diary;
+
 import com.ITssue.dao.Study_timeMapper;
 import com.ITssue.entity.Members;
 import com.ITssue.entity.Study_time;
+
 
 public class GoBoardCon implements Controller {
 
@@ -19,11 +24,21 @@ public class GoBoardCon implements Controller {
 			throws ServletException, IOException {
 
 		
+		DiaryMapper dao = new DiaryMapper();
+		List<Diary> diary = dao.diaryList();
+		
+
 		HttpSession session = request.getSession();
+		session.setAttribute("diaryList", diary);
+		
+		
+
+
+		
 		Members info = (Members)session.getAttribute("info");
 		
-		Study_timeMapper dao = new Study_timeMapper();
-		List<Study_time> result = dao.timeGet(info.getId());
+		Study_timeMapper dao2 = new Study_timeMapper();
+		List<Study_time> result = dao2.timeGet(info.getId());
 		
 		if(result == null) {
 			System.out.println("조회 실패!!");
@@ -31,6 +46,7 @@ public class GoBoardCon implements Controller {
 			System.out.println("조회 성공...");
 			session.setAttribute("list", result);
 		}	// 세션에 사용자 정보 저장
+
 		
 		return "a_3_board";
 	}
