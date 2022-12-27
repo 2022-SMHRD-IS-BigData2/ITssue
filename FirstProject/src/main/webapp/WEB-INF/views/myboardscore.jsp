@@ -133,33 +133,29 @@
                         <th scope="col">과목명2</th>
                     </tr>
                 </thead>
-                <thead>
+               <tbody>
                     <tr>
-                        <th>3월 모의고사</th>
-                        <th>22.03.24</th>
-                        <th>480</th>
-                        <th>윤리와사상</th>
-                        <th>생활과윤리</th>
+                        <td>3월 모의고사</td>
+                        <td>22.03.24</td>
+                        <td>480</td>
+                        <td>윤리와사상</td>
+                        <td>생활과윤리</td>
                     </tr>
-                </thead>
-                <thead>
                     <tr>
-                        <th>토익</th>
-                        <th>22.05.16</th>
-                        <th>820</th>
-                        <th>RC</th>
-                        <th>LC</th>
+                        <td>토익</td>
+                        <td>22.05.16</td>
+                        <td>820</td>
+                        <td>RC</td>
+                        <td>LC</td>
                     </tr>
-                </thead>
-                <thead>
                     <tr>
-                        <th>중간고사</th>
-                        <th>22.06.08</th>
-                        <th>432</th>
-                        <th>과목1</th>
-                        <th>과목2</th>
+                        <td>중간고사</td>
+                        <td>22.06.08</td>
+                        <td>432</td>
+                        <td>과목1</td>
+                        <td>과목2</td>
                     </tr>
-                </thead>
+				</tbody>
             </table>
         </div>
     </div>
@@ -193,13 +189,27 @@ new Chart(ctx, {
 });
 
 $("#delscore").click(function(){
-    var trCnt = $('#score_table thead').length;
-    if(trCnt > 1){
-      $('#score_table > thead:last').remove()
-    }
+	// 마지막 시험 삭제하기 버튼 누르면 실행됨
+		console.log('삭제됨')
+	    var trCnt = $('#score_table>tbody tr').length;
+	    if(trCnt > 0){
+	    	console.log($('tbody > tr:last').html())
+	    	$('tbody > tr:last').remove()
+	    }    
     })
     </script>
-
+<script src="./assets/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	
+	$('#enterscore').on('click',function(){
+		// 시험 정보 입력하기 버튼 누르면 실행됨
+		console.log('입력하기 클릭됨')
+		
+		
+	})
+	
+	
+</script>
 </body>
 
 </html>

@@ -167,13 +167,13 @@ List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
       <div class="content">
         <div id="menu">
           <ul id="mainlist">
-            <li><a class="boardlist" href="javascript:;" data-src="myboarddiary.jsp">나의 일기장</a></li>
-            <li><a class="boardlist" href="javascript:;" data-src="myboardtime.jsp">공부시간 관리</a></li>
-            <li><a class="boardlist" href="javascript:;" data-src="myboardscore.jsp">성적관리</a></li>
+            <li><a class="boardlist" href="javascript:;" data-src="goBoardDiary.do">나의 일기장</a></li>
+            <li><a class="boardlist" href="javascript:;" data-src="goBoardTime.do">공부시간 관리</a></li>
+            <li><a class="boardlist" href="javascript:;" data-src="goBoardScore.do">성적관리</a></li>
           </ul>
         </div>
         <div id="iframe-content">
-          <iframe src="myboarddiary.jsp" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
+          <iframe  target="_top" src="goBoardDiary.do" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
         </div>
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">

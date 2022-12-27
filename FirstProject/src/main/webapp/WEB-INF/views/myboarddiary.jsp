@@ -41,7 +41,13 @@ text-align : left;}
     </style>
 </head>
 <body>
-<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList"); %>
+<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
+	int diarySize = diary.size();
+	String content = "";
+	if(diarySize > 0){
+		content =diary.get(diary.size() -1).getDiary_content();
+	}
+%>
     <div id="wrap">
         <div id="head">
             <h1>나의 일기장</h1>
@@ -54,9 +60,10 @@ text-align : left;}
         <div id="diary">
 			
 				<% for(int i =0; i<diary.size(); i++){%>
-				<div class="diaryit">
+				<div class="diaryit" onclick="location.href='goDiaryView.do?num=<%=diary.get(i).getDiary_no()%>'">
 				<div class="diarymemo">
-				<%=diary.get(i).getDiary_title()%>
+				<%=diary.get(i).getDiary_title()%><br>
+				<%=diary.get(i).getDiary_content()%>
 				</div>
                 </div>
 				<%} %>
@@ -78,8 +85,9 @@ const newDiv = document.createElement('div');
 const newDiv2 = document.createElement('div');
 
 // 2. <div>에 들어갈 text node 만들기
-    const newText = document.createTextNode('<%=diary.get(diary.size()-1).getDiary_content()%>');
-    
+    	
+    		const newText = document.createTextNode('<%=content%>');
+    	
     // 3. <div>에 text node 붙이기
         newDiv2.appendChild(newText);
         newDiv.setAttribute('class','diaryit');
