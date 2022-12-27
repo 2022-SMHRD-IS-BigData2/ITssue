@@ -18,4 +18,16 @@ delete from diary
 where diary_no = #{diary_no}
 </delete>
 
+<insert id="diaryWrite" parameterType="com.ITssue.entity.Diary">
+		insert into diary
+		values
+		(
+			diary_no_seq.nextval,
+			#{diary_title},
+			#{diary_content},
+			#{diary_file, jdbcType=VARCHAR},
+			sysdate,
+			#{id})
+	</insert>
+
 </mapper>

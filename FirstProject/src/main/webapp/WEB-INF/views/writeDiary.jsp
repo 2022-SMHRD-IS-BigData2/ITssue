@@ -151,27 +151,27 @@ label {
       <div class="content">
         <div class="row"><br>
           <div id="title" style="display: block; margin:0 auto">
-            <form>
-              <textarea name="title" id="write_title" cols="150" rows="2" placeholder="제목을 입력해주세요"></textarea>
-            </form>
+            <form action="diaryInsert.do"  enctype="multipart/form-data"  method="post">
+              <textarea name="title" id="write_title" cols="150" rows="2" wrap="hard" placeholder="제목을 입력해주세요"></textarea>
+           
           </div>
           <div id="filebox" style="margin: 0 auto; text-align: center;">
            <input class="upload-name" value="파일선택" disabled="disabled">
   <label for="ex_filename" >업로드</label> 
-  <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);"><br>
+  <input type="file" id="ex_filename" class="upload-hidden" onchange="readURL(this);" name="file"><br>
    <img id="preview" style="display:block; margin:auto;">
           </div>
           <div id="content2">
-            <form action="">
-              <textarea name="content" id="write_content" cols="150" rows="25" placeholder="내용을 입력해주세요"></textarea>
-            </form>
+            
+              <textarea name="content" id="write_content" cols="150" rows="25"  wrap="hard" placeholder="내용을 입력해주세요"></textarea>
+            
           </div>
         </div>
         
         <div id="commit">
-          <form action="">
-            <a href=""  style="text-decoration=none;"><button id="write_commit" type="button">작성완료</button></a>
-            <a href=""  style="text-decoration=none;"><button id="back" type="button">뒤로가기</button></a>
+ 
+            <button id="write_commit" type="submit">작성완료</button>
+            <a href="goBoard.do"  style="text-decoration=none;" target="_top"><button id="back" type="button">뒤로가기</button></a>
           </form>
         </div>
       </div>
@@ -205,7 +205,16 @@ label {
 	  } else {
 	    document.getElementById('preview').src = "";
 	  }
-	}</script>
+	}
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
 </body>
 
 </html>

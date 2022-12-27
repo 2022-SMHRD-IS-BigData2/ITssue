@@ -18,6 +18,7 @@ import com.ITssue.controller.Controller;
 import com.ITssue.controller.D_dayDeleteCon;
 import com.ITssue.controller.D_dayInsertCon;
 import com.ITssue.controller.DiaryDeleteCon;
+import com.ITssue.controller.DiaryInsertCon;
 import com.ITssue.controller.GoBoardCon;
 import com.ITssue.controller.GoBoardDiaryCon;
 import com.ITssue.controller.GoBoardScoreCon;
@@ -101,6 +102,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
 		 handlerMapping.put("/naverLogin.do", new NaverLoginCon());
 		 handlerMapping.put("/diaryDelete.do", new DiaryDeleteCon());
+		 handlerMapping.put("/diaryInsert.do", new DiaryInsertCon());
 		 
 		 
 		

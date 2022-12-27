@@ -91,7 +91,7 @@ Coded by www.creative-tim.com
           <tr>
             <td colspan="2" rowspan="4">
               <div style="text-align: center;">
-            <img id="userimg" alt="이미지 없음" src="">
+            <img id="userimg" alt="이미지 없음" src="images/<%= diary.getDiary_file()%>">
           </div>
             <%=diary.getDiary_content()%>
             </td>

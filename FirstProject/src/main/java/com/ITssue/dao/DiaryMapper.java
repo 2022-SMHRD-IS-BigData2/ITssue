@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ITssue.database.SessionManger;
+import com.ITssue.entity.Board;
 import com.ITssue.entity.Diary;
 
 public class DiaryMapper {
@@ -42,5 +43,17 @@ public int deleteDiary(int diary_no) {
 		
 		return cnt;
 	}
+
+public int diaryWrite(Diary dto) {
+	
+	SqlSession session = sqlSessionFactory.openSession(true);
+	
+	int cnt = session.insert("diaryWrite",dto);
+	
+	session.close();
+	
+	return cnt;
+	
+}
 }
 

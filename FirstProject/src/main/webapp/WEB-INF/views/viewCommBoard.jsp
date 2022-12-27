@@ -118,6 +118,7 @@ Coded by www.creative-tim.com
     .repledel:focus{border: none; outline: 1px solid #6bd098;}
     button:focus{border: none; outline: 1px solid #6bd098;}
     .replebox{width: 440px;}
+    #commentarea{font-family: 'LINESeedKR-Bd';}
   </style>
 </head>
 
