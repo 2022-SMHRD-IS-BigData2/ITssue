@@ -101,7 +101,7 @@
 <body>
 	<script type="text/javascript">
 		<%List<Score> list = (List<Score>)request.getAttribute("scoreList");
-			boolean listNull = list != null;
+			boolean listNull = list != null && list.size() > 0;
 			int size = 0;
 			if(listNull){
 				size = list.size() -1;
@@ -209,16 +209,16 @@ $("#delscore").click(function(){
 		console.log('삭제됨')
 	    var trCnt = $('#score_table>tbody tr').length;
 		console.log(trCnt)
-		var scoreNo = 0;
+		var scoreNos = 0;
 		<%if(listNull){%>
-			scoreNo : <%=list.get(size).getScore_no()%>
+			scoreNos = <%=list.get(size).getScore_no()%>
 		<%}%>
 	    if(trCnt > 0){
 	    	console.log($('tbody>tr:last').html())
 	    	$.ajax({
 	    		url:'scoreDelete.do',
 	    		data:{
-	    			scoreNo : scoreNo
+	    			scoreNo : scoreNos
 	    		},
 	    		type: 'post',
 	    		success: function(res){
