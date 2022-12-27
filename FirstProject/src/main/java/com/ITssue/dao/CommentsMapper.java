@@ -13,11 +13,11 @@ public class CommentsMapper {
 	SqlSessionFactory sqlSessionFactory = SessionManger.getSqlSessionFactory();
 	
 	
-public List<Comments> viewComment() {
+public List<Comments> viewComment(int board_no) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		List<Comments> result = session.selectList("viewComment");
+		List<Comments> result = session.selectList("viewComment",board_no);
 		
 		session.close();
 		

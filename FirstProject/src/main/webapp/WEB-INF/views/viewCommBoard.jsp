@@ -1,3 +1,4 @@
+<%@page import="com.ITssue.entity.Comments"%>
 <%@page import="com.ITssue.entity.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
@@ -126,6 +127,7 @@ Coded by www.creative-tim.com
 <%
 	Members info = (Members)session.getAttribute("info");
 	Board board = (Board)session.getAttribute("boardinfo");
+	List<Comments> comm = (List<Comments>)session.getAttribute("comminfo");
 %>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="success">
@@ -288,9 +290,15 @@ Coded by www.creative-tim.com
                   <td class="repletime">2022.12.23 10:42</td>
                   <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
                 </tr>
-                 <%--  <%for(int i =0; i< ; i++){ %> --%>
+                <%for(int i =0; i<comm.size(); i++){ %>
+                 <tr class="repletrue">
+                  <td class="replewriter"><%=comm.get(i).getId() %></td>
+                  <td colspan="2" class="replebox"><%=comm.get(i).getCmt_content() %></td>
+                  <td class="repletime"><%=comm.get(i).getCmt_dt() %></td>
+                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
+                </tr>
                
-              <%--     <%} %> --%>
+               <%} %>
               </table>
             </div>
             <div id="inner_text_write">
