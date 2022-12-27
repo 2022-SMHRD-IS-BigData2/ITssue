@@ -8,4 +8,14 @@
 	where id = #{id}
 </select>
 
+<select id="pickDiary" resultType="com.ITssue.entity.Diary">
+select * from diary
+where diary_no = #{diary_no}
+</select>
+
+<delete id="deleteDiary">
+delete from diary
+where diary_no = #{diary_no}
+</delete>
+
 </mapper>

@@ -23,4 +23,24 @@ public List<Diary> diaryList(String id) {
 		return result;
 		
 	}
+public Diary pickDiary(int board_no){
+	SqlSession session = sqlSessionFactory.openSession(true);
+	
+	Diary result = session.selectOne("pickDiary",board_no);
+	
+	session.close();
+	
+	return result;
 }
+
+public int deleteDiary(int diary_no) {
+    SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("deleteDiary",diary_no);
+		
+		session.close();
+		
+		return cnt;
+	}
+}
+

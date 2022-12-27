@@ -173,7 +173,7 @@ List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
           </ul>
         </div>
         <div id="iframe-content">
-          <iframe src="myboarddiary.jsp" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
+          <iframe  target="_top" src="myboarddiary.jsp" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
         </div>
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">

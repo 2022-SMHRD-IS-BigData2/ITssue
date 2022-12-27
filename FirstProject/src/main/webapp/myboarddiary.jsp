@@ -54,9 +54,10 @@ text-align : left;}
         <div id="diary">
 			
 				<% for(int i =0; i<diary.size(); i++){%>
-				<div class="diaryit">
+				<div class="diaryit" onclick="location.href='goDiaryView.do?num=<%=diary.get(i).getDiary_no()%>'">
 				<div class="diarymemo">
-				<%=diary.get(i).getDiary_title()%>
+				<%=diary.get(i).getDiary_title()%><br>
+				<%=diary.get(i).getDiary_content()%>
 				</div>
                 </div>
 				<%} %>

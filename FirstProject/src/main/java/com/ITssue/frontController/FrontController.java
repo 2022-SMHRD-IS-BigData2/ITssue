@@ -17,11 +17,14 @@ import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.D_dayDeleteCon;
 import com.ITssue.controller.D_dayInsertCon;
+import com.ITssue.controller.DiaryDeleteCon;
 import com.ITssue.controller.GoBoardCon;
+import com.ITssue.controller.GoBoardDiaryCon;
 import com.ITssue.controller.GoBoardViewCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
 import com.ITssue.controller.GoCommWriteCon;
+import com.ITssue.controller.GoDiaryViewCon;
 import com.ITssue.controller.GoDiaryWriteCon;
 import com.ITssue.controller.GoJoinCon;
 import com.ITssue.controller.GoLoginCon;
@@ -69,6 +72,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goBoardView.do", new GoBoardViewCon() );
 		 handlerMapping.put("/navercallback.do", new GoNaverCallBackCon() );
 		 handlerMapping.put("/goDiaryWrite.do", new GoDiaryWriteCon() );
+		 handlerMapping.put("/goDiaryView.do", new GoDiaryViewCon() );
+		 handlerMapping.put("/goBoardDiary.do", new GoBoardDiaryCon() );
 		 
 		 
 		
@@ -91,6 +96,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
 		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
 		 handlerMapping.put("/naverLogin.do", new NaverLoginCon());
+		 handlerMapping.put("/diaryDelete.do", new DiaryDeleteCon());
 		 
 		 
 		

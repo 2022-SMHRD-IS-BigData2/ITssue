@@ -373,7 +373,7 @@ function delcom(obj){
 
 
 //자기 댓글일때만 삭제 가능하게 기능 추가하기!!!! 맨위 사라지면 삭제버튼 비활성화 되니 맨위는 admin만, 아니면 삭제 안되게 고정시키기
-  function delbtn(){
+  /* function delbtn(){
   
   Swal.fire({
     title: '삭제하시겠습니까?',
@@ -395,7 +395,7 @@ function delcom(obj){
     }
   })
 
-}
+} */
 
 $('#boarddel').on('click',function(){
 	var board_id = <%=board.getId()%>
@@ -421,7 +421,7 @@ $('#boarddel').on('click',function(){
 			}
 		})
 	}else{
-		alert("본인 게시물만 삭제 가능합니다.");
+		Swal.fire('본인 게시글만 삭제 가능합니다')
 	}
 })
 
