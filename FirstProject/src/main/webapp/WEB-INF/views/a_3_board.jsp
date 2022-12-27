@@ -205,7 +205,6 @@ Coded by www.creative-tim.com
   <script>
   $('.boardlist').click(function(){
     var src = $(this).data('src');
-    console.log(src)
    
    
   })
