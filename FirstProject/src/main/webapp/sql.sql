@@ -26,5 +26,5 @@ insert into diary
 values(3,'일기','일기일기',null,sysdate,1234);
 
 insert into comments
-values(2, 19, '집2222에 가고싶다', sysdate, 1234);
+values(3, 16, '집22212312에 가고싶다', sysdate, 1234);
 

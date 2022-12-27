@@ -69,6 +69,7 @@ Coded by www.creative-tim.com
       margin: 0 auto;
       height : 100vh;
       width : 100%;
+      background-color : #f4f3ef;
     }
 
     textarea {

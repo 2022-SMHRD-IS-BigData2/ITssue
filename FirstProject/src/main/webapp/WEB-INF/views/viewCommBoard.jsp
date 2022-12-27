@@ -84,8 +84,8 @@ Coded by www.creative-tim.com
       width: 800px;
       font-size: large;
       font-weight: bold;
-      margin-top: 1%;
-      margin-left: 25%;
+      margin: 0 auto;
+      margin-top : 1%;
     }
 
     #span_reco {
@@ -247,9 +247,8 @@ Coded by www.creative-tim.com
                 <%=board.getLikes() %>
               </span>
             </div>
-            <div id="content">
-              <span id="span_content">
-                <table id="list" border="1" bordercolor="#6bd098" word-break="break-all" height="auto" width="795px">
+            <div id="content" style="text-align:center;">
+                <table id="list" border="1" bordercolor="#6bd098" word-break="break-all" height="auto" width="795px" align="center" style="margin-left:auto;margin-right:auto;">
                   <tr>
                     <td>제목</td>
                     <td><%=board.getBoard_title() %></td>
@@ -280,7 +279,6 @@ Coded by www.creative-tim.com
                     
                   </tr>
                 </table>
-              </span>
             </div>
             <div id="commentbox">
               <table align="center" border="2" bordercolor="#66615B" id="commenttable" style="margin-top:20px;">
@@ -302,10 +300,10 @@ Coded by www.creative-tim.com
               </table>
             </div>
             <div id="inner_text_write">
-              <div>
+              <div style="text-align: center;">
               <form action="">
                 <textarea id="commentarea" cols="30" rows="3" placeholder="댓글을 작성해주세요" maxlength="600"
-                  style="width: 750px; margin-top: 1%; margin-left: 430px;"></textarea>
+                  style="width: 750px; margin-top: 1%;"></textarea>
                   </form>
               </div>
               <div>
