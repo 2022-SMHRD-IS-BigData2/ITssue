@@ -78,7 +78,7 @@ const newDiv = document.createElement('div');
 const newDiv2 = document.createElement('div');
 
 // 2. <div>에 들어갈 text node 만들기
-    const newText = document.createTextNode(<%=diary.get(diary.size()-1).getDiary_content()%>);
+    const newText = document.createTextNode('<%=diary.get(diary.size()-1).getDiary_content()%>');
     
     // 3. <div>에 text node 붙이기
         newDiv2.appendChild(newText);
