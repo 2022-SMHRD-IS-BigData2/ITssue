@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>다이어리페이지</title>
     <style>
          @font-face {
         font-family: 'LINESeedKR-Bd';
@@ -41,26 +41,17 @@ text-align : left;}
     </style>
 </head>
 <body>
-<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
-	int diarySize = diary.size();
-	String content = "";
-	if(diarySize > 0){
-		content =diary.get(diary.size() -1).getDiary_content();
-	}
-%>
+<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");%>
     <div id="wrap">
         <div id="head">
             <h1>나의 일기장</h1>
         </div>
         <div id="btngo">
         <a id="gowrite" href="goDiaryWrite.do">
-            <button onclick="createDiv()" >일기 쓰기</button>
+            <button>일기 쓰기</button>
             </a>
         </div>
         <div id="diary">
-			<%if(diary == null){ %>
-			
-			<%}else{ %>
 				<% for(int i =0; i<diary.size(); i++){%>
 				<div class="diaryit" onclick="location.href='goDiaryView.do?num=<%=diary.get(i).getDiary_no()%>'">
 				<div class="diarymemo">
@@ -69,7 +60,6 @@ text-align : left;}
 				</div>
                 </div>
 				<%} %>
-			<%} %>
         </div>
 
     </div>
@@ -88,7 +78,7 @@ const newDiv2 = document.createElement('div');
 
 // 2. <div>에 들어갈 text node 만들기
     	
-    		const newText = document.createTextNode('<%=content%>');
+const newText = document.createTextNode();
     	
     // 3. <div>에 text node 붙이기
         newDiv2.appendChild(newText);
