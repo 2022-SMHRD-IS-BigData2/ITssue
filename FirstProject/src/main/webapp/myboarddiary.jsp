@@ -52,9 +52,15 @@ text-align : left;}
             </a>
         </div>
         <div id="diary">
-
-
-            
+			
+				<% for(int i =0; i<diary.size(); i++){%>
+				<div class="diaryit">
+				<div class="diarymemo">
+				<%=diary.get(i).getDiary_title()%>
+				</div>
+                </div>
+				<%} %>
+			
         </div>
 
     </div>
