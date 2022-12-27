@@ -21,6 +21,7 @@
 	
 	select amounts from study_time
 	where id = #{id}
+	order by study_no desc
 	
 	</select>
 	

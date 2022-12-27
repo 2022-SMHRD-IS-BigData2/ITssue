@@ -20,6 +20,8 @@ import com.ITssue.controller.D_dayInsertCon;
 import com.ITssue.controller.DiaryDeleteCon;
 import com.ITssue.controller.GoBoardCon;
 import com.ITssue.controller.GoBoardDiaryCon;
+import com.ITssue.controller.GoBoardScoreCon;
+import com.ITssue.controller.GoBoardTimeCon;
 import com.ITssue.controller.GoBoardViewCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
@@ -74,6 +76,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goDiaryWrite.do", new GoDiaryWriteCon() );
 		 handlerMapping.put("/goDiaryView.do", new GoDiaryViewCon() );
 		 handlerMapping.put("/goBoardDiary.do", new GoBoardDiaryCon() );
+		 handlerMapping.put("/goBoardTime.do", new GoBoardTimeCon() );
+		 handlerMapping.put("/goBoardScore.do", new GoBoardScoreCon() );
 		 
 		 
 		
