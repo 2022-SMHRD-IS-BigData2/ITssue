@@ -22,3 +22,7 @@ select * from board;
 
 select * from study_time;
 
+insert into diary
+values(3,'일기','일기일기',null,sysdate,1234);
+
+

@@ -195,7 +195,7 @@ Coded by www.creative-tim.com
   			success : function(res){
   				if(res){
   					console.log('삭제성공');
-  					location.href = 'goBoardDiary.do';
+  					location.href = 'myboarddiary.jsp';
   				}else{
   					console.log('삭제실패')
   				}
