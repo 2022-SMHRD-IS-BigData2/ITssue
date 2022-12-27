@@ -218,7 +218,7 @@ $("#delscore").click(function(){
 	    	$.ajax({
 	    		url:'scoreDelete.do',
 	    		data:{
-	    			scoreNo : 0
+	    			scoreNo : scoreNo
 	    		},
 	    		type: 'post',
 	    		success: function(res){
