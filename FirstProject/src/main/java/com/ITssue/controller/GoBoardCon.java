@@ -30,10 +30,8 @@ public class GoBoardCon implements Controller {
 		List<Diary> diary = dao.diaryList(info.getId());
 		
 
-		session.setAttribute("diaryList", diary);
-		
-		
 
+		session.setAttribute("diaryList", diary);
 
 		
 		
