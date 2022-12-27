@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ITssue.entity.Study_time"%>
@@ -37,12 +38,45 @@
 </head>
 
 <body>
+<%
+String text = (String) session.getAttribute("get");
+List<Study_time> list = (List<Study_time>) session.getAttribute("list");
+System.out.println(list.size());
+System.out.println(list.get(0).getAmounts().split(":")[0]);
+System.out.println(list.get(0).getAmounts().split(":")[1]);
+System.out.println(list.get(0).getAmounts().split(":")[2]);
+System.out.println(list.get(1).getAmounts().split(":")[0]);
+System.out.println(list.get(1).getAmounts().split(":")[1]);
+System.out.println(list.get(1).getAmounts().split(":")[2]);
+System.out.println(list.get(2).getAmounts().split(":")[0]);
+System.out.println(list.get(2).getAmounts().split(":")[1]);
+System.out.println(list.get(2).getAmounts().split(":")[2]);
+System.out.println(list.get(3).getAmounts().split(":")[0]);
+System.out.println(list.get(3).getAmounts().split(":")[1]);
+System.out.println(list.get(3).getAmounts().split(":")[2]);
+System.out.println(list.get(4).getAmounts().split(":")[0]);
+System.out.println(list.get(4).getAmounts().split(":")[1]);
+System.out.println(list.get(4).getAmounts().split(":")[2]);
+System.out.println(list.get(5).getAmounts().split(":")[0]);
+System.out.println(list.get(5).getAmounts().split(":")[1]);
+System.out.println(list.get(5).getAmounts().split(":")[2]);
+
+int hour = 0;
+for(int i; i < list.size(); i++){
+	hour list.get(0).getAmounts().split(":")[0];
+}
+
+
+
+
+                                        %>
+
 
 <div id="wrap">
     <div id="topmain">
         <div class="time">
             <h2>전일대비 공부량</h2>
-            <span>500h</span>
+            <span><%=list.get(3).getAmounts() %></span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
