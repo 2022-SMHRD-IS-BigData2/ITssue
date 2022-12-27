@@ -208,7 +208,7 @@ List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
   <script>
   $('.boardlist').click(function(){
     var src = $(this).data('src');
-   
+    $('#mainIframe').attr('src',src);
    
   })
   

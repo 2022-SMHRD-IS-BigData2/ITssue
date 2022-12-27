@@ -193,13 +193,26 @@ new Chart(ctx, {
 });
 
 $("#delscore").click(function(){
+	// 마지막 시험 삭제하기 버튼 누르면 실행됨
+	console.log('삭제됨')
     var trCnt = $('#score_table thead').length;
     if(trCnt > 1){
       $('#score_table > thead:last').remove()
     }
     })
     </script>
-
+<script src="./assets/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	
+	$('#enterscore').on('click',function(){
+		// 시험 정보 입력하기 버튼 누르면 실행됨
+		console.log('입력하기 클릭됨')
+		
+		
+	})
+	
+	
+</script>
 </body>
 
 </html>
