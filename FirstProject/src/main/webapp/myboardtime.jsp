@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.ITssue.entity.Study_time"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,11 +37,12 @@
 </head>
 
 <body>
+
 <div id="wrap">
     <div id="topmain">
         <div class="time">
             <h2>전일대비 공부량</h2>
-            <span> +500min </span>
+            <span>500h</span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
@@ -70,10 +74,10 @@
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', '최근7일'],
+    labels: ['sysdate', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', '최근7일'],
     datasets: [{
       label: '내 공부시간',
-      data: [12, 8, 6, 7,12, 5,10],
+      data: [12, 8, 6, 7, 12, 5, 10],
       borderWidth: 1,
       borderColor : '#6bd098',
       backgroundColor: '#6bd098'

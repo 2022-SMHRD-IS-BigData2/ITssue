@@ -12,25 +12,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ITssue.controller.BoardListCon;
+import com.ITssue.controller.CommDeleteOkCon;
 import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
+import com.ITssue.controller.D_dayDeleteCon;
+import com.ITssue.controller.D_dayInsertCon;
 import com.ITssue.controller.GoBoardCon;
+import com.ITssue.controller.GoBoardViewCon;
 import com.ITssue.controller.GoCommCon;
 import com.ITssue.controller.GoCommListCon;
 import com.ITssue.controller.GoCommWriteCon;
+import com.ITssue.controller.GoDiaryWriteCon;
 import com.ITssue.controller.GoJoinCon;
 import com.ITssue.controller.GoLoginCon;
 import com.ITssue.controller.GoMainCon;
+import com.ITssue.controller.GoNaverCallBackCon;
 import com.ITssue.controller.GoScheCon;
 import com.ITssue.controller.GoUpdateCon;
 import com.ITssue.controller.GoWelcomeCon;
 import com.ITssue.controller.JoinCon;
 import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
+import com.ITssue.controller.MemberDeleteCon;
+import com.ITssue.controller.MemberUpdateCon;
+import com.ITssue.controller.NaverLoginCon;
 import com.ITssue.controller.ScheduleDeleteCon;
 import com.ITssue.controller.ScheduleJoinCon;
+import com.ITssue.controller.ScheduleUdateCon;
 import com.ITssue.controller.StudyTimePlusCon;
-import com.ITssue.controller.UpdateCon;
 import com.ITssue.controller.memoWriteCon;
 
 
@@ -57,6 +66,11 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goWelcome.do", new GoWelcomeCon() );
 		 handlerMapping.put("/goCommList.do", new GoCommListCon() );
 		 handlerMapping.put("/goCommWrite.do", new GoCommWriteCon() );
+		 handlerMapping.put("/goBoardView.do", new GoBoardViewCon() );
+		 handlerMapping.put("/navercallback.do", new GoNaverCallBackCon() );
+		 handlerMapping.put("/goDiaryWrite.do", new GoDiaryWriteCon() );
+		 
+		 
 		
 		//========================
 		// redirect
@@ -65,12 +79,21 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/join.do", new JoinCon());
 		 handlerMapping.put("/commWrite.do", new CommWriteCon());
 		 handlerMapping.put("/logout.do", new LogoutCon());
-		 handlerMapping.put("/update.do", new UpdateCon());
+		 handlerMapping.put("/memberUpdate.do", new MemberUpdateCon());
 		 handlerMapping.put("/boardList.do", new BoardListCon());
 		 handlerMapping.put("/studyTimePlus.do", new StudyTimePlusCon());
 		 handlerMapping.put("/memoWrite.do", new memoWriteCon());
 		 handlerMapping.put("/scheduleJoin.do", new ScheduleJoinCon());
 		 handlerMapping.put("/scheduleDelete.do", new ScheduleDeleteCon());
+		 handlerMapping.put("/scheduleupdate.do", new ScheduleUdateCon());
+		 handlerMapping.put("/d_dayInsert.do", new D_dayInsertCon());
+		 handlerMapping.put("/d_dayDelete.do", new D_dayDeleteCon());
+		 handlerMapping.put("/memberDelete.do", new MemberDeleteCon());
+		 handlerMapping.put("/commDeleteOk.do", new CommDeleteOkCon());
+		 handlerMapping.put("/naverLogin.do", new NaverLoginCon());
+		 
+		 
+		
 		 
 		 
 		

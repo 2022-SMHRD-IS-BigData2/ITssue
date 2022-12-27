@@ -15,13 +15,9 @@
 		)
 	</insert>
 	
-	<delete id="SCdelete" parameterType="com.ITssue.entity.Schedule">
+	<delete id="SCdelete">
 		delete from schedule
-		where  to_char(sche_s_dt, 'yyyy-mm-dd hh24:mi:ss') <![CDATA[<=]]> #{sche_s_dt}
-		and to_char(sche_e_dt, 'yyyy-mm-dd hh24:mi:ss') <![CDATA[<=]]> #{sche_e_dt}
-		and id = #{id}
-		and scheduel_type = #{scheduel_type}
-		and sche_content = #{sche_content}
+		where sche_no = #{sche_no}
 	</delete>
 	
 	<select id="scheList" resultType="com.ITssue.entity.Schedule">
@@ -29,6 +25,14 @@
 		from schedule
 		where id = #{id}
 	</select>
+	
+	<update id="SCupdate" parameterType="com.ITssue.entity.Schedule">
+		update schedule
+		set sche_s_dt = to_date('${sche_s_dt}', 'yyyy-mm-dd hh24:mi:ss'),
+		    sche_e_dt = to_date('${sche_e_dt}', 'yyyy-mm-dd hh24:mi:ss'),
+		    scheduel_type = #{scheduel_type}
+		where sche_no = #{sche_no}
+	</update>
 
 
 

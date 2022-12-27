@@ -11,7 +11,8 @@
 			#{birth},
 			#{nick},
 			sysdate,
-			'm'
+			'm',
+			'간단한 메모장으로 이용해주세요.'
 		)
 	
 	</insert>

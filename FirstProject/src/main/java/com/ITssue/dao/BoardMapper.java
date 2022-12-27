@@ -47,5 +47,22 @@ public class BoardMapper {
 		return result;
 	}
 	
+	public Board boardView(int num) {
+		 SqlSession session = sqlSessionFactory.openSession(true);
+		 Board board = session.selectOne("boardView", num);
+		 session.close();
+		 return board;
+	 }
+	
+	public int deleteBoard(int board_no) {
+       SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("deleteBoard",board_no);
+		
+		session.close();
+		
+		return cnt;
+	}
+	
 	
 }

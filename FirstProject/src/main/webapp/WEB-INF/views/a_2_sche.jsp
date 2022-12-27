@@ -63,7 +63,7 @@ Coded by www.creative-tim.com
     .ddaytrue{width: 120px; height: 120px; background-color: #6bd098; border-radius: 10px; margin: 10px 10px 10px 30px; float: left;}
     #ddayname{height: 50%; width: 100%; text-align: center; padding: 10px;}
     #ddaydate{ height: 50%; width: 100%; text-align: center; padding: 10px;}
-   #searchbtn{border: 0;}
+   #searchbtn{border: 0;  outline:none;}
    #calendar{max-width: 1570px; max-height: 580px; margin: 0 auto;}
 .fc-day-today {
     background: #ecf0f1 !important;
@@ -256,7 +256,7 @@ Coded by www.creative-tim.com
 		}
 	}
 	
-	let = eventsList = [];
+	let eventsList = [];
 	
 	if(<%=schedule != null%>){
 		
@@ -276,13 +276,13 @@ Coded by www.creative-tim.com
 			
 			if(alldays == "t"){
 				eventsList.push({
-					groupid: id,
+					id: id,
 					title: content,
 					start: startDT
 				})
 			}else{
 				eventsList.push({
-					groupid: id,
+					id: id,
 					title: content,
 					start: startDT,
 					end: endDT
@@ -294,14 +294,6 @@ Coded by www.creative-tim.com
 		
 	}
 		
-	console.log(eventsList)
-	
-		
-		
-		
-	
-	
-	
 	
 	
 	
@@ -309,62 +301,101 @@ Coded by www.creative-tim.com
 
   <script>
 function addList()  {
+  console.log('추가된다');
   
   const parent = document.getElementById('ddaycontain');
   const newDiv = document.createElement("div");
   newDiv.setAttribute('class', 'ddaytrue');
   parent.appendChild(newDiv);
   addDiv(newDiv)
+  
 }
-function addDiv(newDiv){
+function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
      // 1. 추가할 값을 input창에서 읽어온다
   const addValue 
     = document.getElementById('ddaycontent').value;
   const addValue2
   =document.getElementById('ddaydatecon').value;
   
-  // 2. 추가할 li element 생성
-  // 2-1. 추가할 li element 생성
-  const list = document.createElement("div");
-  const list2 = document.createElement("div");
-
+  console.log(addValue); // D-day의 이름부분
+  console.log(addValue2); // 필요한 날짜 데이터
   
-  // 2-2. li에 id 속성 추가 
-  list.setAttribute('id','ddayname');
-  list2.setAttribute('id','ddaydate');
+  $.ajax({
+	
+	  url:'d_dayInsert.do',
+	  data:{
+		content: addValue,
+		dt: addValue2
+	  },
+	  type:"post",
+	  dataType: "json",
+	  success:function(res){
+		  // 2. 추가할 li element 생성
+		  // 2-1. 추가할 li element 생성
+		  const list = document.createElement("div");
+		  const list2 = document.createElement("div");
+
+		  
+		  // 2-2. li에 id 속성 추가 
+		  list.setAttribute('id','ddayname');
+		  list2.setAttribute('id','ddaydate');
+		 
+		  
+		  // 2-3. li에 text node 추가 
+		  const textNode = document.createTextNode(res.d_day_content);
+		  list.appendChild(textNode);
+		  const textNode2 = document.createTextNode(res.d_day_dt);
+		  list2.appendChild(textNode2);
+
+		  console.log("newDiv")
+		  console.log(newDiv);
+		  // 3. 생성된 li를 ul에 추가
+		  
+		newDiv.appendChild(list);
+		newDiv.appendChild(list2);
+		
+		$('#ddaycontent').val('');
+
+	  },
+	  error:function(e){
+		  
+	  }
+  })
+
+
+
+  }
+
+
+function removeItem()  { // 삭제되었을때의 로직이 실행되는 부분
+  
+	 console.log('삭제된당')
+	
+	$.ajax({
+	
+		url:'d_dayDelete.do',
+		success:function(res){
+			  // 1. <ul> element 선택
+			  const ul = document
+			    .getElementById('ddaycontain');
+			  
+			  // 2. <li> 목록 선택
+			  const items = ul.getElementsByClassName('ddaytrue');
+			  
+			  // 3. <li> 목록 중 첫번째 item 삭제
+			  if(items.length > 0)  {
+
+				console.log(items[items.length-1].innerText.split('\n'));
+			    items[items.length-1].remove();
+			  }
+		},
+		error:function(e){
+			
+		}
+	})
+  
  
   
-  // 2-3. li에 text node 추가 
-  const textNode = document.createTextNode(addValue);
-  list.appendChild(textNode);
-  const textNode2 = document.createTextNode(addValue2);
-  list2.appendChild(textNode2);
-
-  console.log(newDiv);
-  // 3. 생성된 li를 ul에 추가
-  
-newDiv.appendChild(list);
-newDiv.appendChild(list2);
-
-$('#ddaycontent').val('');
-
-
-  }
-
-
-function removeItem()  {
-  
-  // 1. <ul> element 선택
-  const ul = document
-    .getElementById('ddaycontain');
-  
-  // 2. <li> 목록 선택
-  const items = ul.getElementsByClassName('ddaytrue');
-  
-  // 3. <li> 목록 중 첫번째 item 삭제
-  if(items.length > 0)  {
-    items[items.length-1].remove();
-  }
   
 }
 
@@ -374,169 +405,274 @@ $('#search').keypress(function(event){
         return false;
     }
 });
+
+
+
+
+
+
+
   </script>
   <script src='./assets/js/index.global.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'timeGridWeek,timeGridDay'
-      },
-      //initialDate: '2020-09-12',
-      initialView: 'timeGridWeek',
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-
-        (async () => {
-    const { value: getName } = await Swal.fire({
-        title: '일정을 입력하세요.',
-        input: 'text',
-        confirmButtonColor : '#6bd098'
-    })
-
-    if (getName) {
-          calendar.addEvent({
-            title: getName,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        calendar.unselect()
-		if(arg.allDay){
-			console.log('하루종일');
-			console.log(arg)
-			$.ajax({
-				
-				url:"scheduleJoin.do",
-				data:{
-					all: arg.allDay,
-					start: arg.startStr,
-					end: arg.endStr,
-					content: getName
-				},
-				type:"post",
-				success:function(res){
-				},
-				error:function(e){
-				}
-				
-			})
-			
-		}else{
-			console.log('시간지정');
-			console.log(arg);
-			$.ajax({
-				
-				url:"scheduleJoin.do",
-				data:{
-					all: arg.allDay,
-					start: arg.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
-					end: arg.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
-					content: getName
-				},
-				type:"post",
-				success:function(res){
-					console.log("요청성공")
-				},
-				error:function(e){
-					console.log("요청실패")
-				}
-				
-			})
-			
-		}
-})()
-
-      },
-
-      eventClick: function(arg) {
-  Swal.fire({
-   title: '일정을 삭제하시겠습니까?',
-   text: '삭제된 일정은 복구되지 않습니다.',
-   icon: 'warning',
-   
-   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-   confirmButtonColor: '#6bd098', // confrim 버튼 색깔 지정
-   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-   
-   reverseButtons: false, // 버튼 순서 거꾸로
-   
-}).then(result => {
-   // 만약 Promise리턴을 받으면,
-   
-   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-   
-	   Swal.fire({
-	        title : '일정이 삭제되었습니다.',
-	        confirmButtonColor : '#6bd098'});
-      arg.event.remove()
-      console.log(arg.event.title)
+		document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
 		
-		if(arg.event.allDay){
-			console.log(arg.event.startStr);
-			console.log(arg.event.endStr);
-			$.ajax({
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'timeGridWeek,timeGridDay'
+				},
+				//initialDate: '2020-09-12',
+				initialView: 'timeGridWeek',
+				navLinks: true, // can click day/week names to navigate views
+				selectable: true,
+				selectMirror: true,
+				select: function(arg) {
+					
+					(async () => {
+						const { value: getName } = await Swal.fire({
+							title: '일정을 입력하세요.',
+							input: 'text',
+							confirmButtonColor : '#6bd098'
+						})
+						
+						if (getName) {
+							calendar.addEvent({
+								title: getName,
+								start: arg.start,
+								end: arg.end,
+								allDay: arg.allDay
+							})
+						}
+						calendar.unselect()
+						if(arg.allDay){ // allday true
+							$.ajax({
+											
+								url:"scheduleJoin.do",
+								data:{
+									all: arg.allDay,
+									start: arg.startStr,
+									end: arg.endStr,
+									content: getName
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+												
+							})
+										
+						}else{ // allday false
+							$.ajax({
+												
+								url:"scheduleJoin.do",
+								data:{
+									all: arg.allDay,
+									start: arg.startStr.split('+')[0].split('T')[0]+" "+arg.startStr.split('+')[0].split('T')[1],
+									end: arg.endStr.split('+')[0].split('T')[0]+" "+arg.endStr.split('+')[0].split('T')[1],
+									content: getName
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+												
+							})
+										
+						}
+					})()
+					
+				},
 				
-				url:"scheduleDelete.do",
-				data:{
-					all: arg.event.allDay,
-					start: arg.event.startStr,
-					end: arg.event.endStr,
-					content: arg.event.title
+				eventClick: function(arg) {
+					Swal.fire({
+						title: '일정을 삭제하시겠습니까?',
+						text: '삭제된 일정은 복구되지 않습니다.',
+						icon: 'warning',
+						   
+						showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+						confirmButtonColor: '#6bd098', // confrim 버튼 색깔 지정
+						cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+						confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+						cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+						   
+						reverseButtons: false, // 버튼 순서 거꾸로
+						   
+					}).then(result => {
+					// 만약 Promise리턴을 받으면,
+						   
+						if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+							   
+							Swal.fire({
+							title : '일정이 삭제되었습니다.',
+							confirmButtonColor : '#6bd098'});
+							arg.event.remove()
+
+							$.ajax({
+				
+								url:"scheduleDelete.do",
+								data:{
+									sche_no : arg.event.id
+								},
+								type:"post",
+								success:function(res){
+								},
+								error:function(e){
+								}
+				
+							})
+										
+										
+										
+						}
+					})
 				},
-				type:"post",
-				success:function(res){
-					console.log("요청성공")
-				},
-				error:function(e){
-					console.log("요청실패")
+			
+			     
+			editable: true,
+			dayMaxEvents: true, // allow "more" link when too many events
+			events: eventsList,
+			droppable: true,
+			eventDrop: function(info){
+			    	  
+				    	  
+				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
+				}
+					
+			},
+			eventResizableFromStart: true,
+			eventResizeStop: function(info){
+				
+				console.log(info);    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
 				}
 				
-			})
-			
-		}else{
-			console.log(arg.event.startStr.split("+")[0].split("T")[0]+" "+arg.event.startStr.split("+")[0].split("T")[1])
-			console.log(arg.event.endStr.split("+")[0].split("T")[0]+" "+arg.event.endStr.split("+")[0].split("T")[1])
-			$.ajax({
-			
-			url:"scheduleDelete.do",
-			data:{
-				all: arg.event.allDay,
-				start: arg.event.startStr.split('+')[0].split('T')[0]+" "+arg.event.startStr.split('+')[0].split('T')[1],
-				end: arg.event.endStr.split('+')[0].split('T')[0]+" "+arg.event.endStr.split('+')[0].split('T')[1],
-				content: arg.event.title
-			},
-			type:"post",
-			success:function(res){
-				console.log("요청성공")
-			},
-			error:function(e){
-				console.log("요청실패")
+				
+				
 			}
-			
-		})
-		}
-   }}
-)},
-     
-      editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-      events: eventsList
-    });
-
-    calendar.render();
-  });
+		
+		});
+			calendar.render();
+	});
 
 </script>
   

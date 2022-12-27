@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Diary"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,16 +36,20 @@
 line-height: 1.5;
 height: 12rem;
 text-align : left;}
+#gowrite{text-decoration: none;}
 
     </style>
 </head>
 <body>
+<%List<Diary> diary = (List<Diary>)session.getAttribute("diaryList"); %>
     <div id="wrap">
         <div id="head">
             <h1>나의 일기장</h1>
         </div>
         <div id="btngo">
-            <button>일기 쓰기</button>
+        <a id="gowrite" href="goDiaryWrite.do">
+            <button onclick="createDiv()" >일기 쓰기</button>
+            </a>
         </div>
         <div id="diary">
 
@@ -55,6 +61,9 @@ text-align : left;}
 
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script>
+    
+    
+    
 
 //함수 사용해서 내용추가시 블럭추가만들기
 function createDiv() {
@@ -63,7 +72,7 @@ const newDiv = document.createElement('div');
 const newDiv2 = document.createElement('div');
 
 // 2. <div>에 들어갈 text node 만들기
-    const newText = document.createTextNode('유저가 작성한 정보');
+    const newText = document.createTextNode(<%=diary.get(diary.size()-1).getDiary_content()%>);
     
     // 3. <div>에 text node 붙이기
         newDiv2.appendChild(newText);
@@ -75,7 +84,11 @@ const newDiv2 = document.createElement('div');
   
   // 4. <body>에 1에서 만든 <div> element 붙이기
   document.getElementById("diary").appendChild(newDiv);
-} 
+ 
+	  
+  }
+
+
     </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ITssue.dao.MembersMapper;
 import com.ITssue.entity.Members;
 
-public class UpdateCon implements Controller {
+public class MemberUpdateCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

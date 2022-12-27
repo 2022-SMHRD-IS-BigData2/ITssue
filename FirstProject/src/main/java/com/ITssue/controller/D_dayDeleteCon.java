@@ -1,42 +1,39 @@
 package com.ITssue.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ITssue.dao.ScheduleMapper;
+import com.ITssue.dao.D_dayMapper;
+import com.ITssue.entity.D_day;
 import com.ITssue.entity.Members;
-import com.ITssue.entity.Schedule;
 
-public class ScheduleDeleteCon implements Controller {
+public class D_dayDeleteCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		int sche_no = Integer.parseInt(request.getParameter("sche_no"));
-		
-		
-		System.out.println("sche_no"+sche_no);
+		HttpSession session = request.getSession();
+		Members info = (Members)session.getAttribute("info");
 		
 		
+		D_dayMapper dao = new D_dayMapper();
+		List<D_day> d_day_list = dao.d_dayList(info.getId());
 		
+		D_day d_day = d_day_list.get(d_day_list.size()-1);
 		
-		ScheduleMapper dao = new ScheduleMapper();
-		int result = dao.sche_delete(sche_no);
+		int result = dao.d_dayDelete(d_day.getD_day_no());
 		
-		System.out.println(result +"개 삭제 성공");
 		if(result > 0) {
 			System.out.println("삭제성공");
-			response.getWriter().print("true");
+			response.getWriter().print(true);
 		}else {
 			System.out.println("삭제실패");
-			response.getWriter().print("false");
 		}
 		
 		

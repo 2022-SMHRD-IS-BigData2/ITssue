@@ -79,7 +79,7 @@ font-family: 'LINESeedKR-Bd';}
   .ddaybox{width: 100%; height: 50%; position: relative;} 
 
  input::placeholder{font-family: 'LINESeedKR-Bd';}
- #searchbtn{border: 0;}
+ #searchbtn{border: 0; outline:none;}
  
  #calendar{max-width: 1070px; max-height: 470px; margin: 0 auto;}
 .fc-day-today {
@@ -216,7 +216,7 @@ font-family: 'LINESeedKR-Bd';}
                 </div>
                 <div id="dday">
                   <div class="ddaybox">
-                  <h2 class="ddayline title"><a href="#" style="text-decoration: none; color :#66615B">
+                  <h2 class="ddayline title"><a href="goSche.do" style="text-decoration: none; color :#66615B">
                   <%if(d_day == null){ %>
                   	D-DAY 설정하러가기
                   <%}else{ %>
@@ -225,7 +225,13 @@ font-family: 'LINESeedKR-Bd';}
                   </a></h2>
                 </div>
                 <div class="ddaybox">
-                  <h1 class="ddayline date"><%=time %></h1>
+                  <h1 class="ddayline date">
+                  <%if(d_day == null){ %>
+                  D-DAY
+                  <%}else{ %>
+                  <%=time %>
+                   <%} %>
+                  </h1>
                 </div>
                 </div>
               </div>
@@ -235,7 +241,7 @@ font-family: 'LINESeedKR-Bd';}
             </div>
             
             <div id="postIt">
-              <textarea name="" id="memoIt" ><%=info.getContent() %></textarea>-
+              <textarea name="" id="memoIt" ><%=info.getContent() %></textarea>
            
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
@@ -267,26 +273,43 @@ font-family: 'LINESeedKR-Bd';}
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script type="text/javascript">
-  let eventsList = [];
   <%	List<Schedule> schedule = (List<Schedule>)request.getAttribute("schedule"); %>
-  <%if(schedule != null){%>
-  	<%for(Schedule dto : schedule){%>
-  		<%if(dto.getScheduel_type().equals("t")){%>
-  		eventsList.push({
-  				groupid: '<%=dto.getSche_no()%>',
-  				title: '<%=dto.getSche_content()%>',
-  				start: '<%=dto.getSche_s_dt().split(" ")[0]%>',
-  			})
-  		<%}else{%>
-  		eventsList.push({
-  				groupid: '<%=dto.getSche_no()%>',
-  				title: '<%=dto.getSche_content()%>',
-  				start: '<%=dto.getSche_s_dt().split("\\.")[0]%>',
-  				end: '<%=dto.getSche_e_dt().split("\\.")[0]%>'
-  			})
-  		<%}%>
-  	<%}%>
-  <%}%>
+	let eventsList = [];
+	let scheNull = <%=schedule != null%>
+	
+	if(scheNull){
+		
+		<%for(Schedule sche : schedule){%>
+			var id = "<%=sche.getSche_no()%>";
+			var content = "<%=sche.getSche_content()%>";
+			var alldays = "<%=sche.getScheduel_type()%>";
+			
+			if(alldays == "t"){
+				var startDT = "<%=sche.getSche_s_dt().split(" ")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split(" ")[0]%>";
+			}else{
+				var startDT = "<%=sche.getSche_s_dt().split("\\.")[0]%>";
+				var endDT = "<%=sche.getSche_e_dt().split("\\.")[0]%>";
+			}
+			
+			
+			if(alldays == "t"){
+				eventsList.push({
+					id: id,
+					title: content,
+					start: startDT
+				})
+			}else{
+				eventsList.push({
+					id: id,
+					title: content,
+					start: startDT,
+					end: endDT
+				})
+			}
+			
+		<%}%>
+	}
   
   	$('#timeSave').on('click',function(){
   		console.log($('#MyClockDisplay').html());
@@ -294,7 +317,7 @@ font-family: 'LINESeedKR-Bd';}
   		$.ajax({
   			url:'studyTimePlus.do',
   			data:{
-  				id:<%=info.getId()%>,
+  				id: "<%=info.getId()%>",
   				time: $('#MyClockDisplay').html()
   			},
   			type:"post",
@@ -318,7 +341,6 @@ font-family: 'LINESeedKR-Bd';}
   			},
   			type:'post',
   			success:function(res){
-  				
   			},
   			error:function(e){
   				alert(e)
@@ -499,7 +521,139 @@ font-family: 'LINESeedKR-Bd';}
 			     
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
-			events: eventsList
+			events:eventsList,
+			droppable: true,
+			eventDrop: function(info){
+			    	  
+				    	  
+				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
+				}
+					
+			},
+			eventResizableFromStart: true,
+			eventResizeStop: function(info){
+				
+				console.log(info);    	 // 드래그 했을 때 로직시 실행되는 부분
+						
+				let id = info.event.id;
+				let startStr = info.event.startStr.split("+")[0].split('T');
+				let endStr = info.event.endStr.split("+")[0].split('T');			
+						
+				if(info.event.allDay){
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" 00:00:00",
+							end: endStr[0]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)
+						},
+						error:function(e){
+						}
+										
+					})
+					
+								
+							
+				}else{
+								
+					console.log(id);
+					console.log(startStr);
+					console.log(endStr);
+					
+					$.ajax({
+						
+						url:"scheduleupdate.do",
+						data:{
+							all: info.event.allDay,
+							sche_no: id,
+							start: startStr[0]+" "+startStr[1],
+							end: endStr[0]+" "+endStr[1]
+							
+						},
+						type:"post",
+						success:function(res){
+							console.log(res)							
+						},
+						error:function(e){
+						}
+										
+					})
+								
+				}
+				
+				
+				
+			}
+		
 			
 		});
 		

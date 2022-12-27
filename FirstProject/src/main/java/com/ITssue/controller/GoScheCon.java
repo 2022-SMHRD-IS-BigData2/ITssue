@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ITssue.dao.D_dayMapper;
+import com.ITssue.dao.DiaryMapper;
 import com.ITssue.dao.ScheduleMapper;
 import com.ITssue.entity.D_day;
 import com.ITssue.entity.Members;
@@ -27,10 +28,10 @@ public class GoScheCon implements Controller {
 		HttpSession session = request.getSession();
 		Members info = (Members)session.getAttribute("info");
 		
+		//==========================================================================
 		D_dayMapper dao = new D_dayMapper();
 		List<D_day> list = dao.d_dayList(info.getId());
 		
-		//==========================================================================
 		LocalDate now = LocalDate.now();
 		
 		int nowYear = now.getYear();
