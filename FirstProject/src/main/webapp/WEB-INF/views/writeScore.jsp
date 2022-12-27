@@ -54,8 +54,9 @@ Coded by www.creative-tim.com
     }
 
     body {
-      font-family: 'LINESeedKR-Bd'
+      font-family: 'LINESeedKR-Bd';
       background-color: #f4f3ef;
+      overflow-x:hidden;
     }
 
     .alert-icon {
@@ -170,7 +171,7 @@ Coded by www.creative-tim.com
             </tr>
             <tr>
               <td style="font-size:large; font-weight: bold;">📌 시험날짜</td>
-              <td><input id="test_date" type="text" placeholder="시험날짜를 입력해주세요"></td>
+              <td><input id="test_date" type="date" placeholder="시험날짜를 입력해주세요"></td>
             </tr>
             <tr class="scoresub">
               <td style="font-size:large; font-weight: bold; background-color: #9ED6C0;">📌 과목명</td>
@@ -228,12 +229,70 @@ Coded by www.creative-tim.com
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script>
     function alert(){
-    Swal.fire({
-     title: '성적정보가 저장되었습니다',
-     confirmButtonColor: '#6bd098'
-    });
-  }
-
+    	var nameNull = document.querySelector('#test_name').value;
+    	var scoreNull = document.querySelectorAll('.test_score')[0].value;
+    	console.log(nameNull);
+    	console.log(scoreNull);
+    	if(nameNull != "" && scoreNull != ""){
+    		
+		    Swal.fire({
+		     title: '성적정보가 저장되었습니다',
+		     confirmButtonColor: '#6bd098'
+		    }).then(result => {
+		    	var test_subjectName = document.querySelectorAll('.test_subjectName')
+		    	var test_score = document.querySelectorAll('.test_score')
+		    	var testDate = document.querySelector('#test_date').value
+		    	var testName = document.querySelector('#test_name').value
+		    	var subjectName = '';
+		    	var score = 0;
+		    	for(var i = 0; i < test_subjectName.length; i++){
+		    		if(test_subjectName[i].value != ""){
+			    		subjectName += test_subjectName[i].value + " ";
+		    		}else{
+		    			subjectName += "nosubject ";
+		    		}
+			    	if(test_score[i].value != ""){
+			    		score += parseInt(test_score[i].value);
+			    	}else{
+			    		score += 0;
+			    	}
+		    	}
+		    	console.log(document.querySelector('#test_name').value == "")
+		    	console.log(subjectName)
+		    	console.log(score)
+		    	$.ajax({
+		    		url:'writeScore.do',
+		    		data:{
+		    			subject : subjectName,
+		    			grade: score,
+		    			title: testName,
+		    			date : testDate
+		    		},
+		    		type: 'post',
+		    		success: function(res){
+		    			if(res){
+		    				location.href = "goBoardScore.do"
+		    			}
+		    		},
+		    		error: function(e){
+		    			alert(e)
+		    		}
+		    	})
+		    });
+    	}else{
+    		if(nameNull == ""){
+    			Swal.fire({
+        			title: '시험명을 입력해주세요.',
+        			confirmButtonColor: '#6bd098'
+        		})
+    		}else if(scoreNull == ""){
+    			Swal.fire({
+        			title: '점수를 입력해주세요.',
+        			confirmButtonColor: '#6bd098'
+        		})
+    		}
+    	}
+    }
   $(function(){
     var newRow = $('.scoresub').eq(0);
     var newRow2 = $('.scoretrue').eq(0);

@@ -1,3 +1,5 @@
+<%@page import="com.ITssue.entity.Score"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -97,6 +99,24 @@
 </head>
 
 <body>
+	<script type="text/javascript">
+		<%List<Score> list = (List<Score>)request.getAttribute("scoreList");
+			boolean listNull = list != null;
+			int size = 0;
+			if(listNull){
+				size = list.size() -1;
+			}
+		%>
+		let datas = []; //
+		let labels = []; //
+		<%if(listNull){%>
+			<%for(Score score : list){%>
+				datas.push(<%=score.getGrade()%>);
+				labels.push('<%=score.getScore_date().split(" ")[0]%>');
+			<%}%>
+		<%}%>
+		
+	</script>
     <div class="wrap"><br>
         <div class="col-md-12">
             <div id="graph_title">
@@ -117,7 +137,7 @@
                     <li id="score_semi_title">시험점수 상세정보</li>
                     <p id="score_comment">&nbsp;&nbsp;&nbsp;&nbsp;당신의 시험점수에 대한 상세정보를 보여줍니다.</p>
                 </span>
-                <button type=button id="enterscore" onclick="">시험 정보 입력하기</button><br>
+                <button type=button id="enterscore">시험 정보 입력하기</button><br>
                 <button type="button" id="delscore">마지막 시험 삭제하기</button>
             </div>
 
@@ -131,47 +151,41 @@
                         <th scope="col">총합점수</th>
                         <th scope="col">과목명1</th>
                         <th scope="col">과목명2</th>
+                        <th scope="col">과목명3</th>
+                        <th scope="col">과목명4</th>
+                        <th scope="col">과목명5</th>
                     </tr>
                 </thead>
-               <tbody>
-                    <tr>
-                        <td>3월 모의고사</td>
-                        <td>22.03.24</td>
-                        <td>480</td>
-                        <td>윤리와사상</td>
-                        <td>생활과윤리</td>
+        		<tbody>
+        		<%for(Score score : list){%>
+        			<tr>
+                        <td><%=score.getScore_title() %></td>
+                        <td><%=score.getScore_date().split(" ")[0] %></td>
+                        <td><%=score.getGrade() %></td>
+                        <% for(int i = 0; i < score.getSubname().split(",").length; i++){
+                        	String subname = score.getSubname().split(",")[i];%>
+                        	<td><%=subname %></td>
+                        <%} %>
                     </tr>
-                    <tr>
-                        <td>토익</td>
-                        <td>22.05.16</td>
-                        <td>820</td>
-                        <td>RC</td>
-                        <td>LC</td>
-                    </tr>
-                    <tr>
-                        <td>중간고사</td>
-                        <td>22.06.08</td>
-                        <td>432</td>
-                        <td>과목1</td>
-                        <td>과목2</td>
-                    </tr>
+        		<%}%>
 				</tbody>
             </table>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+
     <script>
         const ctx = document.getElementById('myChart');
 
 new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', '최근7일'],
+    labels: labels,
     datasets: [{
       label: '내 성적 변화',
-      data: [12, 8, 6, 7,12, 5,10],
+      data: datas,
       borderWidth: 1,
       borderColor : '#6bd098',
       backgroundColor: '#6bd098'
@@ -192,10 +206,26 @@ $("#delscore").click(function(){
 	// 마지막 시험 삭제하기 버튼 누르면 실행됨
 		console.log('삭제됨')
 	    var trCnt = $('#score_table>tbody tr').length;
+		console.log(trCnt)
 	    if(trCnt > 0){
-	    	console.log($('tbody > tr:last').html())
-	    	$('tbody > tr:last').remove()
-	    }    
+	    	console.log($('tbody>tr:last').html())
+	    	$.ajax({
+	    		url:'scoreDelete.do',
+	    		data:{
+	    			scoreNo : <%=list.get(size).getScore_no()%>
+	    		},
+	    		type: 'post',
+	    		success: function(res){
+	    			if(res){
+		    			$('tbody > tr:last').remove()
+	    			}
+	    			
+	    		},
+	    		error: function(e){
+	    			
+	    		}
+	    	})
+	    }
     })
     </script>
 <script src="./assets/js/jquery-3.6.1.min.js"></script>
@@ -204,7 +234,7 @@ $("#delscore").click(function(){
 	$('#enterscore').on('click',function(){
 		// 시험 정보 입력하기 버튼 누르면 실행됨
 		console.log('입력하기 클릭됨')
-		
+		location.href = "goWriteScore.do";
 		
 	})
 	

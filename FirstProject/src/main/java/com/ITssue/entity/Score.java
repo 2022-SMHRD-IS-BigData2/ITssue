@@ -11,5 +11,5 @@ public class Score {
 	private int grade;
 	private String score_date;
 	private String id;
-	
+	private String score_title;
 }

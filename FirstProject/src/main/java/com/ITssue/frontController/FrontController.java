@@ -36,6 +36,7 @@ import com.ITssue.controller.GoNaverCallBackCon;
 import com.ITssue.controller.GoScheCon;
 import com.ITssue.controller.GoUpdateCon;
 import com.ITssue.controller.GoWelcomeCon;
+import com.ITssue.controller.GoWriteScoreCon;
 import com.ITssue.controller.JoinCon;
 import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
@@ -45,7 +46,9 @@ import com.ITssue.controller.NaverLoginCon;
 import com.ITssue.controller.ScheduleDeleteCon;
 import com.ITssue.controller.ScheduleJoinCon;
 import com.ITssue.controller.ScheduleUdateCon;
+import com.ITssue.controller.ScoreDeleteCon;
 import com.ITssue.controller.StudyTimePlusCon;
+import com.ITssue.controller.WriteScoreCon;
 import com.ITssue.controller.memoWriteCon;
 
 
@@ -79,6 +82,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/goBoardDiary.do", new GoBoardDiaryCon() );
 		 handlerMapping.put("/goBoardTime.do", new GoBoardTimeCon() );
 		 handlerMapping.put("/goBoardScore.do", new GoBoardScoreCon() );
+		 handlerMapping.put("/goWriteScore.do", new GoWriteScoreCon() );
 		 
 		 
 		
@@ -103,6 +107,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/naverLogin.do", new NaverLoginCon());
 		 handlerMapping.put("/diaryDelete.do", new DiaryDeleteCon());
 		 handlerMapping.put("/diaryInsert.do", new DiaryInsertCon());
+		 handlerMapping.put("/scoreDelete.do", new ScoreDeleteCon());
+		 handlerMapping.put("/writeScore.do", new WriteScoreCon());
 		 
 		 
 		
