@@ -62,8 +62,8 @@ System.out.println(list.get(5).getAmounts().split(":")[1]);
 System.out.println(list.get(5).getAmounts().split(":")[2]);
 
 int hour = 0;
-for(int i; i < list.size(); i++){
-	hour = list.get(0).getAmounts().split(":")[0];
+for(int i=0; i<list.size(); i++){
+	hour += Integer.parseInt(list.get(0).getAmounts().split(":")[0]);
 }
 
 
@@ -76,7 +76,7 @@ for(int i; i < list.size(); i++){
     <div id="topmain">
         <div class="time">
             <h2>전일대비 공부량</h2>
-            <span><%=list.get(3).getAmounts() %></span>
+            <span>12</span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
