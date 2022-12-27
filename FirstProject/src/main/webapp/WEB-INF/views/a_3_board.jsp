@@ -107,7 +107,7 @@ List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
             </a>
           </li>
         </ul>
-        <form action="">
+        <form action="goMembersChart.do">
         <div class="input-group no-border">
         <input id ="search" type="text" value="" class="form-control" placeholder="회원 검색">
         <div class="input-group-append">
