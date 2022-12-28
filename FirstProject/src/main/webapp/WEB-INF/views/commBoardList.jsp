@@ -260,6 +260,10 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   		$.ajax({
   	  		
   			url: 'boardList.do',
+  			data:{
+  				id: '<%=info.getId()%>'
+  			},
+  			type: 'post',
   			dataType:'json',
   			success: function(res){
   				console.log(res);
@@ -271,14 +275,14 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 						var board = res[i];
 						
 						tr = `
-						<tr>
-							<td>` + board.board_no + `</td>
-							<td>` + board.board_title + `</td>
-							<td>` + board.id + `</td>
-							<td>` + board.board_date.split(' ')[0] + `</td>
-							<td>` + board.likes + `</td>
-						</tr>
-						`
+							<tr>
+								<td>` + board.board_no + `</td>
+								<td>` + board.board_title + `</td>
+								<td>` + board.id + `</td>
+								<td>` + board.board_date.split(' ')[0] + `</td>
+								<td>` + board.likes + `</td>
+							</tr>
+							`
 						// 준비한 tr을 tbody에 집어넣기
 						// $('선택자').html() : 안에 있는 html코드 리턴
 						// $('선택자').html('코드') : 안에 있는 html코드 덮어쓰기
@@ -302,7 +306,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   
   	$('#myList').on('click',function(){
   		$('tbody').html('');
-  		
+  		var tr = "";
   		<%for(Board board : list){%>
 			
 			<%if(board.getId().equals(info.getId())){%>
@@ -316,7 +320,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 				</tr>
 				`
 			<%}%>
- 	 		$('tbody').append( tr );
+ 	 			$('tbody').append( tr );
   			
   		<%}%>
   		

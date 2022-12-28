@@ -28,7 +28,19 @@ public class BoardMapper {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		
-		List<Board> result = session.selectList("listView");
+		List<Board> result = session.selectList("allListView");
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+	public List<Board> boardList(String id) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		List<Board> result = session.selectList("listView",id);
 		
 		session.close();
 		

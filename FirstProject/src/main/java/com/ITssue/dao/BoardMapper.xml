@@ -21,6 +21,13 @@
 	<select id="listView" resultType="com.ITssue.entity.Board">
 		select *
 		from board
+		where id = #{id}
+		order by board_no desc
+	</select>
+	
+	<select id="allListView" resultType="com.ITssue.entity.Board">
+		select *
+		from board
 		order by board_no desc
 	</select>
 
