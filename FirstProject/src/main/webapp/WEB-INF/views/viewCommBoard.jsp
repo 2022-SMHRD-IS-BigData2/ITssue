@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.ITssue.entity.Comments"%>
 <%@page import="com.ITssue.entity.Board"%>
 <%@page import="java.util.List"%>
@@ -283,6 +284,7 @@ Coded by www.creative-tim.com
             <div id="commentbox">
               <table align="center" border="2" bordercolor="#66615B" id="commenttable" style="margin-top:20px;">
                 <tr class="repletrue">
+                 
                   <td class="replewriter">작성자</td>
                   <td colspan="2" class="replebox">댓글을 남겨주세요!</td>
                   <td class="repletime">2022.12.23 10:42</td>
@@ -290,13 +292,15 @@ Coded by www.creative-tim.com
                 </tr>
                 <%for(int i =0; i<comm.size(); i++){ %>
                  <tr class="repletrue">
+                 
                   <td class="replewriter"><%=comm.get(i).getId() %></td>
                   <td colspan="2" class="replebox"><%=comm.get(i).getCmt_content() %></td>
                   <td class="repletime"><%=comm.get(i).getCmt_dt() %></td>
-                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);">삭제</button></td>
+                  <td class="repledelbox"><button class="repledel" onclick="javascript:delcom(this);" value=<%=comm.get(i).getCmt_no() %>>삭제</button></td>
                 </tr>
                
-               <%} %>
+               <%}%>
+               
               </table>
             </div>
             <div id="inner_text_write">
@@ -307,7 +311,7 @@ Coded by www.creative-tim.com
                   </form>
               </div>
               <div>
-                <button id="reple_btn" type="button" style="margin-left: 48%; margin-top: 1%; background-color: #6bd098;" class="btngo" onclick="addComment()">댓글등록</button>
+                <button id="reple_btn" type="button" style="margin-left: 48%; margin-top: 1%; background-color: #6bd098;" class="btngo" onclick='addComment()'>댓글등록</button>
               </div>
             </div>
           </div>
@@ -332,6 +336,9 @@ Coded by www.creative-tim.com
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
       $('#search').keypress(function(event){
      if ( event.which == 13 ) {
@@ -340,40 +347,45 @@ Coded by www.creative-tim.com
      }
 });
       
+
+      
+      
+function addComment(){
+    		 $.ajax({
+    			  url: 'writeComment.do',
+    				data: {
+    					comment : $('#commentarea').val(),
+    					boardNo: <%=board.getBoard_no() %>,
+    					id: <%= info.getId() %>
+    				},
+    				type: 'post',
+    				success : function(res){
+    					if(res=='true'){
+    						$('#commentarea').val("");
+    						console.log('등록성공');
+    						
+    					}else{
+    						console.log('등록실패')
+    					}
+    				},
+    				error : function(e){
+    			
+    				}
+    			})
+    	  const parent =document.getElementById('commenttable');
+    		const newcomment=document.createElement('tr');
+    		newcomment.setAttribute('class','repletrue');
+    		parent.appendChild(newcomment);
+
+    		addbox(newcomment)
+    	 
+    	}
+      
       
 
-function addComment(){
-  const parent =document.getElementById('commenttable');
-  const newcomment=document.createElement('tr');
-  newcomment.setAttribute('class','repletrue');
-  parent.appendChild(newcomment);
 
-  addbox(newcomment)
-  
-  $ajax({
-	  url: 'wirteComment.do',
-		data: {
-			comment : $('#commentarea').val(),
-			boardNo: <%=board.getBoard_no() %>,
-			id: <%= info.getId() %>
-		},
-		type: 'post',
-		success : function(res){
-			if(res>0){
-				selectRepleList();
-				$('#commentarea').val("");
-				console.log('등록성공');
-			}else{
-				console.log('등록실패')
-			}
-		},
-		error : function(e){
-	
-		}
-	})
+ 
 	  
-  
-}
 
 function addbox(newcomment){
   const repleValue 
@@ -382,6 +394,7 @@ function addbox(newcomment){
     const content = document.createElement('td');
     const date = document.createElement('td');
     const del = document.createElement('td');
+
   
   writer.setAttribute('class','replewriter');
   content.setAttribute('class','replebox');
@@ -391,22 +404,67 @@ function addbox(newcomment){
   del.innerHTML = $('.repledelbox').eq(0).html();
 
   
+  var today = new Date();
+
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2);
+  var day = ('0' + today.getDate()).slice(-2);
+  var hours = ('0' + today.getHours()).slice(-2); 
+  var minutes = ('0' + today.getMinutes()).slice(-2);
+  var seconds = ('0' + today.getSeconds()).slice(-2); 
+
+  var dateString = year + '-' + month  + '-' + day +" "+hours + ':' + minutes  + ':' + seconds;
+
+
+  
   const textNode = document.createTextNode(repleValue);
   content.appendChild(textNode);
+  const textNode2 = document.createTextNode(<%=info.getId()%>);
+  writer.appendChild(textNode2);
+  const textNode3 = document.createTextNode(dateString);
+  date.appendChild(textNode3);
+
 
 
   newcomment.appendChild(writer);
   newcomment.appendChild(content);
   newcomment.appendChild(date);
   newcomment.appendChild(del);
+  
 
   $('textarea').val('');
 }
 
 function delcom(obj){
-	  var tr = obj.parentNode.parentNode;
-	     tr.parentNode.removeChild(tr);
-}
+	
+	
+	var tr = obj.parentNode.parentNode;
+	$.ajax({url: 'deleteComment.do',
+		data: {
+			cmt_no : obj.value,
+			id : <%=info.getId()%>
+		},
+		type: 'post',
+		success : function(res){
+			if(res=='true'){
+				console.log('삭제성공');
+				tr.parentNode.removeChild(tr);
+			}else{
+				console.log('삭제실패')
+				Swal.fire({
+        			title: '자기 댓글만 삭제 가능합니다.',
+        			confirmButtonColor: '#6bd098'
+        		})
+			}
+		},
+		error : function(e){
+	
+		}
+		
+	})
+	
+		}
+
 
 
 
@@ -443,14 +501,14 @@ function delcom(obj){
 } */
 
 $('#boarddel').on('click',function(){
-	var board_id = <%=board.getId() %>
+	var board_id = <%= board.getId() %>
 	var member_id = <%= info.getId() %>
 	
 	if(board_id == member_id){
 		$.ajax({
 			url: 'commDeleteOk.do',
 			data: {
-				board_no: '<%=board.getBoard_no()%>'
+				board_no: '<%= board.getBoard_no()%>'
 			},
 			type: 'get',
 			success : function(res){

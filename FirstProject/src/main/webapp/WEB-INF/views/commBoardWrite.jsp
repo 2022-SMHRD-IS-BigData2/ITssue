@@ -255,7 +255,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
             <tr>
               <th colspan="4">
                 <form onsubmit="false" >
-                  <textarea name="title" id="title" cols="132" rows="1" style="text-align: center; font-size: medium"
+                  <textarea required name="title" id="title" cols="132" rows="1" style="text-align: center; font-size: medium"
                     placeholder="제목을 입력하세요."></textarea>
                 </form>
               </th>
@@ -286,7 +286,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
             <tbody>
               <tr>
                 <th colspan="4">
-                    <textarea name="content" id="content" cols="132" rows="25" style="font-size: medium; text-align: center;"
+                    <textarea required name="content" id="content" cols="132" rows="25" style="font-size: medium; text-align: center;"
                       placeholder="내용을 입력하세요."></textarea>
                     <input id="addValue" type="text" placeholder="여섯자까지 해시태그 입력">
                     <input id="push-hash" type='button' value='추가' onclick='addList()'>

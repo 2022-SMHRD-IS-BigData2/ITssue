@@ -28,3 +28,5 @@ values(3,'일기','일기일기',null,sysdate,1234);
 insert into comments
 values(3, 16, '집22212312에 가고싶다', sysdate, 1234);
 
+select sysdate from dual;
+

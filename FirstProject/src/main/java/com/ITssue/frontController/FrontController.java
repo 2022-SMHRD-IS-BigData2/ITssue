@@ -17,6 +17,7 @@ import com.ITssue.controller.CommWriteCon;
 import com.ITssue.controller.Controller;
 import com.ITssue.controller.D_dayDeleteCon;
 import com.ITssue.controller.D_dayInsertCon;
+import com.ITssue.controller.DeleteCommentCon;
 import com.ITssue.controller.DiaryDeleteCon;
 import com.ITssue.controller.DiaryInsertCon;
 import com.ITssue.controller.GoBoardCon;
@@ -117,6 +118,8 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/writeScore.do", new WriteScoreCon());
 		 handlerMapping.put("/writeComment.do", new WriteCommentCon());
 		 handlerMapping.put("/viewComment.do", new ViewCommentCon());
+		 handlerMapping.put("/deleteComment.do", new DeleteCommentCon());
+		 
 		 
 		 
 		

@@ -29,6 +29,7 @@
 		<mapper resource="com/ITssue/dao/ScheduleMapper.xml" />
 		<mapper resource="com/ITssue/dao/ScoreMapper.xml" />
 		<mapper resource="com/ITssue/dao/Study_timeMapper.xml" />
+		<mapper resource="com/ITssue/dao/LikesMapper.xml"/>
 	</mappers>
 
 </configuration>
