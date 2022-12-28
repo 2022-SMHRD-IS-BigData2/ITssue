@@ -537,7 +537,7 @@ function delcom(obj){
 } */
 
 $('#boarddel').on('click',function(){
-	var board_id = <%= board.getId() %>
+	var board_id = '<%= board.getId() %>'
 	var member_id = '<%= info.getId() %>'
 	
 	if(board_id == member_id){
