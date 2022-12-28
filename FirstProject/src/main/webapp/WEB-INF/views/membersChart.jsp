@@ -288,6 +288,13 @@ Coded by www.creative-tim.com
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <script src="./assets/js/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript">
+  	
+  	$('#btngo').on('click',function(){
+  		location.href = 'goBoard.do';
+  	})
+  	
+  </script>
   <script>
   	<%
 		List<Study_time> myStudyList = (List<Study_time>)request.getAttribute("myStudy");
@@ -380,7 +387,7 @@ new Chart(ctx, {
 				borderWidth:5,
 				borderColor:'#ff7979',
 				backgroundColor:'#ff7979',
-				yAxisID:'y1'
+				yAxisID:'y'
 			}
 		]
 	},
@@ -403,16 +410,8 @@ new Chart(ctx, {
 				type : 'linear',
 				display : true,
 				position:'left',
-			},
-			y1:{
-				type: 'linear',
-				display:true,
-				position:'right',
-				        
-				grid:{
-					drawOnChartArea:false,
-				}
 			}
+			
 		}
 	}
 });

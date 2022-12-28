@@ -241,7 +241,7 @@ Coded by www.creative-tim.com
               <span id="span_reco"> 
                   <button id="recommend" class="btngo" style="background-color: #6bd098; margin: 0px 10px 0px 30px;"> 추천하기</button>
               </span>
-              <span >
+              <span>
               추천수 : 
               </span>
               <span style="margin: 10px;" id="recommendnum">
@@ -339,6 +339,43 @@ Coded by www.creative-tim.com
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+      <script type="text/javascript">
+      	$('#recommend').on('click',function(){
+      		console.log('<%=info.getId()%>');
+      		console.log('<%=board.getBoard_no()%>');
+      		
+      		
+      		$.ajax({
+      			url:'likeCheck.do',
+      			data: {
+      				id: '<%=info.getId()%>',
+      				board: <%=board.getBoard_no()%>
+      			},
+      			type: 'post',
+      			dataType: 'json',
+      			success: function(res){
+      				$('#recommendnum').html(res.likes);
+      			},
+      			error: function(e){
+      				
+      			}
+      			
+      			
+      			
+      			
+      		})
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      	})
+      
+      </script>
     <script>
       $('#search').keypress(function(event){
      if ( event.which == 13 ) {
@@ -356,7 +393,6 @@ function addComment(){
     				data: {
     					comment : $('#commentarea').val(),
     					boardNo: <%=board.getBoard_no() %>,
-    					id: <%= info.getId() %>
     				},
     				type: 'post',
     				success : function(res){
@@ -419,7 +455,7 @@ function addbox(newcomment){
   
   const textNode = document.createTextNode(repleValue);
   content.appendChild(textNode);
-  const textNode2 = document.createTextNode(<%=info.getId()%>);
+  const textNode2 = document.createTextNode('<%=info.getId()%>');
   writer.appendChild(textNode2);
   const textNode3 = document.createTextNode(dateString);
   date.appendChild(textNode3);

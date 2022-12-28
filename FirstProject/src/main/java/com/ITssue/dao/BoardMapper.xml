@@ -41,5 +41,21 @@ select * from board
 where board_no = #{board_no}
 </select>
 
+<update id="likePlusUpdate">
+	update board
+	set likes = likes +1
+	where board_no = #{board_no}
+</update>
+
+<update id="likeMinusUpdate">
+	update board
+	set likes = likes -1
+	where board_no = #{board_no}
+</update>
+<select id="boardInfo" resultType="com.ITssue.entity.Board">
+	select *
+	from board
+	where board_no = #{board_no}
+</select>
 
 </mapper>
