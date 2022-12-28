@@ -269,9 +269,11 @@ Coded by www.creative-tim.com
                      <%=board.getBoard_content()%>
                     </td>
                   </tr>
+                  <tr>
+                   
+                  </tr>
                   <tr></tr>
-                  <tr></tr>
-                  <tr></tr>
+                  <tr><div id= "hashtagbox" style="background-color: #6bd098;"><%= board.getHash_tag()%></div></tr>
                   <tr>
                     <td colspan="2"><a href="goCommList.do"><button id="btnback" class="btnon">뒤로가기</button></a>
                     
