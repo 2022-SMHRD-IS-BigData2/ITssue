@@ -19,10 +19,9 @@ public class BoardListCon implements Controller {
 			throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
 		
 		BoardMapper dao = new BoardMapper();
-		List<Board> list = dao.boardList(id);
+		List<Board> list = dao.boardList();
 		
 		
 		request.setAttribute("boardList", list);

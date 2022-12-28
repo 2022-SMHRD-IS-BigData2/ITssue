@@ -250,6 +250,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+   <script src="./assets/js/jquery-3.6.1.min.js"></script>
   <script type="text/javascript">
   	$('#newWrite').on('click',function(){
   		location.href="goCommWrite.do";
@@ -261,7 +262,6 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   	  		
   			url: 'boardList.do',
   			data:{
-  				id: '<%=info.getId()%>'
   			},
   			type: 'post',
   			dataType:'json',
@@ -276,11 +276,11 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 						
 						tr = `
 							<tr>
-								<td>` + board.board_no + `</td>
-								<td>` + board.board_title + `</td>
-								<td>` + board.id + `</td>
-								<td>` + board.board_date.split(' ')[0] + `</td>
-								<td>` + board.likes + `</td>
+								<td scope='col' class='td_title' width='250'>` + board.board_no + `</td>
+								<td scope='col' class='td_title' width='365'><a href='goBoardView.do?num=`+board.board_no+`'>` + board.board_title + `</a></td>
+								<td scope='col' class='td_title' width='280'>` + board.id + `</td>
+								<td scope='col' class='td_title' width='300'>` + board.board_date.split(' ')[0] + `</td>
+								<td scope='col' class='td_title' width='90'>` + board.likes + `</td>
 							</tr>
 							`
 						// 준비한 tr을 tbody에 집어넣기
@@ -302,27 +302,27 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   			
   		})
   		
-  	})
+  	});
   
   	$('#myList').on('click',function(){
   		$('tbody').html('');
-  		var tr = "";
+  		var tr = '';
   		<%for(Board board : list){%>
 			
 			<%if(board.getId().equals(info.getId())){%>
 				tr = `
 					<tr>
-				<td><%=board.getBoard_no()%></td>
-				<td><%=board.getBoard_title()%></td>
-				<td><%=board.getId()%></td>
-				<td><%=board.getBoard_date().split(" ")[0] %></td>
-				<td><%=board.getLikes() %> </td>
+				<td scope='col' class='td_title' width='250'>`+'<%=board.getBoard_no()%>'+`</td>
+				<td scope='col' class='td_title' width='365'><a href="goBoardView.do?num=<%=board.getBoard_no()%>">`+'<%=board.getBoard_title()%>'+`</a></td>
+				<td scope='col' class='td_title' width='280'>`+'<%=board.getId()%>'+`</td>
+				<td scope='col' class='td_title' width='300'>`+'<%=board.getBoard_date().split(" ")[0] %>'+`</td>
+				<td scope='col' class='td_title' width='90'>`+'<%=board.getLikes() %>' +`</td>
 				</tr>
 				`
 			<%}%>
   			
+			$('tbody').append( tr );
   		<%}%>
- 	 			$('tbody').append( tr );
   		
   	})
   	$('#hashTag').keypress(function(event){
