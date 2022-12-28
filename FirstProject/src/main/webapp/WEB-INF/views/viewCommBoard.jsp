@@ -269,9 +269,11 @@ Coded by www.creative-tim.com
                      <%=board.getBoard_content()%>
                     </td>
                   </tr>
+                  <tr>
+                   
+                  </tr>
                   <tr></tr>
-                  <tr></tr>
-                  <tr></tr>
+                  <tr><div id= "hashtagbox" style="background-color: #6bd098;"><%= board.getHash_tag()%></div></tr>
                   <tr>
                     <td colspan="2"><a href="goCommList.do"><button id="btnback" class="btnon">뒤로가기</button></a>
                     
@@ -452,7 +454,7 @@ function addbox(newcomment){
   
   const textNode = document.createTextNode(repleValue);
   content.appendChild(textNode);
-  const textNode2 = document.createTextNode('<%=info.getId()%>');
+  const textNode2 = document.createTextNode('<%=info.getNick()%>');
   writer.appendChild(textNode2);
   const textNode3 = document.createTextNode(dateString);
   date.appendChild(textNode3);
