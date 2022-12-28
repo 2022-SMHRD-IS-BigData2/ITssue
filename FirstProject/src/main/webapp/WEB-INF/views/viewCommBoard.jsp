@@ -478,7 +478,7 @@ function delcom(obj){
 	$.ajax({url: 'deleteComment.do',
 		data: {
 			cmt_no : obj.value,
-			id : <%=info.getId()%>
+			id : '<%=info.getId()%>'
 		},
 		type: 'post',
 		success : function(res){
