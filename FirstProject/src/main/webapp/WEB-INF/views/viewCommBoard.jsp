@@ -458,7 +458,7 @@ function addbox(newcomment){
   
   const textNode = document.createTextNode(repleValue);
   content.appendChild(textNode);
-  const textNode2 = document.createTextNode('<%=info.getId()%>');
+  const textNode2 = document.createTextNode('<%=info.getNick()%>');
   writer.appendChild(textNode2);
   const textNode3 = document.createTextNode(dateString);
   date.appendChild(textNode3);
