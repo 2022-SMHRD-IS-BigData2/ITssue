@@ -45,10 +45,8 @@ public class LikeCheckCon implements Controller {
 		
 		Board boardInfo = null;
 		if(result > 0) {
-			System.out.println("삭제 또는 추가 성공");
 			boardInfo = boardDao.boardInfo(boardNo);
 		}else {
-			System.out.println("완전실패");
 		}
 		
 		Gson gson = new Gson();

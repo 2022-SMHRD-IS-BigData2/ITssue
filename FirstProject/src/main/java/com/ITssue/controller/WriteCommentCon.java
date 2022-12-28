@@ -23,9 +23,6 @@ public class WriteCommentCon implements Controller {
 		
 		CommentsMapper dao = new CommentsMapper();
 		
-		System.out.println("boardNo :"+boardNo);
-		System.out.println("comment : "+comment);
-		System.out.println("id :"+id);
 		
 		
 		Comments dto = new Comments();
@@ -37,10 +34,8 @@ public class WriteCommentCon implements Controller {
 		
 		if(result > 0) {
 			response.getWriter().print("true");
-			System.out.println("등록성공");
 		}else {
 			response.getWriter().print("false");
-			System.out.println("등록실패");
 		}
 		
 		return null;

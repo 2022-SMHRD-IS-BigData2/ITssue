@@ -164,10 +164,8 @@ Coded by www.creative-tim.com
     	  			type: 'get',
     	  			success : function(res){
     	  				if(res){
-    	  					console.log('삭제성공');
     	  					location.href = 'goBoard.do';
     	  				}else{
-    	  					console.log('삭제실패')
     	  				}
     	  			},
     	  			error : function(e){
@@ -194,10 +192,8 @@ Coded by www.creative-tim.com
   			type: 'get',
   			success : function(res){
   				if(res=='true'){
-  					console.log('삭제성공');
   					location.href = 'goBoardDiary.do';
   				}else{
-  					console.log('삭제실패')
   				}
   			},
   			error : function(e){

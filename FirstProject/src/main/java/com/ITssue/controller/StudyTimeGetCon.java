@@ -26,15 +26,9 @@ public class StudyTimeGetCon implements Controller {
 		List<Study_time> result = dao.timeGet(info.getId());
 		
 		if(result == null) {
-			System.out.println("조회 실패!!");
 		}else {
-			System.out.println("조회 성공...");
 			session.setAttribute("get", result);
 		}	// 세션에 사용자 정보 저장
-//		System.out.println(result.get(0));
-//		System.out.println(result.get(0).getAmounts().split(":")[0]);
-//		System.out.println(result.get(0).getAmounts().split(":")[1]);
-//		System.out.println(result.get(0).getAmounts().split(":")[2]);
 
 
 

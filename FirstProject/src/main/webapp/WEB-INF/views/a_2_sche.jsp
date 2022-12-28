@@ -301,7 +301,6 @@ Coded by www.creative-tim.com
 
   <script>
 function addList()  {
-  console.log('추가된다');
   
   const parent = document.getElementById('ddaycontain');
   const newDiv = document.createElement("div");
@@ -317,8 +316,6 @@ function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
   const addValue2
   =document.getElementById('ddaydatecon').value;
   
-  console.log(addValue); // D-day의 이름부분
-  console.log(addValue2); // 필요한 날짜 데이터
   
   $.ajax({
 	
@@ -347,8 +344,6 @@ function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
 		  const textNode2 = document.createTextNode(res.d_day_dt);
 		  list2.appendChild(textNode2);
 
-		  console.log("newDiv")
-		  console.log(newDiv);
 		  // 3. 생성된 li를 ul에 추가
 		  
 		newDiv.appendChild(list);
@@ -369,7 +364,6 @@ function addDiv(newDiv){ // D-day 생성하기 때 실행되는 로직
 
 function removeItem()  { // 삭제되었을때의 로직이 실행되는 부분
   
-	 console.log('삭제된당')
 	
 	$.ajax({
 	
@@ -385,7 +379,6 @@ function removeItem()  { // 삭제되었을때의 로직이 실행되는 부분
 			  // 3. <li> 목록 중 첫번째 item 삭제
 			  if(items.length > 0)  {
 
-				console.log(items[items.length-1].innerText.split('\n'));
 			    items[items.length-1].remove();
 			  }
 		},
@@ -542,7 +535,6 @@ $('#search').keypress(function(event){
 			eventDrop: function(info){
 			    	  
 				    	  
-				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
 						
 				let id = info.event.id;
 				let startStr = info.event.startStr.split("+")[0].split('T');
@@ -550,9 +542,6 @@ $('#search').keypress(function(event){
 						
 				if(info.event.allDay){
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -566,7 +555,6 @@ $('#search').keypress(function(event){
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)
 						},
 						error:function(e){
 						}
@@ -577,9 +565,6 @@ $('#search').keypress(function(event){
 							
 				}else{
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -593,7 +578,6 @@ $('#search').keypress(function(event){
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)							
 						},
 						error:function(e){
 						}
@@ -606,7 +590,6 @@ $('#search').keypress(function(event){
 			eventResizableFromStart: true,
 			eventResizeStop: function(info){
 				
-				console.log(info);    	 // 드래그 했을 때 로직시 실행되는 부분
 						
 				let id = info.event.id;
 				let startStr = info.event.startStr.split("+")[0].split('T');
@@ -614,9 +597,6 @@ $('#search').keypress(function(event){
 						
 				if(info.event.allDay){
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -630,7 +610,6 @@ $('#search').keypress(function(event){
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)
 						},
 						error:function(e){
 						}
@@ -640,10 +619,6 @@ $('#search').keypress(function(event){
 								
 							
 				}else{
-								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -657,7 +632,6 @@ $('#search').keypress(function(event){
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)							
 						},
 						error:function(e){
 						}

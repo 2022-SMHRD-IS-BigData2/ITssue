@@ -16,7 +16,6 @@ public class CommDeleteOkCon implements Controller {
 		
 		int board_no = Integer.parseInt(request.getParameter("board_no"));
 		
-		System.out.println("board_no:"+board_no);
 		
 		
 		BoardMapper dao = new BoardMapper();

@@ -312,7 +312,6 @@ font-family: 'LINESeedKR-Bd';}
 	}
   
   	$('#timeSave').on('click',function(){
-  		console.log($('#MyClockDisplay').html());
   		
   		$.ajax({
   			url:'studyTimePlus.do',
@@ -396,8 +395,6 @@ font-family: 'LINESeedKR-Bd';}
 					}
 					calendar.unselect()
 					if(arg.allDay){
-						console.log('하루종일');
-						console.log(arg)
 						$.ajax({
 							
 							url:"scheduleJoin.do",
@@ -416,8 +413,6 @@ font-family: 'LINESeedKR-Bd';}
 						})
 						
 					}else{
-						console.log('시간지정');
-						console.log(arg);
 						$.ajax({
 							
 							url:"scheduleJoin.do",
@@ -429,10 +424,8 @@ font-family: 'LINESeedKR-Bd';}
 							},
 							type:"post",
 							success:function(res){
-								console.log("요청성공")
 							},
 							error:function(e){
-								console.log("요청실패")
 							}
 							
 						})
@@ -466,11 +459,8 @@ font-family: 'LINESeedKR-Bd';}
 							confirmButtonColor : '#6bd098'
 						});
 						arg.event.remove()
-						console.log(arg.event.title)
 						
 						if(arg.event.allDay){
-							console.log(arg.event.startStr);
-							console.log(arg.event.endStr);
 							$.ajax({
 								
 								url:"scheduleDelete.do",
@@ -482,17 +472,13 @@ font-family: 'LINESeedKR-Bd';}
 								},
 								type:"post",
 								success:function(res){
-									console.log("요청성공")
 								},
 								error:function(e){
-									console.log("요청실패")
 								}
 								
 							})
 							
 						}else{
-							console.log(arg.event.startStr.split("+")[0].split("T")[0]+" "+arg.event.startStr.split("+")[0].split("T")[1])
-							console.log(arg.event.endStr.split("+")[0].split("T")[0]+" "+arg.event.endStr.split("+")[0].split("T")[1])
 							$.ajax({
 							
 							url:"scheduleDelete.do",
@@ -504,10 +490,8 @@ font-family: 'LINESeedKR-Bd';}
 							},
 							type:"post",
 							success:function(res){
-								console.log("요청성공")
 							},
 							error:function(e){
-								console.log("요청실패")
 							}
 							
 						})
@@ -526,7 +510,6 @@ font-family: 'LINESeedKR-Bd';}
 			eventDrop: function(info){
 			    	  
 				    	  
-				console.log(info)    	 // 드래그 했을 때 로직시 실행되는 부분
 						
 				let id = info.event.id;
 				let startStr = info.event.startStr.split("+")[0].split('T');
@@ -534,9 +517,6 @@ font-family: 'LINESeedKR-Bd';}
 						
 				if(info.event.allDay){
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -550,7 +530,6 @@ font-family: 'LINESeedKR-Bd';}
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)
 						},
 						error:function(e){
 						}
@@ -561,9 +540,6 @@ font-family: 'LINESeedKR-Bd';}
 							
 				}else{
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -577,7 +553,6 @@ font-family: 'LINESeedKR-Bd';}
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)							
 						},
 						error:function(e){
 						}
@@ -590,7 +565,6 @@ font-family: 'LINESeedKR-Bd';}
 			eventResizableFromStart: true,
 			eventResizeStop: function(info){
 				
-				console.log(info);    	 // 드래그 했을 때 로직시 실행되는 부분
 						
 				let id = info.event.id;
 				let startStr = info.event.startStr.split("+")[0].split('T');
@@ -598,9 +572,6 @@ font-family: 'LINESeedKR-Bd';}
 						
 				if(info.event.allDay){
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -614,7 +585,6 @@ font-family: 'LINESeedKR-Bd';}
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)
 						},
 						error:function(e){
 						}
@@ -625,9 +595,6 @@ font-family: 'LINESeedKR-Bd';}
 							
 				}else{
 								
-					console.log(id);
-					console.log(startStr);
-					console.log(endStr);
 					
 					$.ajax({
 						
@@ -641,7 +608,6 @@ font-family: 'LINESeedKR-Bd';}
 						},
 						type:"post",
 						success:function(res){
-							console.log(res)							
 						},
 						error:function(e){
 						}

@@ -25,10 +25,8 @@ public class GoBoardScoreCon implements Controller {
 		List<Score> result = dao.scoreList(info.getId());
 		
 		if(result.size() > 0) {
-			System.out.println("score 데이터 추출 완료");
 			request.setAttribute("scoreList", result);
 		}else {
-			System.out.println("score가 없습니다");
 		}
 		
 		

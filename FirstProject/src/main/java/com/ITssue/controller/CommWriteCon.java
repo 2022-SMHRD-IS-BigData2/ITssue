@@ -27,7 +27,6 @@ public class CommWriteCon implements Controller {
 		
 		// 인코딩 방식
 	    String encoding = "UTF-8";
-	    System.out.println(savePath);
 	    
 	    // Multipartrequest 생성
 	    MultipartRequest multi = new MultipartRequest(

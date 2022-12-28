@@ -341,8 +341,6 @@ Coded by www.creative-tim.com
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
       <script type="text/javascript">
       	$('#recommend').on('click',function(){
-      		console.log('<%=info.getId()%>');
-      		console.log('<%=board.getBoard_no()%>');
       		
       		
       		$.ajax({
@@ -399,10 +397,8 @@ function addComment(){
     				success : function(res){
     					if(res=='true'){
     						$('#commentarea').val("");
-    						console.log('등록성공');
     						
     					}else{
-    						console.log('등록실패')
     					}
     				},
     				error : function(e){
@@ -484,10 +480,8 @@ function delcom(obj){
 		type: 'post',
 		success : function(res){
 			if(res=='true'){
-				console.log('삭제성공');
 				tr.parentNode.removeChild(tr);
 			}else{
-				console.log('삭제실패')
 				Swal.fire({
         			title: '자기 댓글만 삭제 가능합니다.',
         			confirmButtonColor: '#6bd098'
@@ -541,10 +535,8 @@ $('#boarddel').on('click',function(){
 			type: 'get',
 			success : function(res){
 				if(res){
-					console.log('삭제성공');
 					location.href = 'goCommList.do';
 				}else{
-					console.log('삭제실패')
 				}
 			},
 			error : function(e){

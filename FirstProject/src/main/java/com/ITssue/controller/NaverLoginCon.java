@@ -27,11 +27,6 @@ public class NaverLoginCon implements Controller {
 		String nick = request.getParameter("nick");
 		
 		
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(birthday);
-		System.out.println(birthyear);
-		System.out.println(nick);
 		
 		if(birthyear == null) {
 			LocalDate now = LocalDate.now();
@@ -75,7 +70,6 @@ public class NaverLoginCon implements Controller {
 			int cnt = dao.join(dto);
 			
 			if(cnt > 0) {
-				System.out.println("회원가입 성공");
 				result = dao.login(dto);
 				
 				if(result != null) {
@@ -85,7 +79,6 @@ public class NaverLoginCon implements Controller {
 				}
 				
 			}else {
-				System.out.println("회원가입 실패");
 			}
 			
 		}

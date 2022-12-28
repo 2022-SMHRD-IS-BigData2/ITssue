@@ -29,10 +29,8 @@ public class MemberDeleteCon implements Controller {
 		// 성공 실패 구분
 		String nextPage = "";
 		if(cnt > 0) {
-			System.out.println("회원 삭제 성공!");
 			nextPage = "redirect:/goWelcome.do";
 		} else {
-			System.out.println("회원 삭제 실패");
 			nextPage = "redirect:/goUpdate.do";
 		}
 		

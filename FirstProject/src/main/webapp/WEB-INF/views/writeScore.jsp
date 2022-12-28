@@ -231,8 +231,6 @@ Coded by www.creative-tim.com
     function alert(){
     	var nameNull = document.querySelector('#test_name').value;
     	var scoreNull = document.querySelectorAll('.test_score')[0].value;
-    	console.log(nameNull);
-    	console.log(scoreNull);
     	if(nameNull != "" && scoreNull != ""){
     		
 		    Swal.fire({
@@ -257,9 +255,6 @@ Coded by www.creative-tim.com
 			    		score += 0;
 			    	}
 		    	}
-		    	console.log(document.querySelector('#test_name').value == "")
-		    	console.log(subjectName)
-		    	console.log(score)
 		    	$.ajax({
 		    		url:'writeScore.do',
 		    		data:{

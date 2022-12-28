@@ -28,7 +28,6 @@
 	var birthdayValue = naver_id_login.getProfileData('birthday');
 	var birthyearValue = naver_id_login.getProfileData('birthyear');
   
-	console.log(email)
   $.ajax({
 	  url: 'naverLogin.do',
 	  data: {

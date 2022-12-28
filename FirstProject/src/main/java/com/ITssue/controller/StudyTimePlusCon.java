@@ -19,7 +19,6 @@ public class StudyTimePlusCon implements Controller {
 		String id = request.getParameter("id");
 		String time = request.getParameter("time");
 		String plusTime = time.split("\\.")[0];
-		System.out.println(plusTime);
 		
 		Study_time dto = new Study_time();
 		dto.setId(id);

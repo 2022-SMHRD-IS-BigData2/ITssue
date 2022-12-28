@@ -22,7 +22,6 @@ public class DiaryInsertCon implements Controller {
 		int maxSize = 5*1024*1024; // 5MB
 		
 		String encoding = "UTF-8";
-	    System.out.println(savePath);
 	    
 	    // Multipartrequest 생성
 	    MultipartRequest multi = new MultipartRequest(

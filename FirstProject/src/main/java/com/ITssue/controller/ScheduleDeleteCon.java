@@ -22,7 +22,6 @@ public class ScheduleDeleteCon implements Controller {
 		int sche_no = Integer.parseInt(request.getParameter("sche_no"));
 		
 		
-		System.out.println("sche_no"+sche_no);
 		
 		
 		
@@ -30,12 +29,9 @@ public class ScheduleDeleteCon implements Controller {
 		ScheduleMapper dao = new ScheduleMapper();
 		int result = dao.sche_delete(sche_no);
 		
-		System.out.println(result +"개 삭제 성공");
 		if(result > 0) {
-			System.out.println("삭제성공");
 			response.getWriter().print("true");
 		}else {
-			System.out.println("삭제실패");
 			response.getWriter().print("false");
 		}
 		

@@ -19,12 +19,9 @@ public class ScoreDeleteCon implements Controller {
 		
 		ScoreMapper dao = new ScoreMapper();
 		int result = dao.scoreDelte(scoreNo);
-		System.out.println(scoreNo);
 		if(result > 0) {
-			System.out.println("삭제성공");
 			response.getWriter().print(true);
 		}else {
-			System.out.println("삭제실패");
 		}
 		
 		

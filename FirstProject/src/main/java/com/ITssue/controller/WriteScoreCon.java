@@ -46,7 +46,6 @@ public class WriteScoreCon implements Controller {
 		dto.setSubname(subname);
 		dto.setId(info.getId());
 
-		System.out.println("정상진행됨");
 
 		ScoreMapper dao = new ScoreMapper();
 		int result = dao.scoreInsert(dto);

@@ -23,10 +23,6 @@ public class ScheduleUdateCon implements Controller {
 		String end = request.getParameter("end");
 		
 		
-		System.out.println(all.split("")[0]);
-		System.out.println(sche_no);
-		System.out.println(start);
-		System.out.println(end);
 		all = all.split("")[0];
 		
 		Schedule dto = new Schedule();
@@ -46,11 +42,9 @@ public class ScheduleUdateCon implements Controller {
 		
 		if(result > 0) {
 			response.getWriter().print("true");
-			System.out.println("업데이트 성공");
 			
 		}else {
 			response.getWriter().print("false");
-			System.out.println("업데이트 실패");
 		}
 		
 		

@@ -28,7 +28,6 @@ public class GoMainCon implements Controller {
 		HttpSession session = request.getSession();
 		Members info = (Members) session.getAttribute("info");
 
-		System.out.println(info.getNick());
 		// =======================================================
 		// D-day 반환
 		D_dayMapper d_dayDao = new D_dayMapper();
@@ -92,7 +91,6 @@ public class GoMainCon implements Controller {
 			request.setAttribute("time", d_day);
 
 		} else {
-			System.out.println("실패했다와");
 		}
 		ScheduleMapper scheDao = new ScheduleMapper();
 		List<Schedule> scheList = scheDao.sche_List(info.getId());

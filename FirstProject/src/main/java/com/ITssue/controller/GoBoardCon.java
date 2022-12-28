@@ -30,9 +30,7 @@ public class GoBoardCon implements Controller {
 		List<Study_time> result = dao2.timeGet(info.getId());
 
 		if (result == null) {
-			System.out.println("조회 실패!!");
 		} else {
-			System.out.println("조회 성공...");
 			session.setAttribute("list", result);
 		} // 세션에 사용자 정보 저장
 

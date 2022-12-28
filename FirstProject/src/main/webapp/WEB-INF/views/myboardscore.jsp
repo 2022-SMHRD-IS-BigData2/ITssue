@@ -206,15 +206,12 @@ new Chart(ctx, {
 
 $("#delscore").click(function(){
 	// 마지막 시험 삭제하기 버튼 누르면 실행됨
-		console.log('삭제됨')
 	    var trCnt = $('#score_table>tbody tr').length;
-		console.log(trCnt)
 		var scoreNos = 0;
 		<%if(listNull){%>
 			scoreNos = <%=list.get(size).getScore_no()%>
 		<%}%>
 	    if(trCnt > 0){
-	    	console.log($('tbody>tr:last').html())
 	    	$.ajax({
 	    		url:'scoreDelete.do',
 	    		data:{
@@ -239,7 +236,6 @@ $("#delscore").click(function(){
 	
 	$('#enterscore').on('click',function(){
 		// 시험 정보 입력하기 버튼 누르면 실행됨
-		console.log('입력하기 클릭됨')
 		location.href = "goWriteScore.do";
 		
 	})

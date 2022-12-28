@@ -32,8 +32,6 @@ public class D_dayInsertCon implements Controller {
 		HttpSession session = request.getSession();
 		Members info = (Members)session.getAttribute("info");
 		
-		System.out.println(dt);
-		System.out.println(info);
 		
 		if(content.equals("")) {
 			content = "noTitle";
@@ -49,8 +47,6 @@ public class D_dayInsertCon implements Controller {
 			
 		}
 		
-		System.out.println(content);
-		System.out.println(dt);
 		
 		D_day dto = new D_day();
 		dto.setD_day_content(content);
@@ -107,7 +103,6 @@ public class D_dayInsertCon implements Controller {
 			
 			//=========================================================================================
 		}else {
-			System.out.println("실패");
 		}
 		
 		return null;

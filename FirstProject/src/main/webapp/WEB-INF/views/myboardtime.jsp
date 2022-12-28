@@ -183,12 +183,12 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 		}
 	}else if (gap < 0){
 		if(gap > 3600){
-			var gap = "-"+parseInt(gap/3600) + 'hour';
+			var gap = parseInt(gap/3600) + 'hour';
 		}else if(gap > 60){
-			var gap = "-"+parseInt(gap/60) + 'min';
+			var gap = parseInt(gap/60) + 'min';
 			
 		}else{
-			var gap = "-"+gap + 'sec';
+			var gap = gap + 'sec';
 			
 		}
 	}else{

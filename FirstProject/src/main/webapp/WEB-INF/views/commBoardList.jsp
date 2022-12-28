@@ -266,9 +266,7 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   			type: 'post',
   			dataType:'json',
   			success: function(res){
-  				console.log(res);
   				var tag = res[0].hash_tag;
-  				console.log(tag);
   				var ser = $('#hashTag').val();
 				for(let i = 0; i < res.length; i++){
   					if(res[i].hash_tag.includes(ser)){
@@ -296,7 +294,6 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   				
   			},
   			error : function(e){
-  				console.log('요청실패했니?')
   				
   			}
   			
