@@ -393,6 +393,7 @@ function addComment(){
     				data: {
     					comment : $('#commentarea').val(),
     					boardNo: <%=board.getBoard_no() %>,
+    					id: '<%=info.getId()%>'
     				},
     				type: 'post',
     				success : function(res){
