@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ITssue.dao.LikesMapper">
 
-<insert id="" parameterType="com.ITssue.entity.Likes">
-	insert into likes
-	(
-		#{board_no},
-		#{id}
-	)
-</insert>
-
-<delete id="" parameterType="com.ITssue.entity.Likes">
-	delete from likes
-	where board_no = #{board_no}
-	and id = #{id}
-</delete>
-
-<select id="" parameterType="com.ITssue.entity.Likes" resultType="com.ITssue.entity.Likes">
-	select *
-	from likes
-	where board_no = #{board_no}
-	and id = #{id}
-</select>
-
+	<insert id="insert" parameterType="com.ITssue.entity.Likes">
+		insert into likes
+		(
+			#{board_no},
+			#{id}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="com.ITssue.entity.Likes">
+		delete from likes
+		where board_no = #{board_no}
+		and id = #{id}
+	</delete>
+	
+	<select id="select" parameterType="com.ITssue.entity.Likes" resultType="com.ITssue.entity.Likes">
+		select *
+		from likes
+		where board_no = #{board_no}
+		and id = #{id}
+	</select>
+	
 
 </mapper>

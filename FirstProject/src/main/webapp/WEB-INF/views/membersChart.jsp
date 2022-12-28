@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="com.ITssue.entity.Study_time"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ITssue.entity.Members"%>
@@ -296,14 +299,18 @@ Coded by www.creative-tim.com
 	var outherData = [];
   	
   	
-  	<%if(myStudyList != null){%>
-  			
-		<%for(Study_time study : myStudyList){%>
-			labelsData.push('<%=study.getStudy_s_time() %>');
+  	<%if(myStudyList != null){
+  		Date today = new Date();
+  		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+  	%>
+	labelsData.push('<%=date.format(today)%>');
+		<%for(int i = 1; i <= 7; i++){
+			Calendar dayago = Calendar.getInstance();
+			dayago.add(Calendar.DATE , - i);
+			%>
+			labelData.push('<%=new java.text.SimpleDateFormat("yyyy-MM-dd").format(dayago.getTime()) %>');
 		<%}%>
-		<%for(Study_time study : outherStudyList){%>
-			labelsData.push('<%=study.getStudy_s_time() %>');
-		<%}%>
+		
 		
 		var temp = labelsData
 		labelsData = [...new Set(temp)]
