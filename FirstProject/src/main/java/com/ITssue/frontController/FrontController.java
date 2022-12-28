@@ -40,6 +40,7 @@ import com.ITssue.controller.GoUpdateCon;
 import com.ITssue.controller.GoWelcomeCon;
 import com.ITssue.controller.GoWriteScoreCon;
 import com.ITssue.controller.JoinCon;
+import com.ITssue.controller.LikeCheckCon;
 import com.ITssue.controller.LoginCon;
 import com.ITssue.controller.LogoutCon;
 import com.ITssue.controller.MemberDeleteCon;
@@ -119,6 +120,7 @@ public class FrontController extends HttpServlet {
 		 handlerMapping.put("/writeComment.do", new WriteCommentCon());
 		 handlerMapping.put("/viewComment.do", new ViewCommentCon());
 		 handlerMapping.put("/deleteComment.do", new DeleteCommentCon());
+		 handlerMapping.put("/likeCheck.do", new LikeCheckCon());
 		 
 		 
 		 

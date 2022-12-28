@@ -64,5 +64,36 @@ public class BoardMapper {
 		return cnt;
 	}
 	
+	public int likePlus(int board_no) {
+       SqlSession session = sqlSessionFactory.openSession(true);
+		
+		int cnt = session.delete("likePlusUpdate",board_no);
+		
+		session.close();
+		
+		return cnt;
+		
+	}
+	public int likeMinus(int board_no) {
+		
+	       SqlSession session = sqlSessionFactory.openSession(true);
+			
+			int cnt = session.delete("likeMinusUpdate",board_no);
+			
+			session.close();
+			
+			return cnt;
+			
+	}
+	public Board boardInfo(int board_no) {
+		
+		 SqlSession session = sqlSessionFactory.openSession(true);
+		 
+		 Board result = session.selectOne("boardInfo",board_no);
+		 
+		 session.close();
+		 
+		 return result;
+	}
 	
 }
