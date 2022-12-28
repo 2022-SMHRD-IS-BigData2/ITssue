@@ -57,13 +57,18 @@ if(list.size()!=0){
 	int hour5 = Integer.parseInt(list.get(4).getAmounts().split(":")[0]);
 	int hour6 = Integer.parseInt(list.get(5).getAmounts().split(":")[0]);
 	int hour7 = Integer.parseInt(list.get(6).getAmounts().split(":")[0]);
-
+	
+	System.out.println(hour1);
 	int minute1 = Integer.parseInt(list.get(0).getAmounts().split(":")[1]);
 	System.out.println(minute1);
+	int second1 = Integer.parseInt(list.get(0).getAmounts().split(":")[2]);
+	System.out.println(second1);
+	
 
 	//String day = list.get(0).getStudy_s_time().split("-")[2];
 	String day = list.get(0).getStudy_s_time();
 	System.out.println(day);
+	
 	String day1 = day.substring(0, 10);
 	System.out.println(day1);
 	System.out.println(day);
@@ -123,7 +128,7 @@ System.out.println(beforeWeek);
 
 
 
-// 시, 분, 초 별 합계구하기
+// 시, 분, 초 별 합계구하기(총 누적시간)
 int hours = 0;
 int minutes = 0;
 int seconds = 0;
@@ -141,14 +146,23 @@ for(int k=0; k<list.size(); k++){
 	seconds += Integer.parseInt(list.get(k).getAmounts().split(":")[2]);
 }
 
-// 05:45:22
-double total = Math.round(minutes*0.01);
+int sum = hours+minutes+seconds;
+double texam = (hours*3600)+(minutes*60)+seconds;
+double total = Math.round(texam/3600*100)/100.0;
+
+
+
+
+//double total = Math.round(minutes*0.01);
 
 
 System.out.println(hours);
 System.out.println(minutes);
 System.out.println(seconds);
+System.out.println(sum);
 System.out.println(total);
+//System.out.println(Math.round(total1*100)/100.0);
+
 
 
 
@@ -192,6 +206,7 @@ System.out.println(total);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+   
     var toDay = '<%=toDay%>';
     var beforeDate = '<%=beforeDate%>';
     var beforeDate2 = '<%=beforeDate2%>';
