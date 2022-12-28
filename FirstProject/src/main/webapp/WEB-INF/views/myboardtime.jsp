@@ -104,10 +104,15 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 	labels.sort()
 	
 	var datas =[];
+	var yesdatas = [];
+	
 	
 	for(var i = 0; i < labels.length; i ++){
 		datas.push(0);
+		yesdatas.push(0);
 	}
+	
+	
 	
 	var myLabels = [];
 	<%int total = 0;%>
@@ -121,9 +126,12 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 			for(var i = 0; i < labels.length; i ++){
 				if(labels[i] == start){
 					datas[i] += amounts
+					 
+					
+					
 				}
 			}
-		
+					
 		<%}%>
 	<%}
 	
@@ -138,6 +146,8 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 		totalData = total + "sec";
 	}
 	%>
+	
+	
 	
 	var temp = myLabels;
 	myLabels = [...new Set(temp)];
@@ -155,8 +165,32 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 		
 	}
 	
+	var gap = datas[datas.length-1]-datas[datas.length-2];
 	
-	
+	if(gap > 0){
+		
+		if(gap > 3600){
+			var gap = "+"+parseInt(gap/3600) + 'hour';
+		}else if(gap > 60){
+			var gap = "+"+parseInt(gap/60) + 'min';
+			
+		}else{
+			var gap = "+"+gap + 'sec';
+			
+		}
+	}else if (gap < 0){
+		if(gap > 3600){
+			var gap = "-"+parseInt(gap/3600) + 'hour';
+		}else if(gap > 60){
+			var gap = "-"+parseInt(gap/60) + 'min';
+			
+		}else{
+			var gap = "-"+gap + 'sec';
+			
+		}
+	}else{
+		var gap = "0sec"
+	}
 	
 	
 </script>
@@ -165,11 +199,11 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
     <div id="topmain">
         <div class="time">
             <h2>전일대비 공부량</h2>
-            <span>12</span>
+            <span id='gapTime'>gap</span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
-            <span id="avgTime"> 8hours </span>
+            <span id="avgTime"></span>
         </div>
         <div class="time">
             <h2>총 공부시간</h2>
@@ -196,7 +230,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
     
     
     $('#avgTime').html(totalScore);	
-    
+    $('#gapTime').html(gap);
     
     
     
