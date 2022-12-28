@@ -44,44 +44,9 @@
 <body>
 <%
 
-String text = (String) session.getAttribute("get");
-List<Study_time> list = (List<Study_time>) session.getAttribute("list");
-System.out.println(list.size());
+List<Study_time> list = (List<Study_time>) request.getAttribute("list");
 
-
-if(list.size()!=0){
-	int hour1 = Integer.parseInt(list.get(0).getAmounts().split(":")[0]);
-	int hour2 = Integer.parseInt(list.get(1).getAmounts().split(":")[0]);
-	int hour3 = Integer.parseInt(list.get(2).getAmounts().split(":")[0]);
-	int hour4 = Integer.parseInt(list.get(3).getAmounts().split(":")[0]);
-	int hour5 = Integer.parseInt(list.get(4).getAmounts().split(":")[0]);
-	int hour6 = Integer.parseInt(list.get(5).getAmounts().split(":")[0]);
-	int hour7 = Integer.parseInt(list.get(6).getAmounts().split(":")[0]);
-	
-	System.out.println(hour1);
-	int minute1 = Integer.parseInt(list.get(0).getAmounts().split(":")[1]);
-	System.out.println(minute1);
-	int second1 = Integer.parseInt(list.get(0).getAmounts().split(":")[2]);
-	System.out.println(second1);
-	
-
-	//String day = list.get(0).getStudy_s_time().split("-")[2];
-	String day = list.get(0).getStudy_s_time();
-	System.out.println(day);
-	
-	String day1 = day.substring(0, 10);
-	System.out.println(day1);
-	System.out.println(day);
-	
-}
-
-
-
-
-
-
-
-// 날짜 입력 로직
+//날짜 입력 로직
 //오늘
 Date today = new Date();
 SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -121,53 +86,45 @@ String beforeDate6 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day6ago
 Calendar week = Calendar.getInstance();
 week.add(Calendar.DATE , -7);
 String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.getTime());
-System.out.println(beforeWeek);
 
 
 
+%>
+<script type="text/javascript">
 
+	var toDay = '<%=toDay%>';
+	var beforeDate = '<%=beforeDate%>';
+	var beforeDate2 = '<%=beforeDate2%>';
+	var beforeDate3 = '<%=beforeDate3%>';
+	var beforeDate4 = '<%=beforeDate4%>';
+	var beforeDate5 = '<%=beforeDate5%>';
+	var beforeDate6 = '<%=beforeDate6%>';
+	var labels = [toDay, beforeDate, beforeDate2, beforeDate3, beforeDate4, beforeDate5, beforeDate6]
+	labels.sort()
+	
+	var datas =[];
+	
+	for(var i = 0; i < labels.length; i ++){
+		datas.push(0);
+	}
+	
+	
+	
+	<%if(list != null){%>
+		
+		<%for(Study_time study : list){%>
+			var amounts = parseInt(<%=study.getAmounts()%>);
+			var start = '<%= study.getStudy_s_time()%>';
+			for(var i = 0; i < labels.length; i ++){
+				if(labels[i] == start){
+					datas[i] += amounts
+				}
+			}
+		
+		<%}%>
+	<%}%>
 
-
-// 시, 분, 초 별 합계구하기(총 누적시간)
-int hours = 0;
-int minutes = 0;
-int seconds = 0;
-
-
-for(int i=0; i<list.size(); i++){
-	hours += Integer.parseInt(list.get(i).getAmounts().split(":")[0]);
-}
-
-for(int j=0; j<list.size(); j++){
-	minutes += Integer.parseInt(list.get(j).getAmounts().split(":")[1]);
-}
-
-for(int k=0; k<list.size(); k++){
-	seconds += Integer.parseInt(list.get(k).getAmounts().split(":")[2]);
-}
-
-int sum = hours+minutes+seconds;
-double texam = (hours*3600)+(minutes*60)+seconds;
-double total = Math.round(texam/3600*100)/100.0;
-
-
-
-
-//double total = Math.round(minutes*0.01);
-
-
-System.out.println(hours);
-System.out.println(minutes);
-System.out.println(seconds);
-System.out.println(sum);
-System.out.println(total);
-//System.out.println(Math.round(total1*100)/100.0);
-
-
-
-
-                                        %>
-
+</script>
 
 <div id="wrap">
     <div id="topmain">
@@ -181,7 +138,7 @@ System.out.println(total);
         </div>
         <div class="time">
             <h2>총 공부시간</h2>
-            <span><%=total %>hours</span>
+            <span>hours</span>
         </div>
     </div>
     <div id="bottommain">
@@ -206,24 +163,30 @@ System.out.println(total);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-   
-    var toDay = '<%=toDay%>';
-    var beforeDate = '<%=beforeDate%>';
-    var beforeDate2 = '<%=beforeDate2%>';
-    var beforeDate3 = '<%=beforeDate3%>';
-    var beforeDate4 = '<%=beforeDate4%>';
-    var beforeDate5 = '<%=beforeDate5%>';
-    var beforeDate6 = '<%=beforeDate6%>';
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
       const ctx = document.getElementById('myChart');
 
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: [toDay, beforeDate, beforeDate2, beforeDate3, beforeDate4, beforeDate5, beforeDate6],
+    labels: labels,
     datasets: [{
       label: '내 공부시간',
-      data: [20, 8, 6, 7, 12, 5, 10],
+      data: datas,
       borderWidth: 1,
       borderColor : '#6bd098',
       backgroundColor: '#6bd098'
