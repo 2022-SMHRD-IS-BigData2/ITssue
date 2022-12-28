@@ -291,110 +291,124 @@ Coded by www.creative-tim.com
 		List<Study_time> outherStudyList = (List<Study_time>)request.getAttribute("outherStudy");
 	%>
   	
-  	var myData = [];
   	var labelsData = [];
+	var myData = [];
+	var outherData = [];
+  	
   	
   	<%if(myStudyList != null){%>
   			
-	var amountsSum = 0;
-  		<%for(Study_time study : myStudyList){%>
-  			var startData = '<%= study.getStudy_s_time()%>';
-  			var amountsData = <%= study.getAmounts() %>;
-  			amountsSum += amountsData;
-  			if(labelsData[labelsData.length - 1] != startData){
-  				labelsData.push(startData);
-  				myData.push( amountsSum );
-  				amountsSum = 0;
-  			}
-  		<%}%>
-  	
-  	<%}%>
-  
-  	var outherData = [];
-  	var amountsSum = 0;
-  	<%if(outherStudyList != null){%>
-		
-		<%for(Study_time study : outherStudyList){%>
-			var startData = '<%= study.getStudy_s_time()%>';
-			var amountsData =<%= study.getAmounts() %>;
-			amountsSum += amountsData;
-  			if(labelsData[labelsData.length - 1] != startData){
-  				labelsData.push(startData);
-  				outherData.push( amountsSum );
-  				amountsSum = 0;
-  			}
-		
+		<%for(Study_time study : myStudyList){%>
+			labelsData.push('<%=study.getStudy_s_time() %>');
 		<%}%>
-	
+		<%for(Study_time study : outherStudyList){%>
+			labelsData.push('<%=study.getStudy_s_time() %>');
+		<%}%>
+		
+		var temp = labelsData
+		labelsData = [...new Set(temp)]
+		labelsData.sort()
+		
+		for(var i = 0; i < labelsData.length; i++){
+			
+			myData.push(0);
+			outherData.push(0);
+			
+		}
+		
+		<%for(Study_time study : myStudyList){%>
+			var amountData = parseInt(<%=study.getAmounts()%>)
+			var days = '<%=study.getStudy_s_time()%>';
+			for(var i = 0; i < labelsData.length; i++){
+				if(labelsData[i] == days){
+					myData[i] += amountData
+				}
+			}
+		<%}%>
+		<%for(Study_time study : outherStudyList){%>
+			var amountData = parseInt(<%=study.getAmounts()%>)
+			var days = '<%=study.getStudy_s_time()%>';
+			for(var i = 0; i < labelsData.length; i++){
+				if(labelsData[i] == days){
+					outherData[i] += amountData
+				}
+			}
+		<%}%>
+		
+		
+		
+		
+		
 	<%}%>
-	var temp = labelsData;
-	labelsData = [...new Set(temp)];
-  	labelsData.sort()
-  
-  
-  
-  
-    $('#search').keypress(function(event){
-     if ( event.which == 13 ) {
-         $('#searchbtn').click();
-         return false;
-     }
+	
+	  
+	  
+	  
+	  
+$('#search').keypress(function(event){
+	if ( event.which == 13 ) {
+		$('#searchbtn').click();
+		return false;
+	}
 });
 
 const ctx = document.getElementById('myChart');
 
 new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: labelsData,
-    datasets: [{
-      label: '내 공부시간',
-      data: myData,
-      borderWidth: 5,
-      borderColor : '#6bd098',
-      backgroundColor: '#6bd098',
-      yAxisID:'y',
-    },
-  {label:'상대방 공부시간',
-data:outherData,
-borderWidth:5,
-borderColor:'#ff7979',
-backgroundColor:'#ff7979',
-yAxisID:'y1'}]
-  },
-  options: {
-    maintainAspectRatio: false,
-    responsive: true,
-    interaction:{
-      mode : 'index',
-      intersect : false,
-    },
-    stacked:false,
-    plugins:{
-      title:{
-        display: true,
-        text: '회원 비교 차트'
-      }
-    },
-    scales: {
-      y: {
-        type : 'linear',
-        display : true,
-        position:'left',
-      },
-      y1:{
-        type: 'linear',
-        display:true,
-        position:'right',
-        
-        grid:{
-          drawOnChartArea:false,
-        },
-      },
-    }
-  },
-}
-);
+	type: 'line',
+	data: {
+		labels: labelsData,
+		datasets: [
+			{
+				label: '내 공부시간',
+				data: myData,
+				borderWidth: 5,
+				borderColor : '#6bd098',
+				backgroundColor: '#6bd098',
+				yAxisID:'y',
+			},
+			{
+				label:'상대방 공부시간',
+				data:outherData,
+				borderWidth:5,
+				borderColor:'#ff7979',
+				backgroundColor:'#ff7979',
+				yAxisID:'y1'
+			}
+		]
+	},
+	options: {
+		maintainAspectRatio: false,
+		responsive: true,
+		interaction:{
+			mode : 'index',
+			intersect : false,
+		},
+		stacked:false,
+		plugins:{
+			title:{
+				display: true,
+				text: '회원 비교 차트'
+			}
+		},
+		scales: {
+			y: {
+				type : 'linear',
+				display : true,
+				position:'left',
+			},
+			y1:{
+				type: 'linear',
+				display:true,
+				position:'right',
+				        
+				grid:{
+					drawOnChartArea:false,
+				}
+			}
+		}
+	}
+});
   </script>
 </body>
 

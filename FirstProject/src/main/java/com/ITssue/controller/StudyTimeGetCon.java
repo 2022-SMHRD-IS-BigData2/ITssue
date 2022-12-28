@@ -38,7 +38,7 @@ public class StudyTimeGetCon implements Controller {
 
 
 
-		return "myboardtime.jsp";
+		return "redirect:/goBoardTime.do";
 	}
 
 }
