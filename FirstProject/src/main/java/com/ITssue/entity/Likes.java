@@ -9,6 +9,5 @@ public class Likes {
 	
 	private int board_no;
 	private String id;
-	private String likecheck;
 
 }
