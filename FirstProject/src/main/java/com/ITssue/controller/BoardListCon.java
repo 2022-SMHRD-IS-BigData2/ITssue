@@ -18,6 +18,8 @@ public class BoardListCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		BoardMapper dao = new BoardMapper();
 		List<Board> list = dao.boardList();
 		
