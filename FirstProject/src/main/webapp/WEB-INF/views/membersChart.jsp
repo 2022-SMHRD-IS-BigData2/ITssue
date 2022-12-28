@@ -308,7 +308,7 @@ Coded by www.creative-tim.com
 			Calendar dayago = Calendar.getInstance();
 			dayago.add(Calendar.DATE , - i);
 			%>
-			labelData.push('<%=new java.text.SimpleDateFormat("yyyy-MM-dd").format(dayago.getTime()) %>');
+			labelsData.push('<%=new java.text.SimpleDateFormat("yyyy-MM-dd").format(dayago.getTime()) %>');
 		<%}%>
 		
 		
