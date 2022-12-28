@@ -90,6 +90,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 
 
 %>
+  <script src="./assets/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 
 	var toDay = '<%=toDay%>';
@@ -108,13 +109,15 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 		datas.push(0);
 	}
 	
-	
-	
+	var myLabels = [];
+	<%int total = 0;%>
 	<%if(list != null){%>
 		
 		<%for(Study_time study : list){%>
 			var amounts = parseInt(<%=study.getAmounts()%>);
 			var start = '<%= study.getStudy_s_time()%>';
+			<%total += Integer.parseInt(study.getAmounts());%>
+			myLabels.push(start)
 			for(var i = 0; i < labels.length; i ++){
 				if(labels[i] == start){
 					datas[i] += amounts
@@ -122,8 +125,40 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 			}
 		
 		<%}%>
-	<%}%>
-
+	<%}
+	
+	
+	
+	String totalData = "";
+	if(total > 3600){
+		totalData = (total/3600) + "hour";
+	}else if(total > 60){
+		totalData = (total/60) + "min";
+	}else{
+		totalData = total + "sec";
+	}
+	%>
+	
+	var temp = myLabels;
+	myLabels = [...new Set(temp)];
+	
+	var totalScore = parseInt(<%= total%>/myLabels.length)
+	
+	
+	if(totalScore > 3600){
+		var totalScore = parseInt(totalScore/3600) + 'hour';
+	}else if(totalScore > 60){
+		var totalScore = parseInt(totalScore/60) + 'min';
+		
+	}else{
+		var totalScore = totalScore + 'sec';
+		
+	}
+	
+	
+	
+	
+	
 </script>
 
 <div id="wrap">
@@ -134,11 +169,11 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
-            <span> 8hours </span>
+            <span id="avgTime"> 8hours </span>
         </div>
         <div class="time">
             <h2>총 공부시간</h2>
-            <span>hours</span>
+            <span><%=totalData %></span>
         </div>
     </div>
     <div id="bottommain">
@@ -148,13 +183,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 </div>
 
 
-<input type="text" id="" name="" value"<%=toDay%>">
-<input type="text" id="" name="" value"<%=beforeDate%>">
-<input type="text" id="" name="" value"<%=beforeDate2%>">
-<input type="text" id="" name="" value"<%=beforeDate3%>">
-<input type="text" id="" name="" value"<%=beforeDate4%>">
-<input type="text" id="" name="" value"<%=beforeDate5%>">
-<input type="text" id="" name="" value"<%=beforeDate6%>">
+
 
 
 
@@ -166,7 +195,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 
     
     
-    
+    $('#avgTime').html(totalScore);	
     
     
     
