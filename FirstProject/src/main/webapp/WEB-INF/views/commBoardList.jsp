@@ -320,9 +320,9 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 				</tr>
 				`
 			<%}%>
- 	 			$('tbody').append( tr );
   			
   		<%}%>
+ 	 			$('tbody').append( tr );
   		
   	})
   	$('#hashTag').keypress(function(event){
