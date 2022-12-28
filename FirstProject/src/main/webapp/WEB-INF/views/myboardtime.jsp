@@ -154,15 +154,18 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 	
 	var totalScore = parseInt(<%= total%>/myLabels.length)
 	
-	
-	if(totalScore > 3600){
-		var totalScore = parseInt(totalScore/3600) + 'hour';
-	}else if(totalScore > 60){
-		var totalScore = parseInt(totalScore/60) + 'min';
-		
+	if(totalScore+'' != 'NaN'){
+		if(totalScore > 3600){
+			var totalScore = parseInt(totalScore/3600) + 'hour';
+		}else if(totalScore > 60){
+			var totalScore = parseInt(totalScore/60) + 'min';
+			
+		}else{
+			var totalScore = totalScore + 'sec';
+			
+		}
 	}else{
-		var totalScore = totalScore + 'sec';
-		
+		var totalScore = '0sec'; 
 	}
 	
 	var gap = datas[datas.length-1]-datas[datas.length-2];
@@ -198,7 +201,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 <div id="wrap">
     <div id="topmain">
         <div class="time">
-            <h2>전일대비 공부량</h2>
+            <h2>전일대비 공부시간 차이</h2>
             <span id='gapTime'>gap</span>
         </div>
         <div class="time">
@@ -211,7 +214,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
         </div>
     </div>
     <div id="bottommain">
-        <h2>공부 시간 그래프</h2>
+        <h2>공부시간 그래프(최근 7일)</h2>
         <canvas id="myChart"></canvas>
     </div>
 </div>
