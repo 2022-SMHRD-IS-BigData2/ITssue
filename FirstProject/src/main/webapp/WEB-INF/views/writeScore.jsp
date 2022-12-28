@@ -180,7 +180,7 @@ Coded by www.creative-tim.com
             </tr>
             <tr class="scoretrue">
               <td style="font-size:large; font-weight: bold;">📌 점수</td>
-              <td><input class="test_score" type="text" placeholder="점수를 입력해주세요"></td>
+              <td><input class="test_score" type="number" placeholder="점수를 입력해주세요"></td>
             </tr>
           </tbody>
         </table>

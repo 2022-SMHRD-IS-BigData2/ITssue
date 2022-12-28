@@ -176,18 +176,7 @@ List<Diary> diary = (List<Diary>)session.getAttribute("diaryList");
           <iframe  target="_top" src="goBoardDiary.do" id="mainIframe" frameborder="0" width="1580px" height="700px"></iframe>
         </div>
       </div>
-      <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-              
-            </nav>
-            <div class="credits ml-auto">
-              
-            </div>
-          </div>
-        </div>
-      </footer>
+      
     </div>
   </div>
   <!--   Core JS Files   -->
