@@ -104,10 +104,15 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 	labels.sort()
 	
 	var datas =[];
+	var yesdatas = [];
+	
 	
 	for(var i = 0; i < labels.length; i ++){
 		datas.push(0);
+		yesdatas.push(0);
 	}
+	
+	
 	
 	var myLabels = [];
 	<%int total = 0;%>
@@ -121,9 +126,12 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 			for(var i = 0; i < labels.length; i ++){
 				if(labels[i] == start){
 					datas[i] += amounts
+					 
+					
+					
 				}
 			}
-		
+					
 		<%}%>
 	<%}
 	
@@ -139,24 +147,53 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 	}
 	%>
 	
+	
+	
 	var temp = myLabels;
 	myLabels = [...new Set(temp)];
 	
 	var totalScore = parseInt(<%= total%>/myLabels.length)
 	
-	
-	if(totalScore > 3600){
-		var totalScore = parseInt(totalScore/3600) + 'hour';
-	}else if(totalScore > 60){
-		var totalScore = parseInt(totalScore/60) + 'min';
-		
+	if(totalScore+'' != 'NaN'){
+		if(totalScore > 3600){
+			var totalScore = parseInt(totalScore/3600) + 'hour';
+		}else if(totalScore > 60){
+			var totalScore = parseInt(totalScore/60) + 'min';
+			
+		}else{
+			var totalScore = totalScore + 'sec';
+			
+		}
 	}else{
-		var totalScore = totalScore + 'sec';
-		
+		var totalScore = '0sec'; 
 	}
 	
+	var gap = datas[datas.length-1]-datas[datas.length-2];
 	
-	
+	if(gap > 0){
+		
+		if(gap > 3600){
+			var gap = "+"+parseInt(gap/3600) + 'hour';
+		}else if(gap > 60){
+			var gap = "+"+parseInt(gap/60) + 'min';
+			
+		}else{
+			var gap = "+"+gap + 'sec';
+			
+		}
+	}else if (gap < 0){
+		if(gap > 3600){
+			var gap = "-"+parseInt(gap/3600) + 'hour';
+		}else if(gap > 60){
+			var gap = "-"+parseInt(gap/60) + 'min';
+			
+		}else{
+			var gap = "-"+gap + 'sec';
+			
+		}
+	}else{
+		var gap = "0sec"
+	}
 	
 	
 </script>
@@ -164,12 +201,12 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
 <div id="wrap">
     <div id="topmain">
         <div class="time">
-            <h2>전일대비 공부량</h2>
-            <span>12</span>
+            <h2>전일대비 공부시간 차이</h2>
+            <span id='gapTime'>gap</span>
         </div>
         <div class="time">
             <h2>평균 공부시간</h2>
-            <span id="avgTime"> 8hours </span>
+            <span id="avgTime"></span>
         </div>
         <div class="time">
             <h2>총 공부시간</h2>
@@ -177,7 +214,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
         </div>
     </div>
     <div id="bottommain">
-        <h2>공부 시간 그래프</h2>
+        <h2>공부시간 그래프(최근 7일)</h2>
         <canvas id="myChart"></canvas>
     </div>
 </div>
@@ -196,7 +233,7 @@ String beforeWeek = new java.text.SimpleDateFormat("yyyy-MM-dd").format(week.get
     
     
     $('#avgTime').html(totalScore);	
-    
+    $('#gapTime').html(gap);
     
     
     
