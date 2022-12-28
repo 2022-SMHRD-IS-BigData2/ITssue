@@ -24,7 +24,7 @@
         #container{height: 80%; width: 100%; position: relative;}
         #main{position: absolute; width: 1400px; height: 700px; top: 50%; left: 50%; margin-top: -400px; margin-left: -700px;} 
         #section-left{width: 50%; height: 100%; float: left; background-size: cover;
-        background-image: url(./assets/img/ezgif.com-gif-maker.gif);}
+        background-image: url(./assets/img/itssuegif.gif);}
         #section-right{width: 50%; height: 100%; float: right; background-color: #6bd098;}
         .comment{font-family: 'LINESeedKR-Bd'; margin-left: 30px; opacity: 0;}
         .study{color: white;}
