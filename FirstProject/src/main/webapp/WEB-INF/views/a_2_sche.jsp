@@ -451,7 +451,7 @@ $('#search').keypress(function(event){
 										console.log(res)
 									if (getName) {
 										calendar.addEvent({
-											id: res.id,
+											id: res.sche_no,
 											title: getName,
 											start: arg.start,
 											end: arg.end,
@@ -477,10 +477,10 @@ $('#search').keypress(function(event){
 								type:"post",
 								dataType: 'json',
 								success:function(res){
-									console.log(res)
+									console.log(res.sche_no)
 									if (getName) {
 										calendar.addEvent({
-											id: res.id,
+											id: res.sche_no,
 											title: getName,
 											start: arg.start,
 											end: arg.end,

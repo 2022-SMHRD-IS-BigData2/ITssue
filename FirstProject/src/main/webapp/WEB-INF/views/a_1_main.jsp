@@ -402,7 +402,7 @@ font-family: 'LINESeedKR-Bd';}
 							success:function(res){
 								if (getName) {
 									calendar.addEvent({
-										id: res.id,
+										id: res.sche_no,
 										title: getName,
 										start: arg.start,
 										end: arg.end,
@@ -430,7 +430,7 @@ font-family: 'LINESeedKR-Bd';}
 							success:function(res){
 								if (getName) {
 									calendar.addEvent({
-										id: res.id,
+										id: res.sche_no,
 										title: getName,
 										start: arg.start,
 										end: arg.end,
