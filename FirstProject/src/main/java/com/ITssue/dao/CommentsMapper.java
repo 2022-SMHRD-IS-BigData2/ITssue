@@ -47,6 +47,16 @@ public int deleteComment(Comments dto) {
 		return cnt;
 	}
 
-
+public List<Comments> idViewComment(Comments dto) {
+	
+	 SqlSession session = sqlSessionFactory.openSession(true);
+	
+	 List<Comments> result = session.selectList("idViewComment",dto);
+	 
+	 session.close();
+	 
+	 return result;
+	 
+}
 	
 }

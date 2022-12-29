@@ -25,4 +25,12 @@ where cmt_no = #{cmt_no}
 and id = #{id}
 </delete>
 
+<select id="idViewComment" parameterType="com.ITssue.entity.Comments" resultType="com.ITssue.entity.Comments">
+	select *
+	from comments
+	where board_no = #{board_no}
+	and id = #{id}
+	order by cmt_no
+</select>
+
 </mapper>

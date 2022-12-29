@@ -396,23 +396,29 @@ function addComment(){
     					id: '<%=info.getId()%>'
     				},
     				type: 'post',
+    				dataType : 'json',
     				success : function(res){
-    					if(res=='true'){
-    						$('#commentarea').val("");
+    					if(res!=null){
     						
-    					}else{
+    						console.log(res)
+    						const parent =document.getElementById('commenttable');
+    			    		const newcomment=document.createElement('tr');
+    			    		newcomment.setAttribute('class','repletrue');
+    			    		parent.appendChild(newcomment);
+
+    			    		addbox(newcomment)
+    						$('#commentarea').val("");
+    			    		$('.repledel:last-child').attr( 'value', res.cmt_no);
+    						
+    						
     					}
+    				   	  
     				},
     				error : function(e){
     			
     				}
     			})
-    	  const parent =document.getElementById('commenttable');
-    		const newcomment=document.createElement('tr');
-    		newcomment.setAttribute('class','repletrue');
-    		parent.appendChild(newcomment);
-
-    		addbox(newcomment)
+ 
     	 
     	}
       
@@ -437,7 +443,6 @@ function addbox(newcomment){
   date.setAttribute('class', 'repletime');
   del.setAttribute('class','repledelbox');
   del.innerHTML = $('.repledelbox').eq(0).html();
-
   
   var today = new Date();
 
@@ -454,7 +459,7 @@ function addbox(newcomment){
   
   const textNode = document.createTextNode(repleValue);
   content.appendChild(textNode);
-  const textNode2 = document.createTextNode('<%=info.getNick()%>');
+  const textNode2 = document.createTextNode('<%=info.getId()%>');
   writer.appendChild(textNode2);
   const textNode3 = document.createTextNode(dateString);
   date.appendChild(textNode3);
@@ -472,7 +477,7 @@ function addbox(newcomment){
 
 function delcom(obj){
 	
-	
+	console.log(obj)
 	var tr = obj.parentNode.parentNode;
 	$.ajax({url: 'deleteComment.do',
 		data: {
@@ -481,7 +486,8 @@ function delcom(obj){
 		},
 		type: 'post',
 		success : function(res){
-			if(res=='true'){
+				console.log(res)
+			if(res){
 				tr.parentNode.removeChild(tr);
 			}else{
 				Swal.fire({
