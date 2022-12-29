@@ -22,7 +22,8 @@ body{background-color: #f4f3ef;
      #wrap{width: 100%; height: 100vh; flex-wrap: wrap; margin: auto; display: flex;}
      #center{height: 80%; width: 100%; background-color: #6bd098; position: relative; display: flex; }
      #joinform{ margin: auto; width: 600px; height: 600px;
-    border-radius: 10px; background-color: white; text-align: center; padding: 10px;}
+    border-radius: 10px; background-color: white; text-align: center; padding: 10px;
+    box-shadow: 5px 5px 5px gray;}
 
      #header{height: 10%; width: 100%;}
      #footer{height: 10%; width: 100%;}

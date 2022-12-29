@@ -18,7 +18,7 @@
 
         body{background-color: #f4f3ef;
             margin: 0; overflow-y: hidden;}
-        #main{box-shadow: 5px 5px 5px;}    
+        #main{box-shadow: 5px 5px 5px gray;}    
         #wrap{width: 100%; height: 100vh; flex-wrap: wrap; margin: auto; display: flex;}
         #header{height: 10%; width: 100%;}
         #footer{height: 10%; width: 100%;}
