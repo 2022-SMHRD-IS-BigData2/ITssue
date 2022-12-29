@@ -264,7 +264,7 @@ Coded by www.creative-tim.com
                   <tr>
                     <td colspan="2" rowspan="4">
                       <div style="text-align: center;">
-                    <img id="userimg" alt="이미지 없음" src="images/<%=board.getBoard_file()%>">
+                    <img id="userimg" alt="" src="images/<%=board.getBoard_file()%>">
                   </div>
                      <%=board.getBoard_content()%>
                     </td>
