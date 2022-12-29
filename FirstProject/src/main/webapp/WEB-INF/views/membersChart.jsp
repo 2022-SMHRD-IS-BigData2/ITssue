@@ -350,12 +350,33 @@ Coded by www.creative-tim.com
 		<%}%>
 		
 		
-		
-		
-		
 	<%}%>
 	
-	  
+	var myAllScore = 0;
+	var outherAllScore = 0;
+	
+	for(var i = 0; i < labelsData.length; i++){
+		myAllScore += myData[i];
+		outherAllScore += outherData[i];
+	}
+	
+	var myScore = "내 공부시간 : ";
+	if(myAllScore >= 3600){
+		myScore += parseInt(myAllScore / 3600) + "hour";
+	}else if(myAllScore >= 60){
+		myScore += parseInt(myAllScore / 60) + "min";
+	}else{
+		myScore += myAllScore + "sec";
+	}
+	
+	var outherScore = "상대방 공부시간 : ";
+	if(outherAllScore >= 3600){
+		outherScore += parseInt(outherAllScore/3600)+"hour";
+	}else if(outherAllScore >= 60){
+		outherScore += parseInt(outherAllScore/60)+"min";
+	}else{
+		outherScore += outherAllScore+"sec";
+	}
 	  
 	  
 	  
@@ -374,7 +395,7 @@ new Chart(ctx, {
 		labels: labelsData,
 		datasets: [
 			{
-				label: '내 공부시간',
+				label: myScore,
 				data: myData,
 				borderWidth: 5,
 				borderColor : '#6bd098',
@@ -382,7 +403,7 @@ new Chart(ctx, {
 				yAxisID:'y',
 			},
 			{
-				label:'상대방 공부시간',
+				label:outherScore,
 				data:outherData,
 				borderWidth:5,
 				borderColor:'#ff7979',
