@@ -90,45 +90,110 @@ body{background-color: #f4f3ef;
     <script>
     
     	$('#submit').on('click',function(){
-    		if($('#pw').val() == $('#pw2').val()){
+    		if($('#id').val() != ""){
     			
-    			$.ajax({
-    			
-    				url : "join.do",
-    				data : {
-    					id:$('#id').val(),
-    					pw:$('#pw').val(),
-    					birth:$('#birth').val(),
-    					nick:$('#nick').val()
-    				},
-    				type:"post",
-    				success:function(res){
-    					if(res=="true"){
-    						location.href = "goLogin.do"
-    					}else{
-    						location.href = "goJoin.do"
-    					}
-    				},
-    				error:function(e){
+    			if($('#pw').val() != ""){
+    				
+    				if($('#nick').val() != ""){
+    					
+    					if($('#pw').val() == $('#pw2').val()){
+        	    			
+        	    			$.ajax({
+        	    			
+        	    				url : "join.do",
+        	    				data : {
+        	    					id:$('#id').val(),
+        	    					pw:$('#pw').val(),
+        	    					birth:$('#birth').val(),
+        	    					nick:$('#nick').val()
+        	    				},
+        	    				type:"post",
+        	    				success:function(res){
+        	    					if(res){
+        	    						location.href = "goLogin.do"
+        	    					}else{
+        	    						location.href = "goMain.do"
+        	    					}
+        	    				},
+        	    				error:function(e){
+        	    					Swal.fire({
+  	        	    				  title: '이미 존재하는 아이디 입니다.',
+  	        	    				  showClass: {
+  	        	    				    popup: 'animate__animated animate__fadeInDown'
+  	        	    				  },
+  	        	    				  hideClass: {
+  	        	    				    popup: 'animate__animated animate__fadeOutUp'
+  	        	    				  },
+  	        	    				  icon : 'warning',
+  	        	    				  confirmButtonColor: '#6bd098',
+  	        	    				  confirmButtonText:'확인'
+  	        	    				})
+        	    				}
+        	    				
+        	    			})
+        	    			
+        	    			
+        	    			
+        	    		}else{
+        	    			Swal.fire({
+        	    				  title: '비밀번호가 일치하지 않습니다.',
+        	    				  showClass: {
+        	    				    popup: 'animate__animated animate__fadeInDown'
+        	    				  },
+        	    				  hideClass: {
+        	    				    popup: 'animate__animated animate__fadeOutUp'
+        	    				  },
+        	    				  icon : 'warning',
+        	    				  confirmButtonColor: '#6bd098',
+        	    				  confirmButtonText:'확인'
+        	    				})
+        	    		}
+    					
+    				}else{
+		    			Swal.fire({
+		    				title: '닉네임을 입력해주세요.',
+		    				showClass: {
+		    					popup: 'animate__animated animate__fadeInDown'
+		    				},
+		    				hideClass: {
+		    					popup: 'animate__anmated animate__fadeOutUp'
+		    				},
+		    				icon : 'warning',
+		    				confirmButtonColor: '#6bd098',
+		    				confirmButtonText:'확인'
+		    			})
+    					
     				}
     				
-    			})
-    			
-    			
-    			
+    			}else{
+	    			Swal.fire({
+	    				title: '비밀번호를 입력해주세요.',
+	    				showClass: {
+	    					popup: 'animate__animated animate__fadeInDown'
+	    				},
+	    				hideClass: {
+	    					popup: 'animate__anmated animate__fadeOutUp'
+	    				},
+	    				icon : 'warning',
+	    				confirmButtonColor: '#6bd098',
+	    				confirmButtonText:'확인'
+	    			})
+    				
+    			}
+	    		
     		}else{
     			Swal.fire({
-    				  title: '비밀번호가 일치하지 않습니다.',
-    				  showClass: {
-    				    popup: 'animate__animated animate__fadeInDown'
-    				  },
-    				  hideClass: {
-    				    popup: 'animate__animated animate__fadeOutUp'
-    				  },
-    				  icon : 'warning',
-    				  confirmButtonColor: '#6bd098',
-    				  confirmButtonText:'확인'
-    				})
+    				title: '아이디를 입력해주세요.',
+    				showClass: {
+    					popup: 'animate__animated animate__fadeInDown'
+    				},
+    				hideClass: {
+    					popup: 'animate__anmated animate__fadeOutUp'
+    				},
+    				icon : 'warning',
+    				confirmButtonColor: '#6bd098',
+    				confirmButtonText:'확인'
+    			})
     		}
     	})
     	

@@ -28,17 +28,16 @@ public class LoginCon implements Controller {
 		MembersMapper dao = new MembersMapper();
 		Members result = dao.login(dto);
 		
-		String nextPage = null;
 		if(result != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("info", result);
-			nextPage = "redirect:/goMain.do";
+			response.getWriter().print(true);
 		}else {
-			nextPage = "redirect:/goWelcome.do";
+			response.getWriter().print(false);
 		}
 		
 		
-		return nextPage;
+		return null;
 	}
 
 }

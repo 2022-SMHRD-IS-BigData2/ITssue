@@ -220,7 +220,7 @@ $("#delscore").click(function(){
 	    		type: 'post',
 	    		success: function(res){
 	    			if(res){
-		    			$('tbody > tr:last').remove()
+		    			location.href = 'goBoardScore.do';
 	    			}
 	    			
 	    		},

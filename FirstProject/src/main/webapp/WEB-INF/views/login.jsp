@@ -28,8 +28,8 @@ body{background-color: #f4f3ef;
     input::placeholder{font-family: 'LINESeedKR-Bd';}
     form{margin: 0; padding: 0; display: inline-block;}
     input{width: 100%; padding: 12px 20px; margin: 5px 0px 30px 0px; display: inline-block; border: 1px solid rgb(176, 173, 173); border-radius: 4px; box-sizing: border-box;}
-    input[type=submit]{background-color: #6bd098; font-weight: bold; border: 1px solid #6bd098;}
-    input[type=submit]:hover{background-color: #00b894; font-weight: bold;}
+    input[type=button]{background-color: #6bd098; font-weight: bold; border: 1px solid #6bd098;}
+    input[type=button]:hover{background-color: #00b894; font-weight: bold;}
     
 
     </style>
@@ -41,17 +41,17 @@ body{background-color: #f4f3ef;
     <div id="main">
         <img src="./assets/img/Itssuelogo.png" alt="">
         <div id="form-container">
-            <form action="login.do" method="post">
+            <form onsubmit="false">
                 <div>
                     <label for="">ID</label>
-                    <input type="text" placeholder="ID를 입력하세요" name="id">
+                    <input type="text" placeholder="ID를 입력하세요" name="id" id="id">
                 </div>
                 <div>
                     <label for="">PW</label>
-                    <input type="password" placeholder="PW를 입력하세요" name="pw">
+                    <input type="password" placeholder="PW를 입력하세요" name="pw" id="pw">
                 </div>
                 <div>
-                    <input style="font-family:'LINESeedKR-Bd';" type="submit" value="LOGIN">
+                    <input style="font-family:'LINESeedKR-Bd';" type="button" value="LOGIN" id="submit">
                 </div>
                
             </form>
@@ -65,5 +65,112 @@ body{background-color: #f4f3ef;
 
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="./assets/js/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script type="text/javascript">
+	$('#submit').on('click',function(){
+		
+		$.ajax({
+			url: 'login.do',
+			data: {
+				id: $('#id').val(),
+				pw: $('#pw').val()
+			},
+			type: 'post',
+			success: function(res){
+				console.log(res == 'true')
+				if(res == 'true'){
+					location.href = "goMain.do"
+				}else{
+					Swal.fire({
+		  				  title: '로그인에 실패하였습니다.',
+		  				  showClass: {
+		  				    popup: 'animate__animated animate__fadeInDown'
+		  				  },
+		  				  hideClass: {
+		  				    popup: 'animate__animated animate__fadeOutUp'
+		  				  },
+		  				  icon : 'warning',
+		  				  confirmButtonColor: '#6bd098',
+		  				  confirmButtonText:'확인'
+		  			})
+				}
+			},
+			error: function(e){
+				
+			}
+		})
+		
+	})
+	
+	$('#id').on('keyup',function(key){
+		if(key.keyCode==13){
+			$.ajax({
+				url: 'login.do',
+				data: {
+					id: $('#id').val(),
+					pw: $('#pw').val()
+				},
+				type: 'post',
+				success: function(res){
+					console.log(res == 'true')
+					if(res == 'true'){
+						location.href = "goMain.do"
+					}else{
+						Swal.fire({
+			  				  title: '로그인에 실패하였습니다.',
+			  				  showClass: {
+			  				    popup: 'animate__animated animate__fadeInDown'
+			  				  },
+			  				  hideClass: {
+			  				    popup: 'animate__animated animate__fadeOutUp'
+			  				  },
+			  				  icon : 'warning',
+			  				  confirmButtonColor: '#6bd098',
+			  				  confirmButtonText:'확인'
+			  			})
+					}
+				},
+				error: function(e){
+					
+				}
+			})
+		}
+	})
+	$('#pw').on('keyup',function(key){
+		if(key.keyCode==13){
+			$.ajax({
+				url: 'login.do',
+				data: {
+					id: $('#id').val(),
+					pw: $('#pw').val()
+				},
+				type: 'post',
+				success: function(res){
+					console.log(res == 'true')
+					if(res == 'true'){
+						location.href = "goMain.do"
+					}else{
+						Swal.fire({
+			  				  title: '로그인에 실패하였습니다.',
+			  				  showClass: {
+			  				    popup: 'animate__animated animate__fadeInDown'
+			  				  },
+			  				  hideClass: {
+			  				    popup: 'animate__animated animate__fadeOutUp'
+			  				  },
+			  				  icon : 'warning',
+			  				  confirmButtonColor: '#6bd098',
+			  				  confirmButtonText:'확인'
+			  			})
+					}
+				},
+				error: function(e){
+					
+				}
+			})
+		}
+	})
+</script>
 </body>
 </html>
