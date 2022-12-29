@@ -18,6 +18,7 @@
 
         body{background-color: #f4f3ef;
             margin: 0; overflow-y: hidden;}
+        #main{box-shadow: 5px 5px 5px;}    
         #wrap{width: 100%; height: 100vh; flex-wrap: wrap; margin: auto; display: flex;}
         #header{height: 10%; width: 100%;}
         #footer{height: 10%; width: 100%;}
@@ -49,7 +50,7 @@
             <div>
                 <h4 class="comment mate">당신의 공부 메이트, ITssue</h4>
                 <h1 class="comment study">Study With Us</h1>
-                <p class="comment join">지금 가입하시고 저희와 함께 공부해요.</p>
+                <p class="comment join">지금 가입하시고, 저희와 함께 공부해요.📚✍</p>
                 <br>
                 <a href="goJoin.do" class="comment btn">REGISTER</a><br>
                 <br>

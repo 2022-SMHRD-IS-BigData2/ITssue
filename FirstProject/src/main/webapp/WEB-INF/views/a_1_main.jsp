@@ -241,7 +241,7 @@ font-family: 'LINESeedKR-Bd';}
             </div>
             
             <div id="postIt">
-              <textarea name="" id="memoIt" placeholder='메모장으로 입력해주세요'><%if(info.getContent() != null){ %><%=info.getContent() %><% }%></textarea>
+              <textarea name="" id="memoIt" placeholder='메모장으로 입력해주세요.'><%if(info.getContent() != null){ %><%=info.getContent() %><% }%></textarea>
            
       </div>
       <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
