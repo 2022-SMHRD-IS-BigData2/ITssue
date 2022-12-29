@@ -24,6 +24,7 @@
 		select *
 		from schedule
 		where id = #{id}
+		order by sche_no asc
 	</select>
 	
 	<update id="SCupdate" parameterType="com.ITssue.entity.Schedule">

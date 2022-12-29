@@ -1,6 +1,7 @@
 package com.ITssue.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.ITssue.dao.ScheduleMapper;
 import com.ITssue.entity.Members;
 import com.ITssue.entity.Schedule;
+import com.google.gson.Gson;
 
 public class ScheduleJoinCon implements Controller {
 
@@ -36,8 +38,13 @@ public class ScheduleJoinCon implements Controller {
 		ScheduleMapper dao = new ScheduleMapper();
 		int result = dao.sche_in(dto);
 		
+		List<Schedule> scheList = dao.sche_List(dto.getId());
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(scheList.get(scheList.size()-1));
+		
 		if(result > 0) {
-			response.getWriter().print("true");
+			response.getWriter().print(json);
 		}else {
 			response.getWriter().print("false");
 		}

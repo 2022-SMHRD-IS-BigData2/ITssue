@@ -428,23 +428,16 @@ $('#search').keypress(function(event){
 					
 					(async () => {
 						const { value: getName } = await Swal.fire({
-							title: '일정을 입력하세요.',
-							input: 'text',
-							confirmButtonColor : '#6bd098'
+						title: '일정을 입력하세요.',
+						input: 'text',
+						confirmButtonColor : '#6bd098'
 						})
 						
-						if (getName) {
-							calendar.addEvent({
-								title: getName,
-								start: arg.start,
-								end: arg.end,
-								allDay: arg.allDay
-							})
-						}
+						
 						calendar.unselect()
-						if(arg.allDay){ // allday true
+						if(arg.allDay){
 							$.ajax({
-											
+								
 								url:"scheduleJoin.do",
 								data:{
 									all: arg.allDay,
@@ -453,16 +446,27 @@ $('#search').keypress(function(event){
 									content: getName
 								},
 								type:"post",
+								dataType:'json',
 								success:function(res){
+										console.log(res)
+									if (getName) {
+										calendar.addEvent({
+											id: res.id,
+											title: getName,
+											start: arg.start,
+											end: arg.end,
+											allDay: arg.allDay
+										})
+									}
 								},
 								error:function(e){
 								}
-												
+								
 							})
-										
-						}else{ // allday false
+							
+						}else{
 							$.ajax({
-												
+								
 								url:"scheduleJoin.do",
 								data:{
 									all: arg.allDay,
@@ -471,13 +475,24 @@ $('#search').keypress(function(event){
 									content: getName
 								},
 								type:"post",
+								dataType: 'json',
 								success:function(res){
+									console.log(res)
+									if (getName) {
+										calendar.addEvent({
+											id: res.id,
+											title: getName,
+											start: arg.start,
+											end: arg.end,
+											allDay: arg.allDay
+										})
+									}
 								},
 								error:function(e){
 								}
-												
+								
 							})
-										
+							
 						}
 					})()
 					

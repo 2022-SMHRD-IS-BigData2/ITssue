@@ -40,6 +40,8 @@ public class ScheduleUdateCon implements Controller {
 		ScheduleMapper dao = new ScheduleMapper();
 		int result = dao.sche_update(dto);
 		
+		
+		
 		if(result > 0) {
 			response.getWriter().print("true");
 			

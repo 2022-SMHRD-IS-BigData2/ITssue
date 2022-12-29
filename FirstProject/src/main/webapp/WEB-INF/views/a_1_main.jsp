@@ -385,14 +385,7 @@ font-family: 'LINESeedKR-Bd';}
 					confirmButtonColor : '#6bd098'
 					})
 					
-					if (getName) {
-						calendar.addEvent({
-							title: getName,
-							start: arg.start,
-							end: arg.end,
-							allDay: arg.allDay
-						})
-					}
+					
 					calendar.unselect()
 					if(arg.allDay){
 						$.ajax({
@@ -405,7 +398,17 @@ font-family: 'LINESeedKR-Bd';}
 								content: getName
 							},
 							type:"post",
+							dataType:'json',
 							success:function(res){
+								if (getName) {
+									calendar.addEvent({
+										id: res.id,
+										title: getName,
+										start: arg.start,
+										end: arg.end,
+										allDay: arg.allDay
+									})
+								}
 							},
 							error:function(e){
 							}
@@ -423,7 +426,17 @@ font-family: 'LINESeedKR-Bd';}
 								content: getName
 							},
 							type:"post",
+							dataType: 'json',
 							success:function(res){
+								if (getName) {
+									calendar.addEvent({
+										id: res.id,
+										title: getName,
+										start: arg.start,
+										end: arg.end,
+										allDay: arg.allDay
+									})
+								}
 							},
 							error:function(e){
 							}
@@ -510,7 +523,7 @@ font-family: 'LINESeedKR-Bd';}
 			eventDrop: function(info){
 			    	  
 				    	  
-						
+				
 				let id = info.event.id;
 				let startStr = info.event.startStr.split("+")[0].split('T');
 				let endStr = info.event.endStr.split("+")[0].split('T');			

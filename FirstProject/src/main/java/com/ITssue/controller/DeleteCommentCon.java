@@ -17,7 +17,6 @@ public class DeleteCommentCon implements Controller {
 			throws ServletException, IOException {
 		int cmt_no = Integer.parseInt(request.getParameter("cmt_no"));
 		String id = request.getParameter("id");
-		System.out.println(cmt_no);
 		Comments dto = new Comments();
 		dto.setCmt_no(cmt_no);
 		dto.setId(id);
