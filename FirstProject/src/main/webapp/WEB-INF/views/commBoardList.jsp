@@ -50,6 +50,8 @@ Coded by www.creative-tim.com
   .input-group.no-border{position: absolute; bottom: 40px; padding-right: 10px; padding-left: 10px;}
   .alert-icon{position: absolute; right: 100px; top: 20px;}
   .col-md-12{text-align: center;}
+  .write_list{background-color: #f5f5f5;
+  box-shadow: 5px 5px 5px gray;}
   #board{display: inline-block; text-align: center;} 
   body{font-family: 'LINESeedKR-Bd';}
   .btn{background-color: #6bd098; border: 2px solid #6bd098; font-family: 'LINESeedKR-Bd';}
