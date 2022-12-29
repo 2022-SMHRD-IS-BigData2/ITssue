@@ -400,7 +400,6 @@ function addComment(){
     				success : function(res){
     					if(res!=null){
     						
-    						console.log(res)
     						const parent =document.getElementById('commenttable');
     			    		const newcomment=document.createElement('tr');
     			    		newcomment.setAttribute('class','repletrue');
@@ -477,7 +476,6 @@ function addbox(newcomment){
 
 function delcom(obj){
 	
-	console.log(obj)
 	var tr = obj.parentNode.parentNode;
 	$.ajax({url: 'deleteComment.do',
 		data: {
@@ -486,7 +484,6 @@ function delcom(obj){
 		},
 		type: 'post',
 		success : function(res){
-				console.log(res)
 			if(res){
 				tr.parentNode.removeChild(tr);
 			}else{
