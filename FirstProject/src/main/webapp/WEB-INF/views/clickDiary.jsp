@@ -83,7 +83,7 @@ Coded by www.creative-tim.com
           </tr>
           <tr>
             <td>작성일</td>
-            <td><%= diary.getDiary_date() %></td>
+            <td><%= diary.getDiary_date().split("\\.")[0] %></td>
           </tr>
           <tr>
             <td colspan="2">내용</td>
