@@ -12,7 +12,7 @@
 			#{nick},
 			sysdate,
 			'm',
-			'간단한 메모장으로 이용해주세요.'
+			null
 		)
 	
 	</insert>
