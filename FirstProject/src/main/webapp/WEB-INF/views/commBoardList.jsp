@@ -308,7 +308,6 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
   		var tr = '';
   		<%for(Board board : list){%>
 			
-			<%if(board.getId().equals(info.getId())){%>
 				tr = `
 					<tr>
 				<td scope='col' class='td_title' width='250'>`+'<%=board.getBoard_no()%>'+`</td>
@@ -318,9 +317,10 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
 				<td scope='col' class='td_title' width='90'>`+'<%=board.getLikes() %>' +`</td>
 				</tr>
 				`
+			<%if(board.getId().equals(info.getId())){%>
+				$('tbody').append( tr );
 			<%}%>
   			
-			$('tbody').append( tr );
   		<%}%>
   		
   	})

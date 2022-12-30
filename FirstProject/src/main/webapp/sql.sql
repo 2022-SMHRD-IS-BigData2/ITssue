@@ -30,3 +30,4 @@ values(3, 16, '집22212312에 가고싶다', sysdate, 1234);
 
 select sysdate from dual;
 
+select * from board;

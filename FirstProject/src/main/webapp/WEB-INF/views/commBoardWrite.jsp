@@ -292,7 +292,6 @@ input::placeholder{font-family: 'LINESeedKR-Bd';}
                     <input id="push-hash" type='button' value='추가' onclick='addList()'>
                       <input type='button' value='삭제' onclick='removeItem()'>
                     <ul id="hashtag-container">
-                      <li class="hashtag">예시:수학</li>
                       
                     </ul>
                   
